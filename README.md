@@ -1,3 +1,3 @@
-#Graph Connectivity and Percolation 
+# Graph Connectivity and Percolation 
 
 
