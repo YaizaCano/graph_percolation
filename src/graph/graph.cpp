@@ -100,7 +100,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
     auto nVertices = g.totalSites();
     // represents if an edge has been removed already
     std::vector<std::vector<bool>> removedBonds(nVertices,
-        std::vector<SiteID>(nVertices, false));
+        std::vector<bool>(nVertices, false));
     // in this algorithm we add all vertices
     for(int i = 0; i < nVertices; ++i){
         // always add a vertex
