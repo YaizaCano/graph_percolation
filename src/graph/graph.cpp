@@ -45,8 +45,8 @@ void Graph::addSite(){
 }
 
 void Graph::addBond(SiteID v, SiteID u){
-    nodeList[v].push_back(v);
-    nodeList[u].push_back(u);
+    nodeList[v].push_back(u);
+    nodeList[u].push_back(v);
 }
 
 
