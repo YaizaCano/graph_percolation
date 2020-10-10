@@ -93,16 +93,15 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
 }
 
 Graph Graph::applyBondPercolation(Graph const& g, float q){
-    
+
     // the new percolation graph is empty
     Graph percolatedGraph;
 
     auto nVertices = g.totalSites();
     // represents if an edge has been removed already
-    std::vector<std::vector<SiteID>> removedEdges(nVertices, std::vector<SiteID>(nVertices, false));
-    // for each site in the graph we add it
-    // to the new graph only if the probability of
-    // percolation permits it
+    std::vector<std::vector<SiteID>> removedEdges(nVertices,
+        std::vector<SiteID>(nVertices, false));
+
     for(int i = 0; i < nVertices; ++i){
         // always add a vertex
         percolatedGraph.addSite();
