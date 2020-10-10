@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "rand_generator.h"
+
 /**
   * @typedef type definition for the identifier of a vertex in a graph
   * */
