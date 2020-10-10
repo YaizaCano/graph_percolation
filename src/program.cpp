@@ -16,7 +16,7 @@ int main(){
     auto components = g.getTotalConnectedComponents();
     for(float i = 1; i > 0; i -=0.05){
         std::cout << "Using q=" << i << std::endl;
-        auto g_p = Graph::applySitePercolation(g, i);
+        auto g_p = Graph::applyBondPercolation(g, i);
         components = g_p.getTotalConnectedComponents();
         std::cout << "Connected Components: " << components << std::endl;
     }
