@@ -1,9 +1,5 @@
-//
-// Created by pol on 3/1/20.
-//
-
-#ifndef A_RAND_GENERATOR_H
-#define A_RAND_GENERATOR_H
+#ifndef RAND_GENERATOR_H
+#define RAND_GENERATOR_H
 
 
 #include <vector>
