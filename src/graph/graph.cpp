@@ -100,7 +100,7 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
                 // we only add the edge if the corresponding vertex has not
                 // been deleted before
                 if(!removedSites[site])
-                    percolatedGraph.addBond(removedCount[i + 1], removedCount[site + 1]);
+                    percolatedGraph.addBond(i - removedCount[i + 1], site - removedCount[site + 1]);
             }
         }
 
