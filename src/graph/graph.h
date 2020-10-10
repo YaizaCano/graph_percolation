@@ -2,6 +2,7 @@
 #define GRAPH_H
 
 #include <vector>
+#include <stack>
 
 #include "rand_generator.h"
 

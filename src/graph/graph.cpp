@@ -9,8 +9,34 @@
 
 
 unsigned int Graph::getTotalConnectedComponents() const{
+    std::vector<bool> visited(false);
+    auto nComponents = 0;
+    // the idea behind this algorithm is that every time we iterate through
+    // the loop we are at looking at a different vertex, if we have already seen
+    // it it means it is already in a component so we can ignore it.
+    for(int i = 0; i < nodeList.size(); ++i){
+        // visit all the component starting from the selected vertex
+        if(!visited[i]){
+            // we do a bfs for each connected component
+            std::stack<SiteID> elements;
+            nComponents++;
+            elements.push(i);
+            auto current = elements.top();
+            while(!elements.empty()){
+                elements.pop();
+                if(!visited[current]){
+                    visited[current] = true;
+                    auto nBonds = g.totalBonds(i);
+                    for(int j = 0; j < nBonds; ++j){
+                        auto site = g.getBondSite(current, j);
+                        elements.push(site);
+                    }
+                }
+            }
+        }
+    }
 
-    return 1;
+    return nComponents;
 }
 
 
@@ -49,7 +75,7 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
     for(int i = 0; i < nVertices; ++i){
         // missing probability of q
         auto p = 1 - q;
-        removedSites[i] = RandGenerator::generateProbability() < p; 
+        removedSites[i] = RandGenerator::generateProbability() < p;
 
         // if the site has not been deleted, then
         // we add the corresponding edges.

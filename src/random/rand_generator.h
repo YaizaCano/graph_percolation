@@ -30,7 +30,7 @@ public:
     static void setSeed(BigInt s);
 
     /**
-     * @brief generates a probability between 0 and 1 
+     * @brief generates a probability between 0 and 1
      * @returns a number between 0 and 1
      * */
     static float generateProbability();
