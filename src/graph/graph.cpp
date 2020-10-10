@@ -33,7 +33,7 @@ unsigned int Graph::totalBonds(SiteID v) const{
 }
 
 SiteID Graph::getBondSite(SiteID v, unsigned int pos)const{
-    return nodeList[v][pos]; 
+    return nodeList[v][pos];
 }
 
 Graph Graph::applySitePercolation(Graph const& g, float q){
@@ -57,6 +57,12 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
     return percolatedGraph;
 }
 
+Graph Graph::applyBondPercolation(Graph const& g, float q){
+    Graph percolatedGraph;
+
+
+    return percolatedGraph; 
+}
 
 
 

@@ -50,7 +50,7 @@ class Graph{
     /**
      * @brief returns the total of bonds in a specific site.
      * @param v is the site in which to get the bonds
-     * @returns the number bonds in a specific site 
+     * @returns the number bonds in a specific site
      * */
     unsigned int totalBonds(SiteID v) const;
 
@@ -94,7 +94,7 @@ class Graph{
      *        it is the computatational representation of the graph, each vertex
      *        is represented by a numerical ID.
      * */
-    std::vector<std::vector<SiteID>> nodeList; // ADJACENCY LIST OR MATRIX
+    std::vector<std::vector<SiteID>> nodeList; // ADJACENCY LIST OR MATRIX?
 
 };
 
