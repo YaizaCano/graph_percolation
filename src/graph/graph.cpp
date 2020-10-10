@@ -68,6 +68,9 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
     auto nVertices = g.totalSites();
     // represents if a vertex has been removed already
     std::vector<bool> removedSites(nVertices, false);
+    // First we must add all the vertices.
+
+
     // for each site in the graph we add it
     // to the new graph only if the probability of
     // percolation permits it
@@ -101,10 +104,16 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
     // represents if an edge has been removed already
     std::vector<std::vector<bool>> removedBonds(nVertices,
         std::vector<bool>(nVertices, false));
-    // in this algorithm we add all vertices
+
+    // before adding any edge, we must add all vertices O(|V|)
     for(int i = 0; i < nVertices; ++i){
         // always add a vertex
         percolatedGraph.addSite();
+    }
+
+    // in this algorithm we add all vertices
+    for(int i = 0; i < nVertices; ++i){
+
         auto nBonds = g.totalBonds(i);
         for(int j = 0; j < nBonds; ++j){
             auto site = g.getBondSite(i, j);
