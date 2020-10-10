@@ -26,7 +26,7 @@ unsigned int Graph::getTotalConnectedComponents() const{
                 elements.pop();
                 if(!visited[current]){
                     visited[current] = true;
-                    auto nBonds = totalBonds(i);
+                    auto nBonds = totalBonds(current);
                     for(int j = 0; j < nBonds; ++j){
                         auto site = getBondSite(current, j);
                         elements.push(site);
@@ -42,6 +42,7 @@ unsigned int Graph::getTotalConnectedComponents() const{
 
 void Graph::addSite(){
     nodeList.push_back(std::vector<SiteID>());
+
 }
 
 void Graph::addBond(SiteID v, SiteID u){

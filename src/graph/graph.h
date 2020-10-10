@@ -1,6 +1,8 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+// DEBUG 
+#include <iostream>
 #include <vector>
 #include <stack>
 

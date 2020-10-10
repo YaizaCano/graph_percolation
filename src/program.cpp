@@ -8,10 +8,13 @@ int main(){
     g.addSite();
     g.addSite();
     g.addSite();
+    g.addSite();
     g.addBond(0, 1);
     g.addBond(1, 2);
-    g.addBond(2, 0);
-    std::cout << "Connected Components: " << g.getTotalConnectedComponents() << std::endl; 
+    g.addBond(2, 3);
+    std::cout << "Graph created!" << std::endl;
+    auto components = g.getTotalConnectedComponents(); 
+    std::cout << "Connected Components: " << components << std::endl;
 
     return 0;
 }
