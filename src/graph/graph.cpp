@@ -68,15 +68,27 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
     auto nVertices = g.totalSites();
     // represents if a vertex has been removed already
     std::vector<bool> removedSites(nVertices, false);
-    // First we must add all the vertices.
-
+    // represents how many vertices have been removed at that index
+    std::vector<int> removedCount(nVertices + 1, 0);
+    // before adding any edge, we must add all vertices O(|V|)
+    for(int i = 0; i < nVertices; ++i){
+        auto p = 1 - q;
+        removedSites[i] = RandGenerator::generateProbability() < p;
+        // we need to keep count on how many indices we are shifting due to the
+        // vertex deletion
+        if(!removedSites[i])
+            percolatedGraph.addSite();
+        else{
+            removedCount[i + 1] = 1;
+        }
+        removedCount[i + 1] += removedCount[i];
+    }
 
     // for each site in the graph we add it
     // to the new graph only if the probability of
     // percolation permits it
     for(int i = 0; i < nVertices; ++i){
-        auto p = 1 - q;
-        removedSites[i] = RandGenerator::generateProbability() < p;
+
         // if the site has not been deleted, then
         // we add the corresponding edges.
         if(!removedSites[i]){
@@ -87,9 +99,10 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
                 // we only add the edge if the corresponding vertex has not
                 // been deleted before
                 if(!removedSites[bond])
-                    percolatedGraph.addBond(i, site);
+                    percolatedGraph.addBond(removedCount[i + 1], removedCount[site + 1]);
             }
         }
+
     }
 
     return percolatedGraph;
