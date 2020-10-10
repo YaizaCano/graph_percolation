@@ -99,7 +99,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
 
     auto nVertices = g.totalSites();
     // represents if an edge has been removed already
-    std::vector<std::vector<SiteID>> removedBonds(nVertices,
+    std::vector<std::vector<bool>> removedBonds(nVertices,
         std::vector<SiteID>(nVertices, false));
     // in this algorithm we add all vertices
     for(int i = 0; i < nVertices; ++i){
@@ -112,7 +112,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
             // twice, if it is the first time we visit an edge, then we must calculate
             // the probability
             //
-            // if it is the second visit => the probability has already been calculated 
+            // if it is the second visit => the probability has already been calculated
             if(i < site){
                 auto p = 1 - q;
                 removedBonds[i][site] = RandGenerator::generateProbability() < p;
