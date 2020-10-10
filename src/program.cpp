@@ -4,6 +4,7 @@
 #include "graph/graph.h"
 
 int main(){
+    RandGenerator::setSeed(432432);
     Graph g;
     g.addSite();
     g.addSite();
@@ -13,9 +14,11 @@ int main(){
     g.addBond(2, 3);
     std::cout << "Graph created!" << std::endl;
     auto components = g.getTotalConnectedComponents();
-    std::cout << "Connected Components: " << components << std::endl;
-    g = Graph::applySitePercolation(g, 0.8);
-    components = g.getTotalConnectedComponents();
-    std::cout << "Connected Components with bond percolation: " << components << std::endl;
+    for(float i = 1; i > 0; i -=0.05){
+        std::cout << "Using q=" << i << std::endl;
+        auto g_p = Graph::applySitePercolation(g, i);
+        components = g_p.getTotalConnectedComponents();
+        std::cout << "Connected Components: " << components << std::endl;
+    }
     return 0;
 }
