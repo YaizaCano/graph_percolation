@@ -9,7 +9,7 @@
 
 
 unsigned int Graph::getTotalConnectedComponents() const{
-    std::vector<bool> visited(false);
+    std::vector<bool> visited(nodeList.size(), false);
     auto nComponents = 0;
     // the idea behind this algorithm is that every time we iterate through
     // the loop we are at looking at a different vertex, if we have already seen
@@ -63,20 +63,17 @@ SiteID Graph::getBondSite(SiteID v, unsigned int pos)const{
 }
 
 Graph Graph::applySitePercolation(Graph const& g, float q){
-    // represents if a vertex has been removed already
-    std::vector<bool> removedSites(false);
     // the new percolation graph is empty
     Graph percolatedGraph;
-
     auto nVertices = g.totalSites();
+    // represents if a vertex has been removed already
+    std::vector<bool> removedSites(nVertices, false);
     // for each site in the graph we add it
     // to the new graph only if the probability of
     // percolation permits it
     for(int i = 0; i < nVertices; ++i){
-        // missing probability of q
         auto p = 1 - q;
         removedSites[i] = RandGenerator::generateProbability() < p;
-
         // if the site has not been deleted, then
         // we add the corresponding edges.
         if(!removedSites[i]){
@@ -87,18 +84,36 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
                 // we only add the edge if the corresponding vertex has not
                 // been deleted before
                 if(!removedSites[bond])
-                    percolatedGraph.addBond(i, j);
+                    percolatedGraph.addBond(i, site);
             }
         }
-
     }
 
     return percolatedGraph;
 }
 
 Graph Graph::applyBondPercolation(Graph const& g, float q){
+    
+    // the new percolation graph is empty
     Graph percolatedGraph;
 
+    auto nVertices = g.totalSites();
+    // represents if an edge has been removed already
+    std::vector<std::vector<SiteID>> removedEdges(nVertices, std::vector<SiteID>(nVertices, false));
+    // for each site in the graph we add it
+    // to the new graph only if the probability of
+    // percolation permits it
+    for(int i = 0; i < nVertices; ++i){
+        // always add a vertex
+        percolatedGraph.addSite();
+        auto nBonds = g.totalBonds(i);
+        for(int j = 0; j < nBonds; ++j){
+            auto site = g.getBondSite(i, j);
+
+            percolatedGraph.addBond(i, site);
+        }
+
+    }
 
     return percolatedGraph;
 }
