@@ -2,7 +2,6 @@
 #define GRAPH_H
 
 #include <vector>
-#include <list>
 
 /**
   * @typedef type definition for the identifier of a vertex in a graph
@@ -37,18 +36,32 @@ class Graph{
     /**
      * @brief adds an edge between two vertices, as a precondition, the edge must
      *        not exist already.
+     * @param v a vertex connected to the edge
+     * @param u is the vertex at the other side of the edge
      * */
     void addBond(SiteID v, SiteID u);
 
     /**
      * @brief returns the number of vertices in the graph
+     * @returns the number of sites in the graph
      * */
     unsigned int totalSites() const;
 
     /**
      * @brief returns the total of bonds in a specific site.
+     * @param v is the site in which to get the bonds
+     * @returns the number bonds in a specific site 
      * */
     unsigned int totalBonds(SiteID v) const;
+
+
+    /**
+     * @brief given a site and an edge position, it retursn the site that at that position
+     * @param v is the site
+     * @param pos is the position inside the list of edges
+     * @returns the siteID of the given edge
+     * */
+    SiteID getBondSite(SiteID v, unsigned int pos) const;
 
 
 
@@ -81,7 +94,7 @@ class Graph{
      *        it is the computatational representation of the graph, each vertex
      *        is represented by a numerical ID.
      * */
-    std::vector<std::list<SiteID>> nodeList; // ADJACENCY LIST OR MATRIX
+    std::vector<std::vector<SiteID>> nodeList; // ADJACENCY LIST OR MATRIX
 
 };
 
