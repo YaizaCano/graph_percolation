@@ -51,7 +51,7 @@ void Graph::addBond(SiteID v, SiteID u){
 
 
 unsigned int Graph::totalSites() const{
-    return nodeList.size(0);
+    return nodeList.size();
 }
 
 unsigned int Graph::totalBonds(SiteID v) const{
