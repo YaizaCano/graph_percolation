@@ -4,7 +4,7 @@
 #include <vector>
 #include <stack>
 
-#include "rand_generator.h"
+#include "../random/rand_generator.h"
 
 /**
   * @typedef type definition for the identifier of a vertex in a graph

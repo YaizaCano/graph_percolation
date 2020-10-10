@@ -21,14 +21,14 @@ unsigned int Graph::getTotalConnectedComponents() const{
             std::stack<SiteID> elements;
             nComponents++;
             elements.push(i);
-            auto current = elements.top();
             while(!elements.empty()){
+                auto current = elements.top();
                 elements.pop();
                 if(!visited[current]){
                     visited[current] = true;
-                    auto nBonds = g.totalBonds(i);
+                    auto nBonds = totalBonds(i);
                     for(int j = 0; j < nBonds; ++j){
-                        auto site = g.getBondSite(current, j);
+                        auto site = getBondSite(current, j);
                         elements.push(site);
                     }
                 }
@@ -41,7 +41,7 @@ unsigned int Graph::getTotalConnectedComponents() const{
 
 
 void Graph::addSite(){
-    nodeList.push_back(std::list<SiteID>);
+    nodeList.push_back(std::vector<SiteID>());
 }
 
 void Graph::addBond(SiteID v, SiteID u){
@@ -98,7 +98,7 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
                 auto site = g.getBondSite(i, j);
                 // we only add the edge if the corresponding vertex has not
                 // been deleted before
-                if(!removedSites[bond])
+                if(!removedSites[site])
                     percolatedGraph.addBond(removedCount[i + 1], removedCount[site + 1]);
             }
         }
@@ -140,7 +140,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
                 removedBonds[i][site] = RandGenerator::generateProbability() < p;
             }
             else{
-                removedBonds[i][site] = removedBonds[site][i]
+                removedBonds[i][site] = removedBonds[site][i];
             }
             if(removedBonds[i][site])
                 percolatedGraph.addBond(i, site);

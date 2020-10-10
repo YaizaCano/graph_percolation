@@ -7,11 +7,11 @@ OUTNAME = -o $(PROGRAM_NAME)
 
 # directory definition
 
-RANDOM = random/rand_generator.cpp
+RANDOM = random/rand_generator.cpp graph/graph.cpp
 MAIN = $(PROGRAM_NAME).cpp
 
 
-TARGET = $(RANDOM) 
+TARGET = $(RANDOM)
 
 # rule definition
 program: $(TARGET) $(MAIN) $(TARGET:.cpp=.h)
