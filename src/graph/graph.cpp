@@ -143,7 +143,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
             else{
                 removedBonds[i][site] = removedBonds[site][i];
             }
-            if(removedBonds[i][site])
+            if(!removedBonds[i][site])
                 percolatedGraph.addBond(i, site);
         }
 
