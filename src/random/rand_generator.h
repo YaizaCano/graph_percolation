@@ -10,8 +10,6 @@
 typedef long long unsigned int BigInt;
 
 
-
-
 /**
  * @class RandGenerator
  * @brief Random number generator that
@@ -25,23 +23,24 @@ class RandGenerator {
 
 public:
 
-
     /**
-     * @brief set the initial seed
+     * @brief setter for the initial number
+     * @param s is the starting number
      * */
     static void setSeed(BigInt s);
 
     /**
-     * @brief generate a random number based on a seed
-     * @returns the next number in the sequence
-     * */
-    static BigInt generateInteger();
-
-    /**
-     * @brief generate a random floating point number
-     * @returns a probability between 0 and 1
+     * @brief generates a probability between 0 and 1 
+     * @returns a number between 0 and 1
      * */
     static float generateProbability();
+
+    /**
+     * @brief generate a random number based on a seed
+     * @param seed is the starting number
+     * @returns the next number in the sequence
+     * */
+    static BigInt generate();
 
     /**
      *  @brief generate a random sequence of numbers
@@ -49,12 +48,12 @@ public:
      *  @param size is the size of the sequence
      *  @returns the sequence of integers
      * */
-    static std::vector<BigInt> generatePermutations(BigInt seed, unsigned int size);
+    static std::vector<BigInt> generatePermutations(unsigned int size);
 
 private:
 
     /**
-     * @brief seed of the generator
+     * @brief the modulus of the formula
      * */
     static BigInt seed;
 

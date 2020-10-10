@@ -5,23 +5,26 @@
  *               PUBLIC
  *  =================================*/
 
+BigInt RandGenerator::seed;
+
 void RandGenerator::setSeed(BigInt s){
     seed = s;
 }
 
 float RandGenerator::generateProbability(){
-    return (generateInteger() * 1.0) / m; 
+    return (generate() * 1.0) / m; 
 }
 
-BigInt RandGenerator::generateInteger(BigInt seed) {
-    return (seed * a + c) % m;
+BigInt RandGenerator::generate() {
+    auto r = (seed * a + c) % m;
+    seed = r;
+    return r;
 }
 
-std::vector<BigInt> RandGenerator::generatePermutations(BigInt seed, unsigned int size) {
+std::vector<BigInt> RandGenerator::generatePermutations(unsigned int size) {
     std::vector<BigInt> sequence(size);
     for(auto & element : sequence){
-        element = generate(seed);
-        seed = element;
+        element = generate();
     }
     return sequence;
 }
