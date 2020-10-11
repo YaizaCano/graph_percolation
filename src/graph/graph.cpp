@@ -74,7 +74,7 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
     // before adding any edge, we must add all vertices O(|V|)
     for(int i = 0; i < nVertices; ++i){
         auto p = RandGenerator::generateProbability();
-        removedSites[i] =  p >= q;
+        removedSites[i] =  p < q;
         // we need to keep count on how many indices we are shifting due to the
         // vertex deletion
         if(!removedSites[i]){
@@ -138,7 +138,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
             // if it is the second visit => the probability has already been calculated
             if(i < site){
                 auto p = RandGenerator::generateProbability();
-                removedBonds[i][site] =  p >= q;
+                removedBonds[i][site] =  p < q;
             }
             else{
                 removedBonds[i][site] = removedBonds[site][i];
