@@ -4,7 +4,7 @@
 #include "graph/graph.h"
 
 int main(){
-    RandGenerator::setSeed(44545);
+    RandGenerator::setSeed(4445);
     Graph g;
     g.addSite();
     g.addSite();
