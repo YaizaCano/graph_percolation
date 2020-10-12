@@ -1,7 +1,7 @@
 #ifndef GRAPH_GENERATOR_H
 #define GRAPH_GENERATOR_H
 
-#include "Graph.h"
+#include "graph.h"
 
 
 class GraphGenerator{
