@@ -20,7 +20,7 @@ float Geometric::calculateDistance(std::vector<int> const& v1, std::vector<int> 
 std::vector<int> Geometric::generatePosition() const{
     std::vector<int> pos(dimension);
     for(auto &p : pos){
-        p = RandGenerator::generate() % 20000;
+        p = RandGenerator::generate() % 2000;
     }
 
     return pos;

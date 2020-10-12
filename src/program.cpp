@@ -4,7 +4,9 @@
 #include "graph/grid.h"
 #include "graph/geometric.h"
 #include "graph/graph.h"
-
+// el rand generator ha de ser directament proporcional al radi
+// en el cas de Geometric ja que si el espai de posicions es molt gran
+// el radi a de ser mes gran per compensar. 
 int main(){
     RandGenerator::setSeed(44545);
     int n = 50;
