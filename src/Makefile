@@ -7,7 +7,7 @@ OUTNAME = -o $(PROGRAM_NAME)
 
 # directory definition
 
-RANDOM = random/rand_generator.cpp graph/graph.cpp
+RANDOM = random/rand_generator.cpp graph/graph.cpp graph/grid.cpp graph/geometric.cpp
 MAIN = $(PROGRAM_NAME).cpp
 
 
