@@ -21,5 +21,15 @@ Graph Grid::createGraph() const{
         }
     }
 
+    for(auto i = 1; i < n - 1; ++i) {
+        auto pos = n*(n-1)+i;
+        g.addBond(pos, pos + 1);
+    }
+
+    for(auto i = 1; i < n - 1; ++i) {
+        auto pos = n*i;
+        g.addBond(pos, pos + n);
+    }
+
     return g; // graella
 }

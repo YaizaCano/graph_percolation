@@ -93,7 +93,7 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
         // if the site has not been deleted, then
         // we add the corresponding edges.
         if(!removedSites[i]){
-
+            
             auto nBonds = g.totalBonds(i);
             for(int j = 0; j < nBonds; ++j){
                 auto site = g.getBondSite(i, j);
@@ -138,6 +138,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
             // if it is the second visit => the probability has already been calculated
             if(i < site){
                 auto p = RandGenerator::generateProbability();
+                
                 removedBonds[i][site] =  p < q;
             }
             else{
@@ -145,6 +146,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
             }
             if(!removedBonds[i][site])
                 percolatedGraph.addBond(i, site);
+
         }
 
     }

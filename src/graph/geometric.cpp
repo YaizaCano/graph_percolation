@@ -6,7 +6,7 @@ Geometric::Geometric(unsigned int num, unsigned int dim, float r){
     radius = r;
 }
 
-float Geometric::calculateDistance(std::vector<int> const& v1, std::vector<int> const& v2){
+float Geometric::calculateDistance(std::vector<float> const& v1, std::vector<float> const& v2){
     auto size = v1.size();
     float distance = 0;
     for(auto i = 0; i < size; ++i){
@@ -17,10 +17,10 @@ float Geometric::calculateDistance(std::vector<int> const& v1, std::vector<int> 
 }
 
 
-std::vector<int> Geometric::generatePosition() const{
-    std::vector<int> pos(dimension);
+std::vector<float> Geometric::generatePosition() const{
+    std::vector<float> pos(dimension);
     for(auto &p : pos){
-        p = RandGenerator::generate() % 2000;
+        p = RandGenerator::generateProbability();
     }
 
     return pos;
@@ -28,7 +28,7 @@ std::vector<int> Geometric::generatePosition() const{
 
 Graph Geometric::createGraph() const{
     Graph g;
-    std::vector<std::vector<int>> positions(n, std::vector<int>(dimension));
+    std::vector<std::vector<float>> positions(n, std::vector<float>(dimension));
     // add vertices
     for(auto i = 0; i < n; ++i){
         g.addSite();
