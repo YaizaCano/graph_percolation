@@ -20,7 +20,7 @@ float Geometric::calculateDistance(std::vector<int> const& v1, std::vector<int> 
 std::vector<int> Geometric::generatePosition() const{
     std::vector<int> pos(dimension);
     for(auto &p : pos){
-        p = RandGenerator::generate(); 
+        p = RandGenerator::generate() % 20000;
     }
 
     return pos;
@@ -28,7 +28,7 @@ std::vector<int> Geometric::generatePosition() const{
 
 Graph Geometric::createGraph() const{
     Graph g;
-    std::vector<std::vector<int>> positions(n, std::vector<int>(dim));
+    std::vector<std::vector<int>> positions(n, std::vector<int>(dimension));
     // add vertices
     for(auto i = 0; i < n; ++i){
         g.addSite();

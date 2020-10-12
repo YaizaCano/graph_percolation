@@ -22,7 +22,7 @@ public:
 
 private:
 
-    std::vector<int> generatePosition() const
+    std::vector<int> generatePosition() const;
 
     // pre: v1.size() == v2.size()
     static float calculateDistance(std::vector<int> const& v1, std::vector<int> const& v2);
