@@ -120,8 +120,8 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
     percolatedGraph.reserve(nVertices);
 
     // represents if an edge has been removed already
-    std::vector<std::vector<bool>> removedBonds(nVertices,
-        std::vector<bool>(nVertices, false));
+    std::vector<std::vector<SiteID>> removedBonds(nVertices,
+        std::vector<SiteID>());
 
     // before adding any edge, we must add all vertices O(|V|)
     for(int i = 0; i < nVertices; ++i){
@@ -140,14 +140,16 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
             // the probability
             //
             // if it is the second visit => the probability has already been calculated
+            bool removedBond;
             if(i < site){
                 auto p = RandGenerator::generateProbability();
-                removedBonds[i][site] =  p < q;
+                removedBond = p < q;
+                if(removedBond)removedBonds[site].push_back(i);
             }
             else{
-                removedBonds[i][site] = removedBonds[site][i];
+                removedBond = std::binary_search(removedBonds[i].begin(), removedBonds[i].end(), site); // find i
             }
-            if(!removedBonds[i][site])
+            if(!removedBond)
                 percolatedGraph.addBond(i, site);
 
         }

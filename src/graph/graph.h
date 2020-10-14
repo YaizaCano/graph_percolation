@@ -4,6 +4,7 @@
 // DEBUG
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <stack>
 
 #include "../random/rand_generator.h"
@@ -87,8 +88,8 @@ class Graph{
 
     /**
      * @brief generates a graph G' that is the result of applying bond percolation
-     *        to the given graph, it has a computational time complexity of O(|V| + |E|)
-     *        and a space complexity of O(|V|^2)
+     *        to the given graph, it has a computational time complexity of O(|V| + |E| + |V|log(|E|))
+     *        and a space complexity of O(|V| + |E|)
      * @param g is the graph to percolate
      * @param q is the value of of the probability of percolation
      * @returns returns a percolated graph
