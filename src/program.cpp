@@ -11,7 +11,7 @@
 
 int main(){
     RandGenerator::setSeed(445);
-    int n = 500;
+    int n = 5000;
     int dim = 2;
     float radius = 0.7;
     Grid grid(n);
@@ -25,12 +25,13 @@ int main(){
 
     for(float i = 0; i <= 1; i += step){
         std::cout << "Using q=" << i << std::endl;
-        auto g_p = Graph::applyBondPercolation(g, i);
+        auto g_p = Graph::applySitePercolation(g, i);
+
         components = g_p.getTotalConnectedComponents();
         std::cout << "Connected Components: " << components << std::endl;
         std::cout << "Differece: " << components - old_components << std::endl;
         old_components = components;
-        while(true);
+
     }
     return 0;
 }
