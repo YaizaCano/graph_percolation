@@ -1,7 +1,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-// DEBUG 
+// DEBUG
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -24,6 +24,11 @@ class Graph{
 
     public:
 
+    /**
+     * @brief given a number of vertices reserves the space needed
+     * @param n is the number of vertices to reserve
+     * */
+    void reserve(unsigned int n);
 
     /**
      * @brief calculates the number of connected components of a graph in

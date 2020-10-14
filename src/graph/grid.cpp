@@ -7,8 +7,10 @@ Grid::Grid(unsigned int num){
 
 Graph Grid::createGraph() const{
     Graph g;
+    g.reserve(n * n);
+
     // add vertices
-    for(auto i = 0; i < n*n; ++i){
+    for(auto i = 0; i < n * n; ++i){
         g.addSite();
     }
 

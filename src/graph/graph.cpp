@@ -6,7 +6,9 @@
  *               PUBLIC
  *  =================================*/
 
-
+void Graph::reserve(unsigned int n){
+    nodeList.reserve(n);
+}
 
 unsigned int Graph::getTotalConnectedComponents() const{
     std::vector<bool> visited(nodeList.size(), false);
@@ -67,6 +69,7 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
     // the new percolation graph is empty
     Graph percolatedGraph;
     auto nVertices = g.totalSites();
+    percolatedGraph.reserve(nVertices);
     // represents if a vertex has been removed already
     std::vector<bool> removedSites(nVertices, false);
     // represents how many vertices have been removed at that index
@@ -93,7 +96,7 @@ Graph Graph::applySitePercolation(Graph const& g, float q){
         // if the site has not been deleted, then
         // we add the corresponding edges.
         if(!removedSites[i]){
-            
+
             auto nBonds = g.totalBonds(i);
             for(int j = 0; j < nBonds; ++j){
                 auto site = g.getBondSite(i, j);
@@ -113,8 +116,8 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
 
     // the new percolation graph is empty
     Graph percolatedGraph;
-
     auto nVertices = g.totalSites();
+    percolatedGraph.reserve(nVertices);
     // represents if an edge has been removed already
     std::vector<std::vector<bool>> removedBonds(nVertices,
         std::vector<bool>(nVertices, false));
@@ -138,7 +141,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
             // if it is the second visit => the probability has already been calculated
             if(i < site){
                 auto p = RandGenerator::generateProbability();
-                
+
                 removedBonds[i][site] =  p < q;
             }
             else{
