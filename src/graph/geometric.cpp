@@ -1,5 +1,9 @@
 #include "geometric.h"
 
+/** =================================
+ *               PUBLIC
+ *  =================================*/
+
 Geometric::Geometric(unsigned int num, unsigned int dim, float r){
     n = num;
     dimension = dim;
