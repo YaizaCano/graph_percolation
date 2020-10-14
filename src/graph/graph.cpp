@@ -147,7 +147,7 @@ Graph Graph::applyBondPercolation(Graph const& g, float q){
                 if(removedBond)removedBonds[site].push_back(i);
             }
             else{
-                removedBond = std::binary_search(removedBonds[i].begin(), removedBonds[i].end(), site); // find i
+                removedBond = std::binary_search(removedBonds[i].begin(), removedBonds[i].end(), site); // find site
             }
             if(!removedBond)
                 percolatedGraph.addBond(i, site);
