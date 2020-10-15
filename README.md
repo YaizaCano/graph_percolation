@@ -4,7 +4,7 @@
 
 
 ## Directory structure ##
-This project is structured into 7 main folders
+This project is structured into 2 main folders
   <li><b>src/</b> Contains all the code of the project including and the necessary files to compile it
              and run it</li>
   <li><b>docs/</b> Contains the documentation of the code, the documentation has a code
@@ -27,9 +27,6 @@ To execute it has to be run with the specified parameters in usage<br>
     dim: number of dimensions for geometric graphs
     stepSize: the step size of probability q
     outputDir: the directory where the experiment must be placed, the directory must exist
-
-
-
   ```
 
 ## Authors ##
