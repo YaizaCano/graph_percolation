@@ -3,7 +3,7 @@
 
 #include "graph_generator.h"
 
-class Grid : GraphGenerator{
+class Grid : public GraphGenerator{
 
 
 public:

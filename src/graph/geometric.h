@@ -7,7 +7,7 @@
 #include "graph_generator.h"
 #include "../random/rand_generator.h"
 
-class Geometric : GraphGenerator{
+class Geometric : public GraphGenerator{
 
 
 public:

@@ -7,7 +7,7 @@ Geometric::Geometric(unsigned int num, unsigned int dim, float r){
 }
 
 std::string Geometric::name() const{
-    return "geometric"; 
+    return "geometric " + std::to_string(radius); 
 }
 
 float Geometric::calculateDistance(std::vector<float> const& v1, std::vector<float> const& v2){

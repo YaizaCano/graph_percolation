@@ -35,13 +35,13 @@ public:
 
 
     /**
-     * @brief Given a point it searches all the points in the tree that are inside its radius,
-     *        excluding the same point
+     * @brief Given a search radius it calculates all the pairs of points that
+     *        are within that ditance
      * @param p center of the ball to search
      * @param radius is the radius of the search area
-     * @returns a list of identifiers
+     * @returns a list of pairs of identifiers
      * */
-    std::list<unsigned int> radiusRangeSearch(PositionType const& p, float radius) const;
+    std::list<std::pair<NodeIndex, NodeIndex>> radiusRangeSearch(float radius) const;
 
 
 private:
@@ -55,8 +55,8 @@ private:
      * @retursn a node containing all the subtree
      * */
     std::shared_ptr<Node> build(std::vector<NodeIndex> const& idx,
-                                std::vector<float> const& maxes,
-                                std::vector<float> const& mins);
+                                IntervalValuesType const& maxes,
+                                IntervalValuesType const& mins);
 
     /**
      * @brief Filters all the indices, whose value is lower or equal than the split value
@@ -98,7 +98,7 @@ private:
      * @param b the other array
      * @returns the argument of the biggest substraction
      * */
-    static unsigned int argmax(std::vector<float> const& a, std::vector<float> const& b);
+    static unsigned int argmax(IntervalValuesType const& a, IntervalValuesType const& b);
 
     /**
      * @brief Creates a list of numbers enumerated from 0 to n - 1

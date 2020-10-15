@@ -22,9 +22,9 @@ public:
 
     /**
      * @brief Getter for the name of the current generator
-     * @returns the name of the generator 
+     * @returns the name of the generator
      * */
-    virtual std::string name() const = 0
+    virtual std::string name() const = 0;
 
 };
 

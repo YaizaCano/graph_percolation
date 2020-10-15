@@ -16,8 +16,14 @@ KDTree::KDTree(std::vector<PositionType> const& d){
 }
 
 
-std::list<unsigned int> KDTree::radiusRangeSearch(PositionType const& p, float radius) const{
+std::list<std::pair<NodeIndex, NodeIndex>> KDTree::radiusRangeSearch(float radius) const{
+    std::list<std::pair<NodeIndex, NodeIndex>> connections;
+    // create initial hyperrectangle
+    Hyperrectangle rectangle(maxValues, minValues);
+    // traverse tree by comparing hyperrectangles 
 
+
+    return connections;
 }
 
 /** =================================
@@ -28,8 +34,8 @@ std::list<unsigned int> KDTree::radiusRangeSearch(PositionType const& p, float r
 
 
  std::shared_ptr<Node> KDTree::build(std::vector<NodeIndex> const& idx,
-                             std::vector<float> const& maxes,
-                             std::vector<float> const& mins){
+                             IntervalValuesType const& maxes,
+                             IntervalValuesType const& mins){
 
     if(idx.size() > MIN_LEAF_SIZE){
         auto dim = argmax(maxes, mins);
@@ -107,7 +113,7 @@ std::list<NodeIndex> KDTree::filterBigger(std::vector<NodeIndex> const& indices,
      return max;
  }
 
-unsigned int KDTree::argmax(std::vector<float> const& a, std::vector<float> const& b){
+unsigned int KDTree::argmax(IntervalValuesType const& a, IntervalValuesType const& b){
     auto max = a[0] - b[0];
     auto arg = 0;
     for(int i = 1; i < a.size(); ++i){
