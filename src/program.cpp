@@ -12,7 +12,7 @@ void usage(){
     std::cerr << "    seed: the random seed for the data generation" << std::endl;
     std::cerr << "    dim: number of dimensions for geometric graphs" << std::endl;
     std::cerr << "    stepSize: the step size of probability q" << std::endl;
-    std::cerr << "    q: number of repetitions per graph"
+    std::cerr << "    q: number of repetitions per graph" << std::endl; 
     std::cerr << "    outputDir: the directory where the experiment must be placed, the directory must exist" << std::endl << std::endl;
 }
 
@@ -55,20 +55,24 @@ int main(int argc, char* argv[]){
         std::cout << "=================================" << std::endl;
         std::cout << "Generator: " << gen->name() << std::endl;
         std::cout << "=================================" << std::endl;
-        Graph g = gen->createGraph();
-        std::cout << "Graph created!" << std::endl;
-        long int old_components = 0;
+        for(int i = 0; i < nRepetitions; ++i){
+            std::cout << "Iteration: " << i << std::endl;
+            Graph g = gen->createGraph();
+            std::cout << "Graph created!" << std::endl;
+            long int old_components = 0;
 
-        for(float i = 0; i <= 1.05; i += step){
-            std::cout << "Using q=" << i << std::endl;
-            auto g_p = Graph::applyBondPercolation(g, i);
+            for(float i = 0; i <= 1.05; i += step){
+                std::cout << "Using q=" << i << std::endl;
+                auto g_p = Graph::applyBondPercolation(g, i);
 
-            auto components = g_p.getTotalConnectedComponents();
-            std::cout << "Connected Components: " << components << std::endl;
-            std::cout << "Differece: " << components - old_components << std::endl;
-            old_components = components;
+                auto components = g_p.getTotalConnectedComponents();
+                std::cout << "Connected Components: " << components << std::endl;
+                std::cout << "Differece: " << components - old_components << std::endl;
+                old_components = components;
 
+            }
         }
+
     }
 
 
