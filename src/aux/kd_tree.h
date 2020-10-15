@@ -35,12 +35,6 @@ public:
 
 
     /**
-     * @brief Add a new point to the tree
-     * @param p is new point to add
-     * */
-    void add(PositionType const& p);
-
-    /**
      * @brief Given a point it searches all the points in the tree that are inside its radius,
      *        excluding the same point
      * @param p center of the ball to search
@@ -120,7 +114,7 @@ private:
      * @returns a vector of max values, one per dimension
      * */
     static std::vector<float> maximumValues(std::vector<PositionType> const& values);
-    
+
     /**
      * @brief For each dimension, it calculates its minimum
      * @param values is a sequence of positions with multiple dimensions
