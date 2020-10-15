@@ -1,0 +1,69 @@
+\hypertarget{classGraphGenerator}{}\doxysection{Graph\+Generator Class Reference}
+\label{classGraphGenerator}\index{GraphGenerator@{GraphGenerator}}
+
+
+Generates a graph given a set of parameters.  
+
+
+
+
+{\ttfamily \#include $<$graph\+\_\+generator.\+h$>$}
+
+Inheritance diagram for Graph\+Generator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classGraphGenerator}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classGraph}{Graph}} \mbox{\hyperlink{classGraphGenerator_a076beec49c251376eb2b470f6131334c}{create\+Graph}} () const =0
+\begin{DoxyCompactList}\small\item\em Creates a graph. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classGraphGenerator_a46f2a828bd1e37f37093fd63863c0209}{name}} () const =0
+\begin{DoxyCompactList}\small\item\em Getter for the name of the current generator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generates a graph given a set of parameters. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraphGenerator_a076beec49c251376eb2b470f6131334c}\label{classGraphGenerator_a076beec49c251376eb2b470f6131334c}} 
+\index{GraphGenerator@{GraphGenerator}!createGraph@{createGraph}}
+\index{createGraph@{createGraph}!GraphGenerator@{GraphGenerator}}
+\doxysubsubsection{\texorpdfstring{createGraph()}{createGraph()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classGraph}{Graph}} Graph\+Generator\+::create\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Creates a graph. 
+
+\begin{DoxyReturn}{Returns}
+the graph 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classGrid_a8e85dae6ea31f9b5f35fe93512324ad8}{Grid}}, and \mbox{\hyperlink{classGeometric_aedcf7838060067decf7759e1892cb589}{Geometric}}.
+
+\mbox{\Hypertarget{classGraphGenerator_a46f2a828bd1e37f37093fd63863c0209}\label{classGraphGenerator_a46f2a828bd1e37f37093fd63863c0209}} 
+\index{GraphGenerator@{GraphGenerator}!name@{name}}
+\index{name@{name}!GraphGenerator@{GraphGenerator}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily virtual std\+::string Graph\+Generator\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Getter for the name of the current generator. 
+
+\begin{DoxyReturn}{Returns}
+the name of the generator 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classGrid_aa314ede70033f5644189be446e5b07e2}{Grid}}, and \mbox{\hyperlink{classGeometric_a64035eae298b1f14ffbd6bf78f45b466}{Geometric}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/graph/graph\+\_\+generator.\+h\end{DoxyCompactItemize}

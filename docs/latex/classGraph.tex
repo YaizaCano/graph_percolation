@@ -1,0 +1,190 @@
+\hypertarget{classGraph}{}\doxysection{Graph Class Reference}
+\label{classGraph}\index{Graph@{Graph}}
+
+
+The graph class is a graph G=(V, E), it is represented as an adjacency list. It is an undirected graph.  
+
+
+
+
+{\ttfamily \#include $<$graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGraph_a97c16ddd1a3cb89eeb7e49db2e084086}{reserve}} (unsigned int n)
+\begin{DoxyCompactList}\small\item\em given a number of vertices reserves the space needed \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classGraph_af42b5c7832fd13096317c4840d6969a4}{get\+Total\+Connected\+Components}} () const
+\begin{DoxyCompactList}\small\item\em calculates the number of connected components of a graph in a computational time of O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_ad8542a7fb220f46e85dd6b3935da511b}\label{classGraph_ad8542a7fb220f46e85dd6b3935da511b}} 
+void \mbox{\hyperlink{classGraph_ad8542a7fb220f46e85dd6b3935da511b}{add\+Site}} ()
+\begin{DoxyCompactList}\small\item\em adds a new vertex to the graph with the smallest ID available, the id of a site is represented by its position in the array \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_aa13f8b816fcba9b1d176ec5a8b11ccda}{add\+Bond}} (Site\+ID v, Site\+ID u)
+\begin{DoxyCompactList}\small\item\em adds an edge between two vertices, as a precondition, the edge must not exist already. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classGraph_a14a08daeff97b6dfed3489442890bb19}{total\+Sites}} () const
+\begin{DoxyCompactList}\small\item\em returns the number of vertices in the graph \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classGraph_a10446e33cc364d639a6afd03a81de71f}{total\+Bonds}} (Site\+ID v) const
+\begin{DoxyCompactList}\small\item\em returns the total of bonds in a specific site. \end{DoxyCompactList}\item 
+Site\+ID \mbox{\hyperlink{classGraph_a229cb13ed3d64f8108e0727287c4ec1e}{get\+Bond\+Site}} (Site\+ID v, unsigned int pos) const
+\begin{DoxyCompactList}\small\item\em given a site and an edge position, it retursn the site that at that position \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classGraph}{Graph}} \mbox{\hyperlink{classGraph_a7d51d6b3846d550feb3e4a75e10e682d}{apply\+Site\+Percolation}} (\mbox{\hyperlink{classGraph}{Graph}} const \&g, float q)
+\begin{DoxyCompactList}\small\item\em generates a graph G\textquotesingle{} that is the result of applying site percolation to the given graph, it has a computational time complexity of O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) and a space complexity of O($\vert$\+V$\vert$) \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classGraph}{Graph}} \mbox{\hyperlink{classGraph_ad2d768a3fe9113820abd1bb02cf6e3c8}{apply\+Bond\+Percolation}} (\mbox{\hyperlink{classGraph}{Graph}} const \&g, float q)
+\begin{DoxyCompactList}\small\item\em generates a graph G\textquotesingle{} that is the result of applying bond percolation to the given graph, it has a computational time complexity of O($\vert$\+V$\vert$ + $\vert$\+E$\vert$ + $\vert$\+V$\vert$log($\vert$\+E$\vert$)) and a space complexity of O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGraph_adf48796eacc84634e35557b9ca6193a2}\label{classGraph_adf48796eacc84634e35557b9ca6193a2}} 
+std\+::vector$<$ std\+::vector$<$ Site\+ID $>$ $>$ \mbox{\hyperlink{classGraph_adf48796eacc84634e35557b9ca6193a2}{node\+List}}
+\begin{DoxyCompactList}\small\item\em Contains the list of nodes with their respective edge connecition it is the computatational representation of the graph, each vertex is represented by a numerical ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The graph class is a graph G=(V, E), it is represented as an adjacency list. It is an undirected graph. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraph_aa13f8b816fcba9b1d176ec5a8b11ccda}\label{classGraph_aa13f8b816fcba9b1d176ec5a8b11ccda}} 
+\index{Graph@{Graph}!addBond@{addBond}}
+\index{addBond@{addBond}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addBond()}{addBond()}}
+{\footnotesize\ttfamily void Graph\+::add\+Bond (\begin{DoxyParamCaption}\item[{Site\+ID}]{v,  }\item[{Site\+ID}]{u }\end{DoxyParamCaption})}
+
+
+
+adds an edge between two vertices, as a precondition, the edge must not exist already. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & a vertex connected to the edge \\
+\hline
+{\em u} & is the vertex at the other side of the edge \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_ad2d768a3fe9113820abd1bb02cf6e3c8}\label{classGraph_ad2d768a3fe9113820abd1bb02cf6e3c8}} 
+\index{Graph@{Graph}!applyBondPercolation@{applyBondPercolation}}
+\index{applyBondPercolation@{applyBondPercolation}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{applyBondPercolation()}{applyBondPercolation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}} Graph\+::apply\+Bond\+Percolation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}} const \&}]{g,  }\item[{float}]{q }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+generates a graph G\textquotesingle{} that is the result of applying bond percolation to the given graph, it has a computational time complexity of O($\vert$\+V$\vert$ + $\vert$\+E$\vert$ + $\vert$\+V$\vert$log($\vert$\+E$\vert$)) and a space complexity of O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & is the graph to percolate \\
+\hline
+{\em q} & is the value of of the probability of percolation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns a percolated graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_a7d51d6b3846d550feb3e4a75e10e682d}\label{classGraph_a7d51d6b3846d550feb3e4a75e10e682d}} 
+\index{Graph@{Graph}!applySitePercolation@{applySitePercolation}}
+\index{applySitePercolation@{applySitePercolation}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{applySitePercolation()}{applySitePercolation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}} Graph\+::apply\+Site\+Percolation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGraph}{Graph}} const \&}]{g,  }\item[{float}]{q }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+generates a graph G\textquotesingle{} that is the result of applying site percolation to the given graph, it has a computational time complexity of O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) and a space complexity of O($\vert$\+V$\vert$) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & is the graph to percolate \\
+\hline
+{\em q} & is the value of of the probability of percolation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns a percolated graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_a229cb13ed3d64f8108e0727287c4ec1e}\label{classGraph_a229cb13ed3d64f8108e0727287c4ec1e}} 
+\index{Graph@{Graph}!getBondSite@{getBondSite}}
+\index{getBondSite@{getBondSite}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getBondSite()}{getBondSite()}}
+{\footnotesize\ttfamily Site\+ID Graph\+::get\+Bond\+Site (\begin{DoxyParamCaption}\item[{Site\+ID}]{v,  }\item[{unsigned int}]{pos }\end{DoxyParamCaption}) const}
+
+
+
+given a site and an edge position, it retursn the site that at that position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & is the site \\
+\hline
+{\em pos} & is the position inside the list of edges \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the site\+ID of the given edge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_af42b5c7832fd13096317c4840d6969a4}\label{classGraph_af42b5c7832fd13096317c4840d6969a4}} 
+\index{Graph@{Graph}!getTotalConnectedComponents@{getTotalConnectedComponents}}
+\index{getTotalConnectedComponents@{getTotalConnectedComponents}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getTotalConnectedComponents()}{getTotalConnectedComponents()}}
+{\footnotesize\ttfamily unsigned int Graph\+::get\+Total\+Connected\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+calculates the number of connected components of a graph in a computational time of O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) 
+
+\begin{DoxyReturn}{Returns}
+the number of connected components 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_a97c16ddd1a3cb89eeb7e49db2e084086}\label{classGraph_a97c16ddd1a3cb89eeb7e49db2e084086}} 
+\index{Graph@{Graph}!reserve@{reserve}}
+\index{reserve@{reserve}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily void Graph\+::reserve (\begin{DoxyParamCaption}\item[{unsigned int}]{n }\end{DoxyParamCaption})}
+
+
+
+given a number of vertices reserves the space needed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & is the number of vertices to reserve\\
+\hline
+\end{DoxyParams}
+================================= \doxysubsection*{P\+U\+B\+L\+IC }\mbox{\Hypertarget{classGraph_a10446e33cc364d639a6afd03a81de71f}\label{classGraph_a10446e33cc364d639a6afd03a81de71f}} 
+\index{Graph@{Graph}!totalBonds@{totalBonds}}
+\index{totalBonds@{totalBonds}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{totalBonds()}{totalBonds()}}
+{\footnotesize\ttfamily unsigned int Graph\+::total\+Bonds (\begin{DoxyParamCaption}\item[{Site\+ID}]{v }\end{DoxyParamCaption}) const}
+
+
+
+returns the total of bonds in a specific site. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & is the site in which to get the bonds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number bonds in a specific site 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_a14a08daeff97b6dfed3489442890bb19}\label{classGraph_a14a08daeff97b6dfed3489442890bb19}} 
+\index{Graph@{Graph}!totalSites@{totalSites}}
+\index{totalSites@{totalSites}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{totalSites()}{totalSites()}}
+{\footnotesize\ttfamily unsigned int Graph\+::total\+Sites (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns the number of vertices in the graph 
+
+\begin{DoxyReturn}{Returns}
+the number of sites in the graph 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/graph/graph.\+h\item 
+src/graph/graph.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,104 @@
+\hypertarget{classHyperrectangle}{}\doxysection{Hyperrectangle Class Reference}
+\label{classHyperrectangle}\index{Hyperrectangle@{Hyperrectangle}}
+
+
+A \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} is represented as the cartesian product of of intervals, it represents a rectangle (bounding box) used for multiple dimensions.  
+
+
+
+
+{\ttfamily \#include $<$hyperrectancle.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHyperrectangle_a411537c0d611c7525a8c4b5de562cf70}{Hyperrectangle}} (Interval\+Values\+Type const \&maxs, Interval\+Values\+Type const \&mins)
+\begin{DoxyCompactList}\small\item\em Basic constructor of an hyperrectangle based on a list of intervals. \end{DoxyCompactList}\item 
+std\+::pair$<$ \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}}, \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} $>$ \mbox{\hyperlink{classHyperrectangle_a407a9606a248a6df5240a7e8a8f29c19}{split}} (unsigned int axis, float split\+Value) const
+\begin{DoxyCompactList}\small\item\em A split of the hyperrectangle into two parts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{classHyperrectangle_a14befaa5156c08a530fb877fb592f14d}{calculate\+Distance}} (Position\+Type const \&v1, Position\+Type const \&v2)
+\begin{DoxyCompactList}\small\item\em Minkowski distance between two points where p=2 (Eucledian distance) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHyperrectangle_aa9d690983fe7c694ded3829ab8341070}\label{classHyperrectangle_aa9d690983fe7c694ded3829ab8341070}} 
+Interval\+Values\+Type \mbox{\hyperlink{classHyperrectangle_aa9d690983fe7c694ded3829ab8341070}{max\+Values}}
+\begin{DoxyCompactList}\small\item\em Contains the list of maximum values of the rectangle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHyperrectangle_a2a8ca93979f77bb43c5c5d1acd573920}\label{classHyperrectangle_a2a8ca93979f77bb43c5c5d1acd573920}} 
+Interval\+Values\+Type \mbox{\hyperlink{classHyperrectangle_a2a8ca93979f77bb43c5c5d1acd573920}{min\+Values}}
+\begin{DoxyCompactList}\small\item\em Contains the list of minimum values of the rectangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} is represented as the cartesian product of of intervals, it represents a rectangle (bounding box) used for multiple dimensions. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHyperrectangle_a411537c0d611c7525a8c4b5de562cf70}\label{classHyperrectangle_a411537c0d611c7525a8c4b5de562cf70}} 
+\index{Hyperrectangle@{Hyperrectangle}!Hyperrectangle@{Hyperrectangle}}
+\index{Hyperrectangle@{Hyperrectangle}!Hyperrectangle@{Hyperrectangle}}
+\doxysubsubsection{\texorpdfstring{Hyperrectangle()}{Hyperrectangle()}}
+{\footnotesize\ttfamily Hyperrectangle\+::\+Hyperrectangle (\begin{DoxyParamCaption}\item[{Interval\+Values\+Type const \&}]{maxs,  }\item[{Interval\+Values\+Type const \&}]{mins }\end{DoxyParamCaption})}
+
+
+
+Basic constructor of an hyperrectangle based on a list of intervals. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Values} & represents a list of the maximum values of the bounding box \\
+\hline
+{\em min\+Values} & represents a list of the minimum values of the bounding box\\
+\hline
+\end{DoxyParams}
+================================= \doxysubsection*{P\+U\+B\+L\+IC }
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHyperrectangle_a14befaa5156c08a530fb877fb592f14d}\label{classHyperrectangle_a14befaa5156c08a530fb877fb592f14d}} 
+\index{Hyperrectangle@{Hyperrectangle}!calculateDistance@{calculateDistance}}
+\index{calculateDistance@{calculateDistance}!Hyperrectangle@{Hyperrectangle}}
+\doxysubsubsection{\texorpdfstring{calculateDistance()}{calculateDistance()}}
+{\footnotesize\ttfamily float Hyperrectangle\+::calculate\+Distance (\begin{DoxyParamCaption}\item[{Position\+Type const \&}]{v1,  }\item[{Position\+Type const \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Minkowski distance between two points where p=2 (Eucledian distance) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & is a point \\
+\hline
+{\em v2} & is another point with the same size as v1 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the distance between both points 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHyperrectangle_a407a9606a248a6df5240a7e8a8f29c19}\label{classHyperrectangle_a407a9606a248a6df5240a7e8a8f29c19}} 
+\index{Hyperrectangle@{Hyperrectangle}!split@{split}}
+\index{split@{split}!Hyperrectangle@{Hyperrectangle}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}}
+{\footnotesize\ttfamily std\+::pair$<$ \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}}, \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} $>$ Hyperrectangle\+::split (\begin{DoxyParamCaption}\item[{unsigned int}]{axis,  }\item[{float}]{split\+Value }\end{DoxyParamCaption}) const}
+
+
+
+A split of the hyperrectangle into two parts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis} & is the dimension to do the split in \\
+\hline
+{\em split\+Value} & specifies where the split must be done \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pair of hyperrectangles, (lesser, greater) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/aux/hyperrectancle.\+h\item 
+src/aux/hyperrectangle.\+cpp\end{DoxyCompactItemize}

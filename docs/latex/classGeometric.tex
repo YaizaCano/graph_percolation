@@ -1,0 +1,85 @@
+\hypertarget{classGeometric}{}\doxysection{Geometric Class Reference}
+\label{classGeometric}\index{Geometric@{Geometric}}
+Inheritance diagram for Geometric\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classGeometric}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGeometric_a75f9b20e2a1f72a103f67f889c873b43}\label{classGeometric_a75f9b20e2a1f72a103f67f889c873b43}} 
+{\bfseries Geometric} (unsigned int num, unsigned int dim, float r)
+\item 
+virtual \mbox{\hyperlink{classGraph}{Graph}} \mbox{\hyperlink{classGeometric_aedcf7838060067decf7759e1892cb589}{create\+Graph}} () const
+\begin{DoxyCompactList}\small\item\em Creates a graph. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classGeometric_a64035eae298b1f14ffbd6bf78f45b466}{name}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the name of the current generator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGeometric_a46ef4644a8bf3849246cb41206515923}\label{classGeometric_a46ef4644a8bf3849246cb41206515923}} 
+std\+::vector$<$ float $>$ {\bfseries generate\+Position} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGeometric_a43d69b3659a68ab37adc50bb1740c855}\label{classGeometric_a43d69b3659a68ab37adc50bb1740c855}} 
+static float {\bfseries calculate\+Distance} (std\+::vector$<$ float $>$ const \&v1, std\+::vector$<$ float $>$ const \&v2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGeometric_a975778aa07c5fdcd4540ae97a448d44c}\label{classGeometric_a975778aa07c5fdcd4540ae97a448d44c}} 
+unsigned int {\bfseries n}
+\item 
+\mbox{\Hypertarget{classGeometric_a60bd610fcb2c8cf470aabe60963df7fb}\label{classGeometric_a60bd610fcb2c8cf470aabe60963df7fb}} 
+unsigned int {\bfseries dimension}
+\item 
+\mbox{\Hypertarget{classGeometric_ac93affa5d996a1ebc320405c30ddfa3d}\label{classGeometric_ac93affa5d996a1ebc320405c30ddfa3d}} 
+float {\bfseries radius}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGeometric_aedcf7838060067decf7759e1892cb589}\label{classGeometric_aedcf7838060067decf7759e1892cb589}} 
+\index{Geometric@{Geometric}!createGraph@{createGraph}}
+\index{createGraph@{createGraph}!Geometric@{Geometric}}
+\doxysubsubsection{\texorpdfstring{createGraph()}{createGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}} Geometric\+::create\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Creates a graph. 
+
+\begin{DoxyReturn}{Returns}
+the graph 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classGraphGenerator_a076beec49c251376eb2b470f6131334c}{Graph\+Generator}}.
+
+\mbox{\Hypertarget{classGeometric_a64035eae298b1f14ffbd6bf78f45b466}\label{classGeometric_a64035eae298b1f14ffbd6bf78f45b466}} 
+\index{Geometric@{Geometric}!name@{name}}
+\index{name@{name}!Geometric@{Geometric}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily std\+::string Geometric\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Getter for the name of the current generator. 
+
+\begin{DoxyReturn}{Returns}
+the name of the generator 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classGraphGenerator_a46f2a828bd1e37f37093fd63863c0209}{Graph\+Generator}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/graph/geometric.\+h\item 
+src/graph/geometric.\+cpp\end{DoxyCompactItemize}

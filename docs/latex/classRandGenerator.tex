@@ -1,0 +1,127 @@
+\hypertarget{classRandGenerator}{}\doxysection{Rand\+Generator Class Reference}
+\label{classRandGenerator}\index{RandGenerator@{RandGenerator}}
+
+
+Random number generator that generates a sequence of random numbers based on a specific seed. The numbers generated here are based on the Linear Congruential Method D. H . Lehmer (Cambridge, Mass.\+: Harvard University Press, 1951\mbox{[}141-\/146\mbox{]})  
+
+
+
+
+{\ttfamily \#include $<$rand\+\_\+generator.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classRandGenerator_a3e78c84a2bcfabb634967c5b3dee29f7}{set\+Seed}} (Big\+Int s)
+\begin{DoxyCompactList}\small\item\em setter for the initial number \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{classRandGenerator_a7c995a10d0e6ab0eaa208f7ca036b1a2}{generate\+Probability}} ()
+\begin{DoxyCompactList}\small\item\em generates a probability between 0 and 1 \end{DoxyCompactList}\item 
+static Big\+Int \mbox{\hyperlink{classRandGenerator_a26daa10f4a56aa2d986ada1ebaa3e68d}{generate}} ()
+\begin{DoxyCompactList}\small\item\em generate a random number based on a seed \end{DoxyCompactList}\item 
+static std\+::vector$<$ Big\+Int $>$ \mbox{\hyperlink{classRandGenerator_a743acd036f5986b5fe07da5b35192347}{generate\+Permutations}} (unsigned int size)
+\begin{DoxyCompactList}\small\item\em generate a random sequence of numbers \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Big\+Int \mbox{\hyperlink{classRandGenerator_a6194193236c2702801cfdd7092bda5a7}{seed}}
+\begin{DoxyCompactList}\small\item\em the modulus of the formula \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRandGenerator_a19a60bf38c73893299374bd6454f5e8a}\label{classRandGenerator_a19a60bf38c73893299374bd6454f5e8a}} 
+static const Big\+Int \mbox{\hyperlink{classRandGenerator_a19a60bf38c73893299374bd6454f5e8a}{m}} = 2147483647
+\begin{DoxyCompactList}\small\item\em the modulus of the formula \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRandGenerator_a0a0b31f7117464cdf5afde153605fb60}\label{classRandGenerator_a0a0b31f7117464cdf5afde153605fb60}} 
+static const Big\+Int \mbox{\hyperlink{classRandGenerator_a0a0b31f7117464cdf5afde153605fb60}{a}} = 1664525
+\begin{DoxyCompactList}\small\item\em the multiplier \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classRandGenerator_a2555f8581f39924b10fa1053c073e921}\label{classRandGenerator_a2555f8581f39924b10fa1053c073e921}} 
+static const Big\+Int \mbox{\hyperlink{classRandGenerator_a2555f8581f39924b10fa1053c073e921}{c}} = 1013904223
+\begin{DoxyCompactList}\small\item\em the increment \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Random number generator that generates a sequence of random numbers based on a specific seed. The numbers generated here are based on the Linear Congruential Method D. H . Lehmer (Cambridge, Mass.\+: Harvard University Press, 1951\mbox{[}141-\/146\mbox{]}) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRandGenerator_a26daa10f4a56aa2d986ada1ebaa3e68d}\label{classRandGenerator_a26daa10f4a56aa2d986ada1ebaa3e68d}} 
+\index{RandGenerator@{RandGenerator}!generate@{generate}}
+\index{generate@{generate}!RandGenerator@{RandGenerator}}
+\doxysubsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily Big\+Int Rand\+Generator\+::generate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+generate a random number based on a seed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seed} & is the starting number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the next number in the sequence 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRandGenerator_a743acd036f5986b5fe07da5b35192347}\label{classRandGenerator_a743acd036f5986b5fe07da5b35192347}} 
+\index{RandGenerator@{RandGenerator}!generatePermutations@{generatePermutations}}
+\index{generatePermutations@{generatePermutations}!RandGenerator@{RandGenerator}}
+\doxysubsubsection{\texorpdfstring{generatePermutations()}{generatePermutations()}}
+{\footnotesize\ttfamily std\+::vector$<$ Big\+Int $>$ Rand\+Generator\+::generate\+Permutations (\begin{DoxyParamCaption}\item[{unsigned int}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+generate a random sequence of numbers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seed} & is the starting number in the sequence \\
+\hline
+{\em size} & is the size of the sequence \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the sequence of integers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRandGenerator_a7c995a10d0e6ab0eaa208f7ca036b1a2}\label{classRandGenerator_a7c995a10d0e6ab0eaa208f7ca036b1a2}} 
+\index{RandGenerator@{RandGenerator}!generateProbability@{generateProbability}}
+\index{generateProbability@{generateProbability}!RandGenerator@{RandGenerator}}
+\doxysubsubsection{\texorpdfstring{generateProbability()}{generateProbability()}}
+{\footnotesize\ttfamily float Rand\+Generator\+::generate\+Probability (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+generates a probability between 0 and 1 
+
+\begin{DoxyReturn}{Returns}
+a number between 0 and 1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRandGenerator_a3e78c84a2bcfabb634967c5b3dee29f7}\label{classRandGenerator_a3e78c84a2bcfabb634967c5b3dee29f7}} 
+\index{RandGenerator@{RandGenerator}!setSeed@{setSeed}}
+\index{setSeed@{setSeed}!RandGenerator@{RandGenerator}}
+\doxysubsubsection{\texorpdfstring{setSeed()}{setSeed()}}
+{\footnotesize\ttfamily void Rand\+Generator\+::set\+Seed (\begin{DoxyParamCaption}\item[{Big\+Int}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+setter for the initial number 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & is the starting number \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRandGenerator_a6194193236c2702801cfdd7092bda5a7}\label{classRandGenerator_a6194193236c2702801cfdd7092bda5a7}} 
+\index{RandGenerator@{RandGenerator}!seed@{seed}}
+\index{seed@{seed}!RandGenerator@{RandGenerator}}
+\doxysubsubsection{\texorpdfstring{seed}{seed}}
+{\footnotesize\ttfamily Big\+Int Rand\+Generator\+::seed\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+the modulus of the formula 
+
+================================= \doxysubsection*{P\+U\+B\+L\+IC }
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/random/rand\+\_\+generator.\+h\item 
+src/random/rand\+\_\+generator.\+cpp\end{DoxyCompactItemize}

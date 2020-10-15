@@ -1,0 +1,78 @@
+\hypertarget{classCsvFile}{}\doxysection{Csv\+File Class Reference}
+\label{classCsvFile}\index{CsvFile@{CsvFile}}
+
+
+The \mbox{\hyperlink{classCsvFile}{Csv\+File}} class saves a list of rows and writes them in a csv format in a specified directory.  
+
+
+
+
+{\ttfamily \#include $<$csv\+\_\+file.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCsvFile_a1603da0eec05ddf21213b4d793de1387}{Csv\+File}} (std\+::string const \&file\+Dir)
+\begin{DoxyCompactList}\small\item\em Basic constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCsvFile_a6f4627baf5c51f8b1559b60bb5773b67}{add\+Row}} (Csv\+Row const \&row)
+\begin{DoxyCompactList}\small\item\em appends a row to the file \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCsvFile_a98a0e80f10cef7a8cbef9f6e7d83d445}\label{classCsvFile_a98a0e80f10cef7a8cbef9f6e7d83d445}} 
+void \mbox{\hyperlink{classCsvFile_a98a0e80f10cef7a8cbef9f6e7d83d445}{write}} () const
+\begin{DoxyCompactList}\small\item\em writes the file in the specified directory \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCsvFile_a17a264e43bdcea60931cc99e8a014d4e}\label{classCsvFile_a17a264e43bdcea60931cc99e8a014d4e}} 
+std\+::string \mbox{\hyperlink{classCsvFile_a17a264e43bdcea60931cc99e8a014d4e}{output\+Dir}}
+\begin{DoxyCompactList}\small\item\em the parent directory of the file \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCsvFile_a3127230d5fc3e86ed976ccf8a886722b}\label{classCsvFile_a3127230d5fc3e86ed976ccf8a886722b}} 
+std\+::list$<$ Csv\+Row $>$ \mbox{\hyperlink{classCsvFile_a3127230d5fc3e86ed976ccf8a886722b}{rows}}
+\begin{DoxyCompactList}\small\item\em saves the csv rows \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCsvFile_a147429628fce1cfd62ecba59220374b1}\label{classCsvFile_a147429628fce1cfd62ecba59220374b1}} 
+const std\+::string \mbox{\hyperlink{classCsvFile_a147429628fce1cfd62ecba59220374b1}{C\+S\+V\+\_\+\+E\+X\+T\+E\+N\+S\+I\+ON}} = \char`\"{}.csv\char`\"{}
+\begin{DoxyCompactList}\small\item\em srepresents the extension of the file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classCsvFile}{Csv\+File}} class saves a list of rows and writes them in a csv format in a specified directory. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCsvFile_a1603da0eec05ddf21213b4d793de1387}\label{classCsvFile_a1603da0eec05ddf21213b4d793de1387}} 
+\index{CsvFile@{CsvFile}!CsvFile@{CsvFile}}
+\index{CsvFile@{CsvFile}!CsvFile@{CsvFile}}
+\doxysubsubsection{\texorpdfstring{CsvFile()}{CsvFile()}}
+{\footnotesize\ttfamily Csv\+File\+::\+Csv\+File (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{file\+Dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Basic constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Dir} & is the output directory \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCsvFile_a6f4627baf5c51f8b1559b60bb5773b67}\label{classCsvFile_a6f4627baf5c51f8b1559b60bb5773b67}} 
+\index{CsvFile@{CsvFile}!addRow@{addRow}}
+\index{addRow@{addRow}!CsvFile@{CsvFile}}
+\doxysubsubsection{\texorpdfstring{addRow()}{addRow()}}
+{\footnotesize\ttfamily void Csv\+File\+::add\+Row (\begin{DoxyParamCaption}\item[{Csv\+Row const \&}]{row }\end{DoxyParamCaption})}
+
+
+
+appends a row to the file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & contains the contents of the row to add \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/data/csv\+\_\+file.\+h\item 
+src/data/csv\+\_\+file.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,47 @@
+\hypertarget{classInnerNode}{}\doxysection{Inner\+Node Class Reference}
+\label{classInnerNode}\index{InnerNode@{InnerNode}}
+
+
+Represents an inner node in a \mbox{\hyperlink{classKDTree}{K\+D\+Tree}}, this node has reference to the left and right subtrees and contains the partition of the space into two hyperrectangles.  
+
+
+
+
+{\ttfamily \#include $<$node.\+h$>$}
+
+Inheritance diagram for Inner\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classInnerNode}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classInnerNode_aba9b0f40485b9f7e3c3e478849169519}\label{classInnerNode_aba9b0f40485b9f7e3c3e478849169519}} 
+{\bfseries Inner\+Node} (float split, unsigned int dim, Node\+Ptr left, Node\+Ptr right)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classInnerNode_acd7ff18da11c367e4f73f30586e3f407}\label{classInnerNode_acd7ff18da11c367e4f73f30586e3f407}} 
+unsigned int {\bfseries dimension}
+\item 
+\mbox{\Hypertarget{classInnerNode_a4bd3d1343f17387f3f1f21e27ca9f1b7}\label{classInnerNode_a4bd3d1343f17387f3f1f21e27ca9f1b7}} 
+float {\bfseries split\+Value}
+\item 
+\mbox{\Hypertarget{classInnerNode_aafd0051249dcc6fa20d7c8ba32f92da0}\label{classInnerNode_aafd0051249dcc6fa20d7c8ba32f92da0}} 
+Node\+Ptr {\bfseries left}
+\item 
+\mbox{\Hypertarget{classInnerNode_a53acef866d1963d15f6ba5cd083bd952}\label{classInnerNode_a53acef866d1963d15f6ba5cd083bd952}} 
+Node\+Ptr {\bfseries right}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an inner node in a \mbox{\hyperlink{classKDTree}{K\+D\+Tree}}, this node has reference to the left and right subtrees and contains the partition of the space into two hyperrectangles. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/aux/node.\+h\item 
+src/aux/node.\+cpp\end{DoxyCompactItemize}
