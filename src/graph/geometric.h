@@ -16,7 +16,7 @@ public:
 
     virtual Graph createGraph() const;
 
-
+    virtual std::string name() const;
 
 
 

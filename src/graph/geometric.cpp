@@ -6,6 +6,10 @@ Geometric::Geometric(unsigned int num, unsigned int dim, float r){
     radius = r;
 }
 
+std::string Geometric::name() const{
+    return "geometric"; 
+}
+
 float Geometric::calculateDistance(std::vector<float> const& v1, std::vector<float> const& v2){
     auto size = v1.size();
     float distance = 0;

@@ -5,6 +5,10 @@ Grid::Grid(unsigned int num){
 }
 
 
+std::string Grid::name() const{
+    return "grid2d";
+}
+
 Graph Grid::createGraph() const{
     Graph g;
     g.reserve(n * n);
