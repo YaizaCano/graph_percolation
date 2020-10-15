@@ -6,7 +6,14 @@
 #include <list>
 #include <memory>
 
+#include "hyperrectangle.h"
+#include "node.h"
+
+
+
+
 typedef std::vector<float> PositionType;
+
 
 /**
  * @class KDTree
@@ -22,10 +29,9 @@ public:
 
     /**
      * @brief Basic constructor of a K dimensional tree
-     * @param p is the point at the root of the tree
-     * @param d is the depth of the current tree (relative)
+     * @param data is a list of points to add to the tree
      * */
-    KDTree(PositionType const& p, unsigned int id, float d=0);
+    KDTree(std::vector<PositionType> const& d);
 
 
     /**
@@ -47,37 +53,107 @@ public:
 private:
 
     /**
-     * @brief Minkowski distance between two points
-     * @param v1 is a point
-     * @param v2 is another point with the same size as v1
-     * @returns the distance between both points
+     * @brief Builds the entire KDTree recursively using a sliding-midpoint subdivision
+     *        (Maneewongvatana, It's okay to be skinny, if your friends are fat, 1999)
+     * @param idx contains the indices of the current node area
+     * @param maxes contains the maximum values for the indices specified
+     * @param mins contains the minimum values for the indices
+     * @retursn a node containing all the subtree
      * */
-    static float calculateDistance(PositionType const& v1, PositionType const& v2);
+    std::shared_ptr<Node> build(std::vector<NodeIndex> const& idx,
+                                std::vector<float> const& maxes,
+                                std::vector<float> const& mins);
 
     /**
-     * @brief Represents the depth of the tree
+     * @brief Filters all the indices, whose value is lower or equal than the split value
+     * @param indices to filter
+     * @param dim is the dimension in which to filter the data points
+     * @param split is the separation value
+     * @returns returns a list of indices
      * */
-    unsigned int depth;
+    std::list<NodeIndex> filterLower(std::vector<NodeIndex> const& indices, unsigned int dim, float split)const;
 
     /**
-     * @brief Represents identifier of the current point, to avoid duplicates. 
+     * @brief Filters all the indices, whose value is bigger than the split value
+     * @param indices to filter
+     * @param dim is the dimension in which to filter the data points
+     * @param split is the separation value
+     * @returns returns a list of indices
      * */
-    unsigned int identifier;
+    std::list<NodeIndex> filterBigger(std::vector<NodeIndex> const& indices, unsigned int dim, float split)const;
 
     /**
-     * @brief Contains the value of the current node
+     * @brief Find the minimum value of the data based on the indices given
+     * @param indices to work with
+     * @param dim is the dimension to calculate the minimum in
+     * @returns the minimum value
      * */
-    PositionType position;
+    float findMin(std::vector<NodeIndex> const& indices, unsigned int dim) const;
 
     /**
-     * @brief Contains a pointer to the left subtree
+     * @brief Find the maximum value of the data based on the indices given
+     * @param indices to work with
+     * @param dim is the dimension to calculate the maximum in
+     * @returns the maximum value
      * */
-    std::unique_ptr<KDTree> left;
+    float findMax(std::vector<NodeIndex> const& indices, unsigned int dim) const;
 
     /**
-     * @brief Contains a pointer to the right subtree
+     * @brief Finds the biggest value of a substraction of vectors and returns its argument
+     * @param a an array
+     * @param b the other array
+     * @returns the argument of the biggest substraction
      * */
-    std::unique_ptr<KDTree> right;
+    static unsigned int argmax(std::vector<float> const& a, std::vector<float> const& b);
+
+    /**
+     * @brief Creates a list of numbers enumerated from 0 to n - 1
+     * @param size is equal the number of elements
+     * @returns a list of consecutive integers
+     * */
+    static std::list<NodeIndex> arange(unsigned int size);
+
+
+    /**
+     * @brief For each dimension, it calculates its maximum
+     * @param values is a sequence of positions with multiple dimensions
+     * @returns a vector of max values, one per dimension
+     * */
+    static std::vector<float> maximumValues(std::vector<PositionType> const& values);
+    
+    /**
+     * @brief For each dimension, it calculates its minimum
+     * @param values is a sequence of positions with multiple dimensions
+     * @returns a vector of min values, one per dimension
+     * */
+    static std::vector<float> minimumValues(std::vector<PositionType> const& values);
+
+    /**
+     * @brief Contains the positions data of the tree
+     * */
+    std::vector<PositionType> data;
+
+    /**
+     * @brief Contains the list of maximum values of the data
+     * */
+    std::vector<float> maxValues;
+
+    /**
+     * @brief Contains the list of minimum values of data
+     * */
+    std::vector<float> minValues;
+
+    /**
+     * @brief Contains the tree data structure
+     * */
+    std::shared_ptr<Node> tree;
+
+    /**
+     * @brief Specifies the minimum size in which a partition is made,
+     *        when the number of indices to split is less than
+     *        MIN_LEAF_SIZE, they are all saved in a leaf node.
+     * */
+    static const unsigned int MIN_LEAF_SIZE = 10;
 
 
 };
