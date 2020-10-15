@@ -2,12 +2,19 @@
 #define KD_TREE_H
 
 #include <vector>
+#include <queue>
 #include <list>
 #include <memory>
 
 typedef std::vector<float> PositionType;
 
-
+/**
+ * @class KDTree
+ * @brief A KDTree is a k-dimensional binary tree used to represents points
+ *        of multiple dimensions within the space, it is used to generate
+ *        random geometric graphs as it is more efficient to calculate
+ *        pairs witihn a radius search.
+ * */
 class KDTree{
 
 public:
@@ -18,7 +25,7 @@ public:
      * @param p is the point at the root of the tree
      * @param d is the depth of the current tree (relative)
      * */
-    KDTree(PositionType const& p, float d=0);
+    KDTree(PositionType const& p, unsigned int id, float d=0);
 
 
     /**
@@ -32,17 +39,30 @@ public:
      *        excluding the same point
      * @param p center of the ball to search
      * @param radius is the radius of the search area
-     * @returns a list of k-dimensional positions 
+     * @returns a list of identifiers
      * */
-    std::list<PositionType> radiusRangeSearch(PositionType const& p, float radius) const;
+    std::list<unsigned int> radiusRangeSearch(PositionType const& p, float radius) const;
 
 
 private:
 
     /**
+     * @brief Minkowski distance between two points
+     * @param v1 is a point
+     * @param v2 is another point with the same size as v1
+     * @returns the distance between both points
+     * */
+    static float calculateDistance(PositionType const& v1, PositionType const& v2);
+
+    /**
      * @brief Represents the depth of the tree
      * */
     unsigned int depth;
+
+    /**
+     * @brief Represents identifier of the current point, to avoid duplicates. 
+     * */
+    unsigned int identifier;
 
     /**
      * @brief Contains the value of the current node

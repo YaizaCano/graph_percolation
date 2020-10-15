@@ -10,15 +10,7 @@ Geometric::Geometric(unsigned int num, unsigned int dim, float r){
     radius = r;
 }
 
-float Geometric::calculateDistance(std::vector<float> const& v1, std::vector<float> const& v2){
-    auto size = v1.size();
-    float distance = 0;
-    for(auto i = 0; i < size; ++i){
-        distance += v1[i]*v1[i] + v2[i]*v2[i];
-    }
 
-    return sqrt(distance);
-}
 
 
 std::vector<float> Geometric::generatePosition() const{
@@ -34,17 +26,26 @@ Graph Geometric::createGraph() const{
     Graph g;
     std::vector<std::vector<float>> positions(n, std::vector<float>(dimension));
     // add vertices
-    for(auto i = 0; i < n; ++i){
+    // Add initial position
+    positions[0] = generatePosition();
+    KDTree root(positions[0], 0);
+    g.addSite();
+    // add other positions with time O(nlogn)
+    for(auto i = 1; i < n; ++i){
         g.addSite();
         positions[i] = generatePosition(); // position
+        root.add(positions[i], i);
     }
-    // O(n^2), USE KDTree
+
+
     for(auto i = 0; i < n; ++i){
-        for(auto j = 0; j < n; ++j){
-            auto distance = calculateDistance(positions[i], positions[j]);
-            if(distance <= radius)
-                g.addBond(i, j);
+        // O(logn)
+        auto pairs = root.radiusRangeSearch(positions[i], radius);
+        // O(|pairs|) <= O(n)
+        for(auto const& id : pairs){
+            g.addBond(i, id);
         }
+
     }
 
     return g; // graella
