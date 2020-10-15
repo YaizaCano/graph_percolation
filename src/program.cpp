@@ -12,6 +12,7 @@ void usage(){
     std::cerr << "    seed: the random seed for the data generation" << std::endl;
     std::cerr << "    dim: number of dimensions for geometric graphs" << std::endl;
     std::cerr << "    stepSize: the step size of probability q" << std::endl;
+    std::cerr << "    q: number of repetitions per graph"
     std::cerr << "    outputDir: the directory where the experiment must be placed, the directory must exist" << std::endl << std::endl;
 }
 
@@ -23,7 +24,7 @@ void usage(){
 int main(int argc, char* argv[]){
 
     // parameter check
-    if(argc != 6){
+    if(argc != 7){
         usage();
         return 1;
     }
@@ -33,7 +34,8 @@ int main(int argc, char* argv[]){
     int seed = std::stoi(argv[2]);
     int dim = std::stoi(argv[3]);
     float step = std::stof(argv[4]);
-    std::string outputPath = argv[5];
+    int nRepetitions = std::stoi(argv[5]);
+    std::string outputPath = argv[6];
     if(outputPath[outputPath.size() - 1] != '/')outputPath += '/';
     RandGenerator::setSeed(seed);
     // radius definition
