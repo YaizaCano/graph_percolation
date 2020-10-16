@@ -7,12 +7,14 @@ OUTNAME = -o $(PROGRAM_NAME)
 
 # directory definition
 
-RANDOM = random/rand_generator.cpp graph/graph.cpp graph/grid.cpp graph/geometric.cpp \
-	     data/csv_file.cpp
+RANDOM = random/rand_generator.cpp
+GRAPH =  graph/graph.cpp graph/grid.cpp graph/geometric.cpp
+DATA =   data/csv_file.cpp
+TREE = aux/hyperrectangle.cpp aux/kd_tree.cpp aux/node.cpp
 MAIN = $(PROGRAM_NAME).cpp
 
 
-TARGET = $(RANDOM)
+TARGET = $(RANDOM) $(GRAPH) $(DATA) $(TREE)
 
 # rule definition
 program: $(TARGET) $(MAIN) $(TARGET:.cpp=.h)
