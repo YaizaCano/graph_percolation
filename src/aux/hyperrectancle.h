@@ -33,6 +33,10 @@ public:
      * */
     std::pair<Hyperrectangle, Hyperrectangle> split(unsigned int axis, float splitValue) const;
 
+    float minDistance(Hyperrectangle const& other) const;
+
+    float maxDistance(Hyperrectangle const& other) const; 
+
 
     /**
      * @brief Minkowski distance between two points where p=2 (Eucledian distance)

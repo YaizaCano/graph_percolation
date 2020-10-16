@@ -26,6 +26,14 @@ std::pair<Hyperrectangle, Hyperrectangle> Hyperrectangle::split(unsigned int axi
 
 }
 
+float Hyperrectangle::minDistance(Hyperrectangle const& other) const{
+    return 0;
+}
+
+float Hyperrectangle::maxDistance(Hyperrectangle const& other) const{
+    return 0; 
+}
+
 
 float Hyperrectangle::calculateDistance(IntervalValuesType const& v1, IntervalValuesType const& v2){
     auto size = v1.size();
