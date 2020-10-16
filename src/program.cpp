@@ -12,7 +12,7 @@ void usage(){
     std::cerr << "    seed: the random seed for the data generation" << std::endl;
     std::cerr << "    dim: number of dimensions for geometric graphs" << std::endl;
     std::cerr << "    stepSize: the step size of probability q" << std::endl;
-    std::cerr << "    q: number of repetitions per graph" << std::endl; 
+    std::cerr << "    q: number of repetitions per graph" << std::endl;
     std::cerr << "    outputDir: the directory where the experiment must be placed, the directory must exist" << std::endl << std::endl;
 }
 
@@ -55,6 +55,10 @@ int main(int argc, char* argv[]){
         std::cout << "=================================" << std::endl;
         std::cout << "Generator: " << gen->name() << std::endl;
         std::cout << "=================================" << std::endl;
+        // create data file and add csv header
+        CsvFile data(outputPath + gen->name());
+        data.addRow({"components", "difference", "q"});
+        // init loop for q times
         for(int i = 0; i < nRepetitions; ++i){
             std::cout << "Iteration: " << i << std::endl;
             Graph g = gen->createGraph();
@@ -66,12 +70,15 @@ int main(int argc, char* argv[]){
                 auto g_p = Graph::applyBondPercolation(g, i);
 
                 auto components = g_p.getTotalConnectedComponents();
+                auto diff = components - old_components;
                 std::cout << "Connected Components: " << components << std::endl;
-                std::cout << "Differece: " << components - old_components << std::endl;
+                std::cout << "Differece: " << diff << std::endl;
                 old_components = components;
-
+                data.addRow({std::to_string(components), std::to_string(old_components), std::to_string(i)});
             }
         }
+        // save data file
+        data.write();
 
     }
 

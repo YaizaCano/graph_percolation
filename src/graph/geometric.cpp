@@ -7,7 +7,7 @@ Geometric::Geometric(unsigned int num, unsigned int dim, float r){
 }
 
 std::string Geometric::name() const{
-    return "geometric " + std::to_string(radius);
+    return "geometric_" + std::to_string(radius);
 }
 
 

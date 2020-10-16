@@ -15,7 +15,7 @@ void CsvFile::addRow(CsvRow const &row) {
 
 void CsvFile::write() const {
     unsigned int i = 0;
-    std::string fileName = outputDir + "experiment_";
+    std::string fileName = outputDir + "_experiment_";
     std::ifstream fileOpener(fileName + std::to_string(i) + CSV_EXTENSION);
     while(fileOpener.is_open()){
         fileOpener.close();
