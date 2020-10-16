@@ -60,10 +60,26 @@ private:
                                 IntervalValuesType const& maxes,
                                 IntervalValuesType const& mins, int depth=0) const;
 
-
+    /**
+    * @brief Traverse the tree by adding connected components and checking
+    *        if subtree are in the same subspace base on their hyperrectangle
+    * @param connections set of pairs of bond between indices
+    * @param left is the left subtree
+    * @param leftR is the left hyperrectangle
+    * @param right is the right subtree
+    * @param rightR is the right hyperrectangle
+    * @param radius is the search area
+    * */
     void traverseCheckRectangles(BondPairs& connections, NodePtr const& left, Hyperrectangle const& leftR,
                                  NodePtr const& right, Hyperrectangle const& rightR, float radius) const;
-
+    /**
+    * @brief Traverse the tree by adding connected components it does not,
+    *        need to check if the connected components are on the same space
+    *        because they are already in the same hyperrectangle
+    * @param connections set of pairs of bond between indices
+    * @param left is the left subtree
+    * @param right is the right subtree 
+    * */
     void traverseSimple(BondPairs& connections, NodePtr const& left, NodePtr const& right) const;
 
     /**

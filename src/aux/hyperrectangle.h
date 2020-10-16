@@ -35,8 +35,18 @@ public:
      * */
     std::pair<Hyperrectangle, Hyperrectangle> split(unsigned int axis, float splitValue) const;
 
+    /**
+     * @brief Calculates the minimum distance between two hyperrectangle
+     * @param other is the rectangle to compare to
+     * @returns a floating point distance
+     * */
     float minDistance(Hyperrectangle const& other) const;
 
+    /**
+     * @brief Calculates the maximum distance between two hyperrectangle
+     * @param other is the rectangle to compare to
+     * @returns a floating point distance
+     * */
     float maxDistance(Hyperrectangle const& other) const;
 
 
@@ -50,11 +60,28 @@ public:
 
 private:
 
-
+    /**
+    * @brief Calculates the maximum value per axis of both vectors
+    * @param v1 a vector in the space
+    * @param v2 another vector
+    * @returns a list of max values
+    * */
     static IntervalValuesType maximum(IntervalValuesType const& v1, IntervalValuesType const& v2);
 
+    /**
+    * @brief Calculates the minimum value per axis of both vectors
+    * @param v1 a vector in the space
+    * @param v2 another vector
+    * @returns a list of min values
+    * */
     static IntervalValuesType minimum(IntervalValuesType const& v1, IntervalValuesType const& v2);
 
+    /**
+    * @brief Calculates the difference between two vectors
+    * @param v1 a vector in the space
+    * @param v2 another vector
+    * @returns a vector 
+    * */
     static IntervalValuesType substract(IntervalValuesType const& v1, IntervalValuesType const& v2);
 
     /**
