@@ -5,65 +5,43 @@
 
 
 typedef unsigned int NodeIndex;
-
-/**
- * @class Node
- * @brief Represents a node in a KDTree
- * */
-class Node{
-
-public:
-
-    virtual bool isLeaf() const = 0;
-
-private:
-
-};
-
-/**
- * @class LeafNode
- * @brief Represents a leaf in a KDTree, a leaf contains a list of
- *        positions of the k-dimensional data
- * */
-class LeafNode : public Node{
-
-public:
-
-    LeafNode(std::list<NodeIndex> const& i);
-
-    virtual bool isLeaf() const;
-
-private:
-
-    std::list<NodeIndex> indices;
-
-
-
-};
-
-
 typedef std::shared_ptr<Node> NodePtr;
 
 
-/**
- * @class InnerNode
- * @brief Represents an inner node in a KDTree, this node has reference
- *        to the left and right subtrees and contains the partition of the
- *        space into two hyperrectangles.
- * */
-class InnerNode : public Node{
+class Node{
 
 
 public:
 
+    // constructor for leaf node
+    Node(std::list<NodeIndex> const& i);
 
-    InnerNode(float split, unsigned int dim, NodePtr left, NodePtr right);
+    // constructor for inner node
+    Node(float split, unsigned int dim, NodePtr left, NodePtr right);
 
+    unsigned int getDimension() const;
 
-    virtual bool isLeaf() const;
+    float getSplitValue() const;
+
+    std::list<NodeIndex> getIndices() const; 
+
+    bool isLeaf() const;
+
+    NodePtr leftNode() const;
+
+    NodePtr rightNode() const;
+
+    bool operator==(Node const& other) const;
 
 private:
 
+    static unsigned int idCounter = 0;
+
+    unsigned int id;
+
+    bool leaf;
+
+    std::list<NodeIndex> indices;
 
     unsigned int dimension; // split dimension
 

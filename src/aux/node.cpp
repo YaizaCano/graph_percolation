@@ -1,30 +1,50 @@
 #include "node.h"
 
 
-/** =================================
- *            INNER NODE
- *  =================================*/
 
-InnerNode::InnerNode(float split, unsigned int dim, NodePtr ln, NodePtr rn){
+Node::Node(float split, unsigned int dim, NodePtr ln, NodePtr rn){
     splitValue = split;
     dimension = dim;
     left = ln;
     right = rn;
+    leaf = false;
+    id = idCounter++;
 }
 
-
-bool InnerNode::isLeaf() const{
-    return false;
-}
-
-/** =================================
- *              LEAF NODE
- *  =================================*/
-
-bool LeafNode::isLeaf() const{
-    return true; 
-}
-
-LeafNode::LeafNode(std::list<NodeIndex> const& i){
+Node::Node(std::list<NodeIndex> const& i){
     indices = i;
+    leaf = true;
+    id = idCounter++;
+}
+
+
+std::list<NodeIndex> Node::getIndices() const{
+    return indices; 
+}
+
+bool Node::operator==(Node const& other) const{
+    return id == other.id;
+}
+
+
+bool Node::isLeaf() const{
+    return leaf;
+}
+
+
+
+unsigned int Node::getDimension() const{
+    return dimension;
+}
+
+float Node::getSplitValue() const{
+    return splitValue;
+}
+
+NodePtr Node::leftNode() const{
+    return left;
+}
+
+NodePtr Node::rightNode() const{
+    return right;
 }

@@ -72,14 +72,14 @@ BondPairs KDTree::radiusRangeSearch(float radius) const{
         lessMaxValues[dim] = split;
         auto greaterMinValues = mins;
         greaterMinValues[dim] = split;
-        // finally, we recursively build the left and right subtree 
-        return InnerNode(split, dim,
+        // finally, we recursively build the left and right subtree
+        return Node(split, dim,
                         build(lessIndices, lessMaxValues, mins),
                         build(greaterIndices, maxes, greaterMinValues));
 
     }
     else{
-        return LeafNode(idx);
+        return Node(idx);
     }
 
 }
@@ -100,21 +100,121 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
             traverseSimple(connections, left, right);
         }
         if(left->isLeaf()){
-
+            // if both nodes are leaf nodes, we add the possible
+            // pairs based on their positions
+            // otherwise we must continue traversing the tree in the
+            // right direction
+            if(right->isLeaf()){
+                auto leftIndices = left->getIndices();
+                auto rightIndices = right->getIndices();
+                if(*left == *right){
+                    for(auto const& i : leftIndices){
+                        for(auto const& j : rightIndices){
+                            if(Hyperrectangle::calculateDistance(data[i], data[j]) <= radius && i < j){
+                                connections.push_back({i, j});
+                            }
+                        }
+                    }
+                }
+                else{
+                    for(auto const& i : leftIndices){
+                        for(auto const& j : rightIndices){
+                            if(Hyperrectangle::calculateDistance(data[i], data[j]) <= radius && i != j){
+                                connections.push_back({i, j});
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                splitRight = rightR.split(right);
+                traverseCheckRectangles(connections, left, leftR,
+                                        right->leftNode(), splitRight.first, radius);
+                traverseCheckRectangles(connections, left, leftR,
+                                        right->rightNode(), splitRight.second, radius);
+            }
         }
         else if(right->isLeaf()){
-
+            // if the right is leaf, we must continue traversing the tree in
+            // the left direction
+            splitLeft = leftR.split(left);
+            traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
+                                    right, rightR, radius);
+            traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
+                                    right, rightR, radius);
         }
         else{
+            // There isn't any leaf node, so we must traverse all directions
+            // possible.
+            splitLeft = leftR.split(left);
+            splitRight = rightR.split(right);
+            // traverse left with left
+            traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
+                                    right->leftNode(), splitRight.first, radius);
+            // traverse left with right
+            traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
+                                    right->rightNode(), splitRight.second, radius);
 
+            if(*left != *right){
+                // traverse right with left
+                traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
+                                        right->leftNode(), splitRight.first, radius);
+            }
+            // traverse right with right
+            traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
+                                    right->rightNode(), splitRight.second, radius);
         }
-
     }
-
 }
 
 void KDTree::traverseSimple(BondPairs& connections, NodePtr const& left, NodePtr const& right) const{
+    if(left->isLeaf()){
+        // if both nodes are leaf nodes, we add the possible
+        // pairs based on their positions
+        // otherwise we must continue traversing the tree in the
+        // right direction
+        if(right->isLeaf()){
+            auto leftIndices = left->getIndices();
+            auto rightIndices = right->getIndices();
+            if(*left == *right){
+                for(auto const& i : leftIndices){
+                    for(auto const& j : rightIndices){
+                        if(i < j){
+                            connections.push_back({i, j});
+                        }
+                    }
+                }
+            }
+            else{
+                for(auto const& i : leftIndices){
+                    for(auto const& j : rightIndices){
+                        if(i != j){
+                            connections.push_back({i, j});
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            traverseSimple(connections, left, right->leftNode());
+            traverseSimple(connections, left, right->rightNode());
+        }
+    }
+    else{
+        // There isn't any leaf node, so we must traverse all directions
+        // possible.
+        if(*left == *right){
+            traverseSimple(connections, left->leftNode(), right->leftNode());
+            traverseSimple(connections, left->leftNode(), right->rightNode());
+            traverseSimple(connections, left->rightNode(), right->rightNode());
+        }
+        else{
+            traverseSimple(connections, left->leftNode(), right);
+            traverseSimple(connections, left->rightNode(), right);
+        }
 
+
+    }
 }
 
 std::list<NodeIndex> KDTree::filterLower(std::vector<NodeIndex> const& indices, unsigned int dim, float split) const{
