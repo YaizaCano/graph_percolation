@@ -1,7 +1,8 @@
 #ifndef HYPERRECTANGLE_H
 #define HYPERRECTANGLE_H
 
-
+// DEBUG
+#include <iostream>
 #include <vector>
 #include <utility>
 #include <cmath>
@@ -48,6 +49,11 @@ public:
     static float calculateDistance(IntervalValuesType const& v1, IntervalValuesType const& v2);
 
 private:
+
+
+    static IntervalValuesType maximum(IntervalValuesType const& v1, IntervalValuesType const& v2);
+
+    static IntervalValuesType substract(IntervalValuesType const& v1, IntervalValuesType const& v2);
 
     /**
      * @brief Contains the list of maximum values of the rectangle

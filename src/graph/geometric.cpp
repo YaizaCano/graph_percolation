@@ -7,14 +7,15 @@ Geometric::Geometric(unsigned int num, unsigned int dim, float r){
 }
 
 std::string Geometric::name() const{
-    return "geometric " + std::to_string(radius); 
+    return "geometric " + std::to_string(radius);
 }
 
 float Geometric::calculateDistance(std::vector<float> const& v1, std::vector<float> const& v2){
     auto size = v1.size();
     float distance = 0;
     for(auto i = 0; i < size; ++i){
-        distance += v1[i]*v1[i] + v2[i]*v2[i];
+        auto tmp = v1[i] + v2[i];
+        distance += tmp*tmp;
     }
 
     return sqrt(distance);
@@ -38,14 +39,25 @@ Graph Geometric::createGraph() const{
         g.addSite();
         positions[i] = generatePosition(); // position
     }
-    // O(n^2), USE KDTree
+
+    KDTree tree(positions);
+    std::cout << "Tree built" << std::endl;
+    auto pairs = tree.radiusRangeSearch(radius);
+    std::cout << "Pairs found" << std::endl;
+    int counter = 0;
     for(auto i = 0; i < n; ++i){
-        for(auto j = 0; j < n; ++j){
+        for(auto j = i + 1; j < n; ++j){
             auto distance = calculateDistance(positions[i], positions[j]);
-            if(distance <= radius)
+            if(distance <= radius){
                 g.addBond(i, j);
+                counter += 1;
+            }
+
         }
     }
+
+    std::cout << "Bonds: " << counter << std::endl;
+    std::cout << "Pairs: " << pairs.size() << std::endl;
 
     return g; // graella
 }
