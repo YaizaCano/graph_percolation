@@ -16,12 +16,12 @@ KDTree::KDTree(std::vector<PositionType> const& d){
 }
 
 
-std::list<std::pair<NodeIndex, NodeIndex>> KDTree::radiusRangeSearch(float radius) const{
-    std::list<std::pair<NodeIndex, NodeIndex>> connections;
+BondPairs KDTree::radiusRangeSearch(float radius) const{
+    BondPairs connections;
     // create initial hyperrectangle
     Hyperrectangle rectangle(maxValues, minValues);
-    // traverse tree by comparing hyperrectangles 
-
+    // traverse tree by comparing hyperrectangles
+    traverseCheckRectangles(connections, tree, rectangle, tree, rectangle, radius);
 
     return connections;
 }
@@ -36,31 +36,43 @@ std::list<std::pair<NodeIndex, NodeIndex>> KDTree::radiusRangeSearch(float radiu
  std::shared_ptr<Node> KDTree::build(std::vector<NodeIndex> const& idx,
                              IntervalValuesType const& maxes,
                              IntervalValuesType const& mins){
-
+    // if the size of the indices that we are inserting into the tree
+    // are less than a specific threshold, then we add them all inside
+    // a leaf node
     if(idx.size() > MIN_LEAF_SIZE){
+        // we first calculate the dimension
+        // with maximum range
         auto dim = argmax(maxes, mins);
         auto maxValue = maxes[dim];
         auto minValue = mins[dim];
-
+        // we then calculate a possible split value as the
+        // center in the selected dimension, we then
+        // filter the data that based on its value
         float split = (maxValue + minValue) / 2.0;
         std::list<NodeIndex> lessIndices = filterLower(idx, split);
         std::list<NodeIndex> greaterIndices = filterBigger(idx, split);
 
+        // if the left data is empty, we must move the split
+        // to the closest index
         if(lessIndices.empty()){
             split = findMin(idx);
             lessIndices = filterLower(idx, split);
             greaterIndices = filterBigger(idx, split);
         }
+        // if the right data is empty we must move the split
+        // data to the closest index
         if(greaterIndices.empty()){
             split = findMax(idx);
             lessIndices = filterLower(idx, split);
             greaterIndices = filterBigger(idx, split);
         }
-
+        // finally we create the subddivision of the maximum and minimum
+        // values of the left and right subtree
         auto lessMaxValues = maxes;
         lessMaxValues[dim] = split;
         auto greaterMinValues = mins;
         greaterMinValues[dim] = split;
+        // finally, we recursively build the left and right subtree 
         return InnerNode(split, dim,
                         build(lessIndices, lessMaxValues, mins),
                         build(greaterIndices, maxes, greaterMinValues));
@@ -70,8 +82,38 @@ std::list<std::pair<NodeIndex, NodeIndex>> KDTree::radiusRangeSearch(float radiu
         return LeafNode(idx);
     }
 
+}
 
+void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left, Hyperrectangle const& leftR,
+                             NodePtr const& right, Hyperrectangle const& rightR, float radius) const{
 
+    // distance between hyperrectangles must be less than the
+    // minimum possible distance, that is the radius. Otherwise
+    // the rectangles do not intersect and don't have any connected
+    // components
+    if(leftR.minDistance(rightR) <= radius){
+        // if the maximum possible distance between rectangles is less
+        // than the radius, that means that the rectangles are inside each
+        // other, and all components are connected between them
+        if(leftR.maxDistance(rightR) <= radius){
+            // traverses the tree without checking distances
+            traverseSimple(connections, left, right);
+        }
+        if(left->isLeaf()){
+
+        }
+        else if(right->isLeaf()){
+
+        }
+        else{
+
+        }
+
+    }
+
+}
+
+void KDTree::traverseSimple(BondPairs& connections, NodePtr const& left, NodePtr const& right) const{
 
 }
 

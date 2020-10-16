@@ -14,6 +14,8 @@ class Node{
 
 public:
 
+    virtual bool isLeaf() const = 0;
+
 private:
 
 };
@@ -28,6 +30,8 @@ class LeafNode : public Node{
 public:
 
     LeafNode(std::list<NodeIndex> const& i);
+
+    virtual bool isLeaf() const;
 
 private:
 
@@ -55,6 +59,8 @@ public:
 
     InnerNode(float split, unsigned int dim, NodePtr left, NodePtr right);
 
+
+    virtual bool isLeaf() const;
 
 private:
 

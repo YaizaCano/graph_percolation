@@ -13,6 +13,7 @@
 
 
 typedef std::vector<float> PositionType;
+typedef std::list<std::pair<NodeIndex, NodeIndex>> BondPairs;
 
 
 /**
@@ -41,7 +42,7 @@ public:
      * @param radius is the radius of the search area
      * @returns a list of pairs of identifiers
      * */
-    std::list<std::pair<NodeIndex, NodeIndex>> radiusRangeSearch(float radius) const;
+    BondPairs radiusRangeSearch(float radius) const;
 
 
 private:
@@ -57,6 +58,12 @@ private:
     std::shared_ptr<Node> build(std::vector<NodeIndex> const& idx,
                                 IntervalValuesType const& maxes,
                                 IntervalValuesType const& mins);
+
+
+    void traverseCheckRectangles(BondPairs& connections, NodePtr const& left, Hyperrectangle const& leftR,
+                                 NodePtr const& right, Hyperrectangle const& rightR, float radius) const;
+
+    void traverseSimple(BondPairs& connections, NodePtr const& left, NodePtr const& right) const;
 
     /**
      * @brief Filters all the indices, whose value is lower or equal than the split value
