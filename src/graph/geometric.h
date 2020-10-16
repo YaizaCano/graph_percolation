@@ -24,9 +24,6 @@ private:
 
     std::vector<float> generatePosition() const;
 
-    // pre: v1.size() == v2.size()
-    static float calculateDistance(std::vector<float> const& v1, std::vector<float> const& v2);
-
     unsigned int n, dimension;
     float radius;
 

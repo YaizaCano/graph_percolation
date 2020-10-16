@@ -10,17 +10,6 @@ std::string Geometric::name() const{
     return "geometric " + std::to_string(radius);
 }
 
-float Geometric::calculateDistance(std::vector<float> const& v1, std::vector<float> const& v2){
-    auto size = v1.size();
-    float distance = 0;
-    for(auto i = 0; i < size; ++i){
-        auto tmp = v1[i] + v2[i];
-        distance += tmp*tmp;
-    }
-
-    return sqrt(distance);
-}
-
 
 std::vector<float> Geometric::generatePosition() const{
     std::vector<float> pos(dimension);
@@ -44,19 +33,9 @@ Graph Geometric::createGraph() const{
     std::cout << "Tree built" << std::endl;
     auto pairs = tree.radiusRangeSearch(radius);
     std::cout << "Pairs: " << pairs.size() << std::endl;
-    int counter = 0;
-    for(auto i = 0; i < n; ++i){
-        for(auto j = i + 1; j < n; ++j){
-            auto distance = calculateDistance(positions[i], positions[j]);
-            if(distance <= radius){
-                g.addBond(i, j);
-                counter += 1;
-            }
 
-        }
-    }
+    for(auto const& p : pairs)g.addBond(p.first, p.second);
 
-    std::cout << "Bonds: " << counter << std::endl;
 
 
     return g; // graella
