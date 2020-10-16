@@ -18,7 +18,7 @@ TARGET = $(RANDOM) $(GRAPH) $(DATA) $(TREE)
 
 # rule definition
 program: $(TARGET) $(MAIN) $(TARGET:.cpp=.h)
-	$(COMPILER) $(STD) $(TARGET) $(MAIN) $(OUTNAME)
+	$(COMPILER) $(STD) $(TARGET) $(MAIN) $(OUTNAME) -pthread
 
 clean:
 		rm $(PROGRAM_NAME)

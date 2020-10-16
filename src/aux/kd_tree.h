@@ -5,6 +5,7 @@
 #include <queue>
 #include <list>
 #include <memory>
+#include <future>
 
 #include "hyperrectangle.h"
 #include "node.h"
@@ -57,7 +58,7 @@ private:
      * */
     std::shared_ptr<Node> build(std::list<NodeIndex> const& idx,
                                 IntervalValuesType const& maxes,
-                                IntervalValuesType const& mins);
+                                IntervalValuesType const& mins, int depth=0) const;
 
 
     void traverseCheckRectangles(BondPairs& connections, NodePtr const& left, Hyperrectangle const& leftR,

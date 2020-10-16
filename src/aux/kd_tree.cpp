@@ -35,7 +35,7 @@ BondPairs KDTree::radiusRangeSearch(float radius) const{
 
  std::shared_ptr<Node> KDTree::build(std::list<NodeIndex> const& idx,
                              IntervalValuesType const& maxes,
-                             IntervalValuesType const& mins){
+                             IntervalValuesType const& mins, int depth) const{
     // if the size of the indices that we are inserting into the tree
     // are less than a specific threshold, then we add them all inside
     // a leaf node
@@ -73,9 +73,18 @@ BondPairs KDTree::radiusRangeSearch(float radius) const{
         auto greaterMinValues = mins;
         greaterMinValues[dim] = split;
         // finally, we recursively build the left and right subtree
-        return std::make_shared<Node>(Node(split, dim,
-                        build(lessIndices, lessMaxValues, mins),
-                        build(greaterIndices, maxes, greaterMinValues)));
+        if(depth < 2){
+            auto futureLeft = std::async(&KDTree::build, this, lessIndices, lessMaxValues, mins, depth + 1);
+            auto futureRight = std::async(&KDTree::build, this, greaterIndices, maxes, greaterMinValues, depth + 1);
+
+            return std::make_shared<Node>(Node(split, dim, futureLeft.get(), futureRight.get()));
+        }
+        else{
+            return std::make_shared<Node>(Node(split, dim,
+                        build(lessIndices, lessMaxValues, mins, depth + 1),
+                        build(greaterIndices, maxes, greaterMinValues, depth + 1)));
+        }
+
 
     }
     else{
