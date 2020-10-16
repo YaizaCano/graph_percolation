@@ -7,8 +7,8 @@
 
 
 Hyperrectangle::Hyperrectangle(IntervalValuesType const& maxs, IntervalValuesType const& mins){
-    maxValues = maxs;
-    minValues = mins;
+    maxValues = maximum(maxs, mins);
+    minValues = minimum(mins, maxs);
 }
 
 
@@ -32,14 +32,15 @@ float Hyperrectangle::minDistance(Hyperrectangle const& other) const{
     auto max1 = maximum(substract(minValues, other.maxValues), substract(other.minValues, maxValues));
     auto max2 = maximum(zeros2, max1);
     float dis = calculateDistance(zeros, max2);
-    std::cout << "DISTANCE: " << dis << std::endl; 
+
     return dis;
 }
 
 float Hyperrectangle::maxDistance(Hyperrectangle const& other) const{
     IntervalValuesType zeros(minValues.size(), 0);
-    return calculateDistance(zeros,
-            maximum(substract(maxValues, other.minValues), substract(other.maxValues, minValues)));
+    auto max1 = maximum(substract(maxValues, other.minValues), substract(other.maxValues, minValues));
+    auto dis = calculateDistance(zeros, max1);
+    return dis;
 }
 
 
@@ -60,6 +61,16 @@ IntervalValuesType Hyperrectangle::maximum(IntervalValuesType const& v1, Interva
         else maxVector.push_back(v2[i]);
     }
     return maxVector;
+}
+
+IntervalValuesType Hyperrectangle::minimum(IntervalValuesType const& v1, IntervalValuesType const& v2){
+    IntervalValuesType minVector;
+    minVector.reserve(v1.size());
+    for(int i = 0; i < v1.size(); ++i){
+        if(v1[i] < v2[i])minVector.push_back(v1[i]);
+        else minVector.push_back(v2[i]);
+    }
+    return minVector;
 }
 
 

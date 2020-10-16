@@ -53,6 +53,8 @@ private:
 
     static IntervalValuesType maximum(IntervalValuesType const& v1, IntervalValuesType const& v2);
 
+    static IntervalValuesType minimum(IntervalValuesType const& v1, IntervalValuesType const& v2);
+
     static IntervalValuesType substract(IntervalValuesType const& v1, IntervalValuesType const& v2);
 
     /**

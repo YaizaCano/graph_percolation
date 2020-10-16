@@ -95,10 +95,10 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
         // if the maximum possible distance between rectangles is less
         // than the radius, that means that the rectangles are inside each
         // other, and all components are connected between them
-        if(leftR.maxDistance(rightR) <= radius){
+        /*if(leftR.maxDistance(rightR) <= radius){
             // traverses the tree without checking distances
             traverseSimple(connections, left, right);
-        }
+        }*/
         if(left->isLeaf()){
             // if both nodes are leaf nodes, we add the possible
             // pairs based on their positions

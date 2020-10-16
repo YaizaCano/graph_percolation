@@ -43,7 +43,7 @@ Graph Geometric::createGraph() const{
     KDTree tree(positions);
     std::cout << "Tree built" << std::endl;
     auto pairs = tree.radiusRangeSearch(radius);
-    std::cout << "Pairs found" << std::endl;
+    std::cout << "Pairs: " << pairs.size() << std::endl;
     int counter = 0;
     for(auto i = 0; i < n; ++i){
         for(auto j = i + 1; j < n; ++j){
@@ -57,7 +57,7 @@ Graph Geometric::createGraph() const{
     }
 
     std::cout << "Bonds: " << counter << std::endl;
-    std::cout << "Pairs: " << pairs.size() << std::endl;
+
 
     return g; // graella
 }
