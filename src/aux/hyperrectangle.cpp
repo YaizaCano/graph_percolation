@@ -17,12 +17,12 @@ std::pair<Hyperrectangle, Hyperrectangle> Hyperrectangle::split(unsigned int axi
     // split less rectangle
     auto mid = maxValues;
     mid[axis] = splitValue;
-    less = Hyperrectangle(minValues, mid);
+    auto less = Hyperrectangle(minValues, mid);
     // split greater rectangle
     mid = minValues;
     mid[axis] = splitValue;
-    greater = Hyperrectangle(mid, maxValues);
-    return {less, greater}
+    auto greater = Hyperrectangle(mid, maxValues);
+    return {less, greater};
 
 }
 
@@ -31,7 +31,7 @@ float Hyperrectangle::minDistance(Hyperrectangle const& other) const{
 }
 
 float Hyperrectangle::maxDistance(Hyperrectangle const& other) const{
-    return 0; 
+    return 0;
 }
 
 

@@ -55,7 +55,7 @@ private:
      * @param mins contains the minimum values for the indices
      * @retursn a node containing all the subtree
      * */
-    std::shared_ptr<Node> build(std::vector<NodeIndex> const& idx,
+    std::shared_ptr<Node> build(std::list<NodeIndex> const& idx,
                                 IntervalValuesType const& maxes,
                                 IntervalValuesType const& mins);
 
@@ -72,7 +72,7 @@ private:
      * @param split is the separation value
      * @returns returns a list of indices
      * */
-    std::list<NodeIndex> filterLower(std::vector<NodeIndex> const& indices, unsigned int dim, float split)const;
+    std::list<NodeIndex> filterLower(std::list<NodeIndex> const& indices, unsigned int dim, float split)const;
 
     /**
      * @brief Filters all the indices, whose value is bigger than the split value
@@ -81,7 +81,7 @@ private:
      * @param split is the separation value
      * @returns returns a list of indices
      * */
-    std::list<NodeIndex> filterBigger(std::vector<NodeIndex> const& indices, unsigned int dim, float split)const;
+    std::list<NodeIndex> filterBigger(std::list<NodeIndex> const& indices, unsigned int dim, float split)const;
 
     /**
      * @brief Find the minimum value of the data based on the indices given
@@ -89,7 +89,7 @@ private:
      * @param dim is the dimension to calculate the minimum in
      * @returns the minimum value
      * */
-    float findMin(std::vector<NodeIndex> const& indices, unsigned int dim) const;
+    float findMin(std::list<NodeIndex> const& indices, unsigned int dim) const;
 
     /**
      * @brief Find the maximum value of the data based on the indices given
@@ -97,7 +97,7 @@ private:
      * @param dim is the dimension to calculate the maximum in
      * @returns the maximum value
      * */
-    float findMax(std::vector<NodeIndex> const& indices, unsigned int dim) const;
+    float findMax(std::list<NodeIndex> const& indices, unsigned int dim) const;
 
     /**
      * @brief Finds the biggest value of a substraction of vectors and returns its argument

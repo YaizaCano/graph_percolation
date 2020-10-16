@@ -1,6 +1,7 @@
 #include "node.h"
 
 
+unsigned int Node::idCounter = 0; 
 
 Node::Node(float split, unsigned int dim, NodePtr ln, NodePtr rn){
     splitValue = split;
@@ -19,7 +20,7 @@ Node::Node(std::list<NodeIndex> const& i){
 
 
 std::list<NodeIndex> Node::getIndices() const{
-    return indices; 
+    return indices;
 }
 
 bool Node::operator==(Node const& other) const{

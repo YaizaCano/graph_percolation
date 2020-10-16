@@ -2,11 +2,14 @@
 #define NODE_H
 
 #include <memory>
+#include <list>
+
+class Node;
 
 
 typedef unsigned int NodeIndex;
-typedef std::shared_ptr<Node> NodePtr;
 
+typedef std::shared_ptr<Node> NodePtr;
 
 class Node{
 
@@ -23,7 +26,7 @@ public:
 
     float getSplitValue() const;
 
-    std::list<NodeIndex> getIndices() const; 
+    std::list<NodeIndex> getIndices() const;
 
     bool isLeaf() const;
 
@@ -35,7 +38,7 @@ public:
 
 private:
 
-    static unsigned int idCounter = 0;
+    static unsigned int idCounter;
 
     unsigned int id;
 
@@ -53,6 +56,8 @@ private:
 
 
 };
+
+
 
 
 #endif

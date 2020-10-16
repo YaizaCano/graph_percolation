@@ -2,10 +2,10 @@
 #define GEOMETRIC_H
 
 #include <vector>
-#include <cmath>
 
 #include "graph_generator.h"
 #include "../random/rand_generator.h"
+#include "../aux/kd_tree.h"
 
 class Geometric : public GraphGenerator{
 

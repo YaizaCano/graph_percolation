@@ -33,7 +33,7 @@ BondPairs KDTree::radiusRangeSearch(float radius) const{
 
 
 
- std::shared_ptr<Node> KDTree::build(std::vector<NodeIndex> const& idx,
+ std::shared_ptr<Node> KDTree::build(std::list<NodeIndex> const& idx,
                              IntervalValuesType const& maxes,
                              IntervalValuesType const& mins){
     // if the size of the indices that we are inserting into the tree
@@ -49,22 +49,22 @@ BondPairs KDTree::radiusRangeSearch(float radius) const{
         // center in the selected dimension, we then
         // filter the data that based on its value
         float split = (maxValue + minValue) / 2.0;
-        std::list<NodeIndex> lessIndices = filterLower(idx, split);
-        std::list<NodeIndex> greaterIndices = filterBigger(idx, split);
+        std::list<NodeIndex> lessIndices = filterLower(idx, dim, split);
+        std::list<NodeIndex> greaterIndices = filterBigger(idx, dim, split);
 
         // if the left data is empty, we must move the split
         // to the closest index
         if(lessIndices.empty()){
-            split = findMin(idx);
-            lessIndices = filterLower(idx, split);
-            greaterIndices = filterBigger(idx, split);
+            split = findMin(idx, dim);
+            lessIndices = filterLower(idx, dim, split);
+            greaterIndices = filterBigger(idx,dim,  split);
         }
         // if the right data is empty we must move the split
         // data to the closest index
         if(greaterIndices.empty()){
-            split = findMax(idx);
-            lessIndices = filterLower(idx, split);
-            greaterIndices = filterBigger(idx, split);
+            split = findMax(idx, dim);
+            lessIndices = filterLower(idx, dim, split);
+            greaterIndices = filterBigger(idx, dim, split);
         }
         // finally we create the subddivision of the maximum and minimum
         // values of the left and right subtree
@@ -73,13 +73,13 @@ BondPairs KDTree::radiusRangeSearch(float radius) const{
         auto greaterMinValues = mins;
         greaterMinValues[dim] = split;
         // finally, we recursively build the left and right subtree
-        return Node(split, dim,
+        return std::make_shared<Node>(Node(split, dim,
                         build(lessIndices, lessMaxValues, mins),
-                        build(greaterIndices, maxes, greaterMinValues));
+                        build(greaterIndices, maxes, greaterMinValues)));
 
     }
     else{
-        return Node(idx);
+        return std::make_shared<Node>(Node(idx));
     }
 
 }
@@ -127,7 +127,7 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
                 }
             }
             else{
-                splitRight = rightR.split(right);
+                auto splitRight = rightR.split(right->getDimension(), right->getSplitValue());
                 traverseCheckRectangles(connections, left, leftR,
                                         right->leftNode(), splitRight.first, radius);
                 traverseCheckRectangles(connections, left, leftR,
@@ -137,7 +137,7 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
         else if(right->isLeaf()){
             // if the right is leaf, we must continue traversing the tree in
             // the left direction
-            splitLeft = leftR.split(left);
+            auto splitLeft = leftR.split(left->getDimension(), left->getSplitValue());
             traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
                                     right, rightR, radius);
             traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
@@ -146,8 +146,8 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
         else{
             // There isn't any leaf node, so we must traverse all directions
             // possible.
-            splitLeft = leftR.split(left);
-            splitRight = rightR.split(right);
+            auto splitLeft = leftR.split(left->getDimension(), left->getSplitValue());
+            auto splitRight = rightR.split(right->getDimension(), right->getSplitValue());
             // traverse left with left
             traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
                                     right->leftNode(), splitRight.first, radius);
@@ -155,7 +155,7 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
             traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
                                     right->rightNode(), splitRight.second, radius);
 
-            if(*left != *right){
+            if(!(*left == *right)){
                 // traverse right with left
                 traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
                                         right->leftNode(), splitRight.first, radius);
@@ -217,7 +217,7 @@ void KDTree::traverseSimple(BondPairs& connections, NodePtr const& left, NodePtr
     }
 }
 
-std::list<NodeIndex> KDTree::filterLower(std::vector<NodeIndex> const& indices, unsigned int dim, float split) const{
+std::list<NodeIndex> KDTree::filterLower(std::list<NodeIndex> const& indices, unsigned int dim, float split) const{
     std::list<NodeIndex> filteredIndices;
     for(auto const& i : indices){
         if(data[i][dim] <= split)filteredIndices.push_back(i);
@@ -226,7 +226,7 @@ std::list<NodeIndex> KDTree::filterLower(std::vector<NodeIndex> const& indices, 
     return filteredIndices;
 }
 
-std::list<NodeIndex> KDTree::filterBigger(std::vector<NodeIndex> const& indices, unsigned int dim, float split) const{
+std::list<NodeIndex> KDTree::filterBigger(std::list<NodeIndex> const& indices, unsigned int dim, float split) const{
     std::list<NodeIndex> filteredIndices;
     for(auto const& i : indices){
         if(data[i][dim] > split)filteredIndices.push_back(i);
@@ -235,21 +235,24 @@ std::list<NodeIndex> KDTree::filterBigger(std::vector<NodeIndex> const& indices,
     return filteredIndices;
 }
 
- float KDTree::findMin(std::vector<NodeIndex> const& indices, unsigned int dim) const{
-     auto min = data[indices[0]][dim];
-     for(int i = 1; i < indices.size(); ++i){
-         if(data[indices[i]][dim] < min){
-             min = data[indices[i]][dim];
+ float KDTree::findMin(std::list<NodeIndex> const& indices, unsigned int dim) const{
+     auto min = data[*indices.begin()][dim];
+
+     for(auto const& i : indices){
+         if(data[i][dim] < min){
+             min = data[i][dim];
          }
      }
+
      return min;
  }
 
- float KDTree::findMax(std::vector<NodeIndex> const& indices, unsigned int dim) const{
-     auto max = data[indices[0]][dim];
-     for(int i = 1; i < indices.size(); ++i){
-         if(data[indices[i]][dim] > max){
-             max = data[indices[i]][dim];
+ float KDTree::findMax(std::list<NodeIndex> const& indices, unsigned int dim) const{
+     auto max = data[*indices.begin()][dim];
+
+     for(auto const& i : indices){
+         if(data[i][dim] > max){
+             max = data[i][dim];
          }
      }
      return max;
@@ -270,9 +273,8 @@ unsigned int KDTree::argmax(IntervalValuesType const& a, IntervalValuesType cons
 }
 
 
- std::vector<unsigned int> KDTree::arange(unsigned int size){
-     std::vector<unsigned int> tensor;
-     tensor.reserve(size);
+ std::list<NodeIndex> KDTree::arange(unsigned int size){
+     std::list<unsigned int> tensor;
      for(int i = 0; i < size; ++i)tensor.push_back(i);
      return tensor;
  }

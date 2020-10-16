@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <utility>
+#include <cmath>
 
 typedef std::vector<float> IntervalValuesType;
 
@@ -35,7 +36,7 @@ public:
 
     float minDistance(Hyperrectangle const& other) const;
 
-    float maxDistance(Hyperrectangle const& other) const; 
+    float maxDistance(Hyperrectangle const& other) const;
 
 
     /**
@@ -44,7 +45,7 @@ public:
      * @param v2 is another point with the same size as v1
      * @returns the distance between both points
      * */
-    static float calculateDistance(PositionType const& v1, PositionType const& v2);
+    static float calculateDistance(IntervalValuesType const& v1, IntervalValuesType const& v2);
 
 private:
 
