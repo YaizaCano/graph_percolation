@@ -74,7 +74,7 @@ int main(int argc, char* argv[]){
                 std::cout << "Connected Components: " << components << std::endl;
                 std::cout << "Differece: " << diff << std::endl;
                 old_components = components;
-                data.addRow({std::to_string(components), std::to_string(old_components), std::to_string(i)});
+                data.addRow({std::to_string(components), std::to_string(diff), std::to_string(i)});
             }
         }
         // save data file
