@@ -19,6 +19,15 @@ def get_name(path):
 
 # define plot functions
 
+
+def plot_and_save(x, y, xLabel, yLabel, path):
+    plt.xlabel(xLabel)
+    plt.ylabel(xLabel)
+    plt.plot(x, y)
+    print('Saving plot', path)
+    plt.savefig(path)
+    plt.clf()
+
 def plot_experiment(file_path, out_dir):
     """
     Generates a plot for the given experiment. It generates a
@@ -30,7 +39,7 @@ def plot_experiment(file_path, out_dir):
         out_dir: path of where to save the plot
     """
     data = pd.read_csv(file_path)
-    q_values = list(set(data['q']))
+    q_values = sorted(list(set(data['q'])))
     pairs = []
     for val in q_values:
         cols = data.loc[data['q'] == val].mean()
@@ -38,16 +47,12 @@ def plot_experiment(file_path, out_dir):
     pairs = np.array(pairs)
     components = pairs[:, 0]
     difference = pairs[:, 1]
-    print(components)
-    print(difference)
-
-    #plt.xlabel('#Components')
-    #plt.ylabel('q')
-    #plt.plot(cols[COMPONENTS_COL], cols[Q_COL])
-    #out_name = get_name(file_path)
-    #print('Saving plot', out_name)
-    #plt.savefig(os.path.join(out_dir, out_name))
-
+    # plot components graph
+    out_name = get_name(file_path)
+    plot_and_save(components, q_values, '#Components', 'q-prob',
+                  os.path.join(out_dir, out_name) + "_components" )
+    plot_and_save(difference, q_values, 'Difference', 'q-prob',
+                  os.path.join(out_dir, out_name) + "_diifference")
 
 
 def usage():
@@ -76,7 +81,7 @@ def main():
         for file_name in os.listdir(file_dir):
             vars = file_name.split('_')
             plot_experiment(os.path.join(file_dir, file_name), out_dir)
-            break
+
 
 
 
