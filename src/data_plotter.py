@@ -20,9 +20,10 @@ def get_name(path):
 # define plot functions
 
 
-def plot_and_save(x, y, xLabel, yLabel, path):
+def plot_and_save(x, y, xLabel, yLabel, path, title):
+    plt.title(title)
     plt.xlabel(xLabel)
-    plt.ylabel(xLabel)
+    plt.ylabel(yLabel)
     plt.plot(x, y)
     print('Saving plot', path)
     plt.savefig(path)
@@ -50,9 +51,9 @@ def plot_experiment(file_path, out_dir):
     # plot components graph
     out_name = get_name(file_path)
     plot_and_save(components, q_values, '#Components', 'q-prob',
-                  os.path.join(out_dir, out_name) + "_components" )
+                  os.path.join(out_dir, out_name) + "_components", out_name + " Components")
     plot_and_save(difference, q_values, 'Difference', 'q-prob',
-                  os.path.join(out_dir, out_name) + "_diifference")
+                  os.path.join(out_dir, out_name) + "_diifference", out_name + " Diifference")
 
 
 def usage():
