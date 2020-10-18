@@ -5,6 +5,8 @@
 #include <queue>
 #include <list>
 #include <memory>
+#include <mutex>
+#include <thread>
 #include <future>
 
 #include "hyperrectangle.h"
@@ -71,14 +73,14 @@ private:
     * @param radius is the search area
     * */
     void traverseCheckRectangles(BondPairs& connections, NodePtr const& left, Hyperrectangle const& leftR,
-                                 NodePtr const& right, Hyperrectangle const& rightR, float radius) const;
+                                 NodePtr const& right, Hyperrectangle const& rightR, float radius, int& threadCount) const;
     /**
     * @brief Traverse the tree by adding connected components it does not,
     *        need to check if the connected components are on the same space
     *        because they are already in the same hyperrectangle
     * @param connections set of pairs of bond between indices
     * @param left is the left subtree
-    * @param right is the right subtree 
+    * @param right is the right subtree
     * */
     void traverseSimple(BondPairs& connections, NodePtr const& left, NodePtr const& right) const;
 
@@ -165,6 +167,10 @@ private:
      * @brief Contains the tree data structure
      * */
     std::shared_ptr<Node> tree;
+
+    mutable std::mutex nodeListMutex;
+
+    mutable std::mutex threadCounterMutex; 
 
     /**
      * @brief Specifies the minimum size in which a partition is made,

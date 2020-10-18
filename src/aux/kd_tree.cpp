@@ -21,7 +21,8 @@ BondPairs KDTree::radiusRangeSearch(float radius) const{
     // create initial hyperrectangle
     Hyperrectangle rectangle(maxValues, minValues);
     // traverse tree by comparing hyperrectangles
-    traverseCheckRectangles(connections, tree, rectangle, tree, rectangle, radius);
+    int threadCount = 0;
+    traverseCheckRectangles(connections, tree, rectangle, tree, rectangle, radius, threadCount);
 
     return connections;
 }
@@ -94,7 +95,7 @@ BondPairs KDTree::radiusRangeSearch(float radius) const{
 }
 
 void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left, Hyperrectangle const& leftR,
-                             NodePtr const& right, Hyperrectangle const& rightR, float radius) const{
+                             NodePtr const& right, Hyperrectangle const& rightR, float radius, int& threadCount) const{
 
     // distance between hyperrectangles must be less than the
     // minimum possible distance, that is the radius. Otherwise
@@ -120,6 +121,7 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
                     for(auto const& i : leftIndices){
                         for(auto const& j : rightIndices){
                             if(Hyperrectangle::calculateDistance(data[i], data[j]) <= radius && i < j){
+                                std::lock_guard<std::mutex> lock(nodeListMutex);
                                 connections.push_back({i, j});
                             }
                         }
@@ -129,6 +131,7 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
                     for(auto const& i : leftIndices){
                         for(auto const& j : rightIndices){
                             if(Hyperrectangle::calculateDistance(data[i], data[j]) <= radius && i != j){
+                                std::lock_guard<std::mutex> lock(nodeListMutex);
                                 connections.push_back({i, j});
                             }
                         }
@@ -138,9 +141,9 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
             else{
                 auto splitRight = rightR.split(right->getDimension(), right->getSplitValue());
                 traverseCheckRectangles(connections, left, leftR,
-                                        right->leftNode(), splitRight.first, radius);
+                                        right->leftNode(), splitRight.first, radius, threadCount);
                 traverseCheckRectangles(connections, left, leftR,
-                                        right->rightNode(), splitRight.second, radius);
+                                        right->rightNode(), splitRight.second, radius, threadCount);
             }
         }
         else if(right->isLeaf()){
@@ -148,9 +151,9 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
             // the left direction
             auto splitLeft = leftR.split(left->getDimension(), left->getSplitValue());
             traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
-                                    right, rightR, radius);
+                                    right, rightR, radius, threadCount);
             traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
-                                    right, rightR, radius);
+                                    right, rightR, radius, threadCount);
         }
         else{
             // There isn't any leaf node, so we must traverse all directions
@@ -158,20 +161,52 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
             auto splitLeft = leftR.split(left->getDimension(), left->getSplitValue());
             auto splitRight = rightR.split(right->getDimension(), right->getSplitValue());
             // traverse left with left
-            traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
-                                    right->leftNode(), splitRight.first, radius);
+            std::thread t1, t2; 
+
+            threadCounterMutex.lock();
+            if(threadCount < 6){
+                threadCount += 1;
+                threadCounterMutex.unlock();
+                t1 = std::thread(&KDTree::traverseCheckRectangles, this, std::ref(connections), left->leftNode(), splitLeft.first,
+                                        right->leftNode(), splitRight.first, radius, std::ref(threadCount));
+            }
+            else{
+                threadCounterMutex.unlock();
+                traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
+                                        right->leftNode(), splitRight.first, radius, threadCount);
+            }
+
+
+
             // traverse left with right
-            traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
-                                    right->rightNode(), splitRight.second, radius);
+
+            threadCounterMutex.lock();
+            if(threadCount < 6){
+                threadCount += 1;
+                threadCounterMutex.unlock();
+                t2  = std::thread(&KDTree::traverseCheckRectangles, this, std::ref(connections), left->leftNode(), splitLeft.first,
+                                        right->rightNode(), splitRight.second, radius, std::ref(threadCount));
+            }
+            else{
+                threadCounterMutex.unlock();
+                traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
+                                        right->rightNode(), splitRight.second, radius, threadCount);
+            }
+
+
+
 
             if(!(*left == *right)){
                 // traverse right with left
                 traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
-                                        right->leftNode(), splitRight.first, radius);
+                                        right->leftNode(), splitRight.first, radius, threadCount);
             }
             // traverse right with right
             traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
-                                    right->rightNode(), splitRight.second, radius);
+                                    right->rightNode(), splitRight.second, radius, threadCount);
+
+            if(t1.joinable())t1.join();
+            if(t2.joinable())t2.join();
         }
     }
 }
