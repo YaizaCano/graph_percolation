@@ -160,11 +160,15 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
             // possible.
             auto splitLeft = leftR.split(left->getDimension(), left->getSplitValue());
             auto splitRight = rightR.split(right->getDimension(), right->getSplitValue());
-            // traverse left with left
-            std::thread t1, t2; 
-
+            // we first define two threads
+            std::thread t1, t2;
+            // the thread counter needs to be read and updated so
+            // we must lock it first, if we create a thread or not
+            // we must not forget to unlock the mutex
             threadCounterMutex.lock();
             if(threadCount < 6){
+                // if we currently have less than 6 threads running
+                // we can create one
                 threadCount += 1;
                 threadCounterMutex.unlock();
                 t1 = std::thread(&KDTree::traverseCheckRectangles, this, std::ref(connections), left->leftNode(), splitLeft.first,
@@ -175,11 +179,7 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
                 traverseCheckRectangles(connections, left->leftNode(), splitLeft.first,
                                         right->leftNode(), splitRight.first, radius, threadCount);
             }
-
-
-
-            // traverse left with right
-
+            // we make the same appraoch as before
             threadCounterMutex.lock();
             if(threadCount < 6){
                 threadCount += 1;
@@ -193,9 +193,8 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
                                         right->rightNode(), splitRight.second, radius, threadCount);
             }
 
-
-
-
+            // we leave the following two functions free for the maint thread to execute
+            // the first time we call this subrutine we won't enter this condition
             if(!(*left == *right)){
                 // traverse right with left
                 traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
@@ -204,7 +203,8 @@ void KDTree::traverseCheckRectangles(BondPairs& connections, NodePtr const& left
             // traverse right with right
             traverseCheckRectangles(connections, left->rightNode(), splitLeft.second,
                                     right->rightNode(), splitRight.second, radius, threadCount);
-
+            // if we have created new threads we must wait for them
+            // to complete their execution 
             if(t1.joinable())t1.join();
             if(t2.joinable())t2.join();
         }
