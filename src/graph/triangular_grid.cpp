@@ -6,7 +6,7 @@ TriangularGrid::TriangularGrid(unsigned int num){
 
 
 std::string TriangularGrid::name() const{
-    return "grid2d";
+    return "triangular";
 }
 
 Graph TriangularGrid::createGraph() const{
