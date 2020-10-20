@@ -1,4 +1,4 @@
-#include "triangularGrid.h"
+#include "triangular_grid.h"
 
 TriangularGrid::TriangularGrid(unsigned int num){
     n = num;

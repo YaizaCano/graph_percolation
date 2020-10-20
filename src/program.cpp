@@ -5,6 +5,7 @@
 #include "graph/geometric.h"
 #include "graph/graph.h"
 #include "data/csv_file.h"
+#include "graph/triangular_grid.h"
 
 void usage(){
     std::cerr << "Usage: ./program n seed outputDir" << std::endl << std::endl;
@@ -45,11 +46,16 @@ int main(int argc, char* argv[]){
     // define generators
     Grid grid2d(sqrt(n));
     generators.push_back(&grid2d);
-    while(radius < 1){
+    
+    //TriangularGrid tgrid(sqrt(2*n));
+    //generators.push_back(&tgrid);
+
+    /*while(radius < 1){
         Geometric* generator = new Geometric(n, dim, radius);
         generators.push_back(generator);
         radius += 0.05;
-    }
+    }*/
+
     std::cout << "Intiailizing bond percolation" << std::endl;
     for(auto const& gen : generators){
         std::cout << "=================================" << std::endl;

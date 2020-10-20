@@ -74,7 +74,7 @@ BondPairs KDTree::radiusRangeSearch(float radius) const{
         auto greaterMinValues = mins;
         greaterMinValues[dim] = split;
         // finally, we recursively build the left and right subtree
-        if(depth < 2){
+        if(depth < 4){
             auto futureLeft = std::async(&KDTree::build, this, lessIndices, lessMaxValues, mins, depth + 1);
             auto futureRight = std::async(&KDTree::build, this, greaterIndices, maxes, greaterMinValues, depth + 1);
 
