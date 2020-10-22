@@ -12,22 +12,33 @@ std::string TriangularGrid::name() const{
 Graph TriangularGrid::createGraph() const{
     Graph g;
     g.reserve((n*(n-1)/2)+n);
-
+    //std::cout << "Reserva d'espai feta" << std::endl;
     // add vertices
     int numVertices = n*(n - 1)/2 + n;
     for(auto i = 0; i < numVertices; ++i){
         g.addSite();
     }
+    //std::cout << "afegits els vertex" << std::endl;
 
-    // O(|V|) |V| == n*n
-    for(auto i = 0; i < n; ++i){
-        for(auto j = 0; j < n - i; ++j){
-            auto pos = i * n + j;
-            auto posleft = pos - 1;
-            auto posdown = pos + n;
-            if (posleft != -1 ) g.addBond(posleft, pos);
-            if ( !(i == n-1) && !(j == n-i-1) ) g.addBond(pos, posdown);
-        }
+    int rounds = 0;
+    int countdown = n;
+    for(int i = 0; i < numVertices; ++i){
+      --countdown;
+      int pos = i;
+      int posright = i + 1;
+      int posdown = i + n-rounds;
+      //std::cout << "pos: " << pos << " posr: " << posright << std::endl << std::endl;
+      if (countdown == 0) {
+        ++rounds;
+        countdown = n - rounds;
+        //std::cout << "Coundown: " << countdown << " rounds: " << rounds << std::endl;
+      }
+      else{
+        g.addBond(pos,posright);
+        g.addBond(pos,posdown);
+        //std::cout << "aresta a la dreta: " << pos << " " << posright << std::endl;
+        //std::cout << "aresta asota: " << pos << " " << posdown << std::endl;
+      }
     }
 
     return g; // graella
