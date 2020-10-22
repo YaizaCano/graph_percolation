@@ -20,10 +20,21 @@ def get_name(path):
 # define plot functions
 
 
-def plot_and_save(x, y, xLabel, yLabel, path, title):
+def plot_and_save(x, y, xLabel, yLabel, path, title, annotate=False):
     plt.title(title)
+    plt.xticks(np.linspace(0, 1, 11))
     plt.xlabel(xLabel)
     plt.ylabel(yLabel)
+
+    if annotate:
+        max_arg = y.argmax()
+        max_y = y[max_arg]
+        max_x = x[max_arg]
+        plt.annotate(" q = " + "(" + str(max_x) + ")", (max_x, max_y))
+        min_arg = y.argmin()
+        min_y = y[min_arg]
+        min_x = x[min_arg]
+        plt.annotate(" q = " + "(" + str(min_x) + ")", (min_x, min_y))
     plt.plot(x, y)
     print('Saving plot', path)
     plt.savefig(path)
@@ -36,7 +47,7 @@ def derivate(x, y):
     for i in range(2, len(x)):
         z[i - 1] = (y[i] - y[i - 2]) / (x[i] - x[i - 2])
     z[-1] = z[-2]
-    return z
+    return np.array(z)
 
 
 
@@ -65,6 +76,8 @@ def plot_experiment(file_path, out_dir):
                   os.path.join(out_dir, out_name) + "_components", out_name.split('_')[0] + " Components")
     plot_and_save(q_values, derivate(q_values, components), 'q-prob', 'Derivative',
                   os.path.join(out_dir, out_name) + "_derivative", out_name.split('_')[0] + " Derivative")
+    plot_and_save(q_values, derivate(q_values, derivate(q_values, components)), 'q-prob', 'Second Derivative',
+                  os.path.join(out_dir, out_name) + "_sderivative", out_name.split('_')[0] + " Second Derivative", True)
     plot_and_save(q_values, difference,  'q-prob', 'Difference',
                   os.path.join(out_dir, out_name) + "_difference", out_name.split('_')[0] + " Difference")
 

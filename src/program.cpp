@@ -46,7 +46,7 @@ int main(int argc, char* argv[]){
     // define generators
     //Grid grid2d(sqrt(n));
     //generators.push_back(&grid2d);
-    
+
     //TriangularGrid tgrid(sqrt(2*n));
     //generators.push_back(&tgrid);
 
@@ -73,7 +73,7 @@ int main(int argc, char* argv[]){
 
             for(float i = 0; i <= 1.05; i += step){
                 std::cout << "Using q=" << i << std::endl;
-                auto g_p = Graph::applySitePercolation(g, i);
+                auto g_p = Graph::applyBondPercolation(g, i);
 
                 auto components = g_p.getTotalConnectedComponents();
                 auto diff = components - old_components;
