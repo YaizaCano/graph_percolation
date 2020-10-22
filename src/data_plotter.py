@@ -29,6 +29,17 @@ def plot_and_save(x, y, xLabel, yLabel, path, title):
     plt.savefig(path)
     plt.clf()
 
+
+def derivate(x, y):
+    z = [0] * len(x)
+
+    for i in range(2, len(x)):
+        z[i - 1] = (y[i] - y[i - 2]) / (x[i] - x[i - 2])
+    z[-1] = z[-2]
+    return z
+
+
+
 def plot_experiment(file_path, out_dir):
     """
     Generates a plot for the given experiment. It generates a
@@ -50,10 +61,12 @@ def plot_experiment(file_path, out_dir):
     difference = pairs[:, 1]
     # plot components graph
     out_name = get_name(file_path)
-    plot_and_save(components, q_values, '#Components', 'q-prob',
-                  os.path.join(out_dir, out_name) + "_components", out_name + " Components")
-    plot_and_save(difference, q_values, 'Difference', 'q-prob',
-                  os.path.join(out_dir, out_name) + "_diifference", out_name + " Diifference")
+    plot_and_save(q_values, components, 'q-prob', '#Components',
+                  os.path.join(out_dir, out_name) + "_components", out_name.split('_')[0] + " Components")
+    plot_and_save(q_values, derivate(q_values, components), 'q-prob', 'Derivative',
+                  os.path.join(out_dir, out_name) + "_derivative", out_name.split('_')[0] + " Derivative")
+    plot_and_save(q_values, difference,  'q-prob', 'Difference',
+                  os.path.join(out_dir, out_name) + "_difference", out_name.split('_')[0] + " Difference")
 
 
 def usage():
