@@ -20,7 +20,7 @@ def get_name(path):
 # define plot functions
 
 
-def plot_and_save(x, y, xLabel, yLabel, path, title, annotate=False):
+def plot_and_save(x, y, xLabel, yLabel, path, title, label, annotate=False):
     plt.title(title)
     plt.xticks(np.linspace(0, 1, 11))
     plt.xlabel(xLabel)
@@ -35,10 +35,10 @@ def plot_and_save(x, y, xLabel, yLabel, path, title, annotate=False):
         min_y = y[min_arg]
         min_x = x[min_arg]
         plt.annotate(" q = " + "(" + str(min_x) + ")", (min_x, min_y))
-    plt.plot(x, y)
+    plt.plot(x, y, label=label)
     print('Saving plot', path)
-    plt.savefig(path)
-    plt.clf()
+    #plt.savefig(path)
+    #plt.clf()
 
 
 def derivate(x, y):
@@ -51,7 +51,7 @@ def derivate(x, y):
 
 
 
-def plot_experiment(file_path, out_dir):
+def plot_experiment(file_path, out_dir, label=None):
     """
     Generates a plot for the given experiment. It generates a
     2D plot where the y axis represents the q value and x axis the
@@ -73,13 +73,11 @@ def plot_experiment(file_path, out_dir):
     # plot components graph
     out_name = get_name(file_path)
     plot_and_save(q_values, components, 'q-prob', '#Components',
-                  os.path.join(out_dir, out_name) + "_components", out_name.split('_')[0] + " Components")
-    plot_and_save(q_values, derivate(q_values, components), 'q-prob', 'Derivative',
-                  os.path.join(out_dir, out_name) + "_derivative", out_name.split('_')[0] + " Derivative")
-    plot_and_save(q_values, derivate(q_values, derivate(q_values, components)), 'q-prob', 'Second Derivative',
-                  os.path.join(out_dir, out_name) + "_sderivative", out_name.split('_')[0] + " Second Derivative", True)
-    plot_and_save(q_values, difference,  'q-prob', 'Difference',
-                  os.path.join(out_dir, out_name) + "_difference", out_name.split('_')[0] + " Difference")
+                  os.path.join(out_dir, out_name) + "_components", out_name.split('_')[0] + " Components", label)
+    #plot_and_save(q_values, derivate(q_values, components), 'q-prob', 'Derivative',
+    #              os.path.join(out_dir, out_name) + "_derivative", out_name.split('_')[0] + " Derivative")
+    #plot_and_save(q_values, derivate(q_values, derivate(q_values, components)), 'q-prob', 'Second Derivative',
+    #              os.path.join(out_dir, out_name) + "_sderivative", out_name.split('_')[0] + " Second Derivative")
 
 
 def usage():
@@ -105,9 +103,13 @@ def main():
         # each plot is independent since we are not
         # interested in comparing graphs but in finding
         # phase transition points
-        for file_name in os.listdir(file_dir):
+        for file_name in sorted(os.listdir(file_dir)):
             vars = file_name.split('_')
-            plot_experiment(os.path.join(file_dir, file_name), out_dir)
+            if vars[0] == GEOMETRIC_GRAPH:
+                plot_experiment(os.path.join(file_dir, file_name), out_dir, str(vars[1])[:4])
+        plt.legend(bbox_to_anchor=(1,1), loc="upper left")
+        plt.gcf().subplots_adjust(right=0.8)
+        plt.savefig(os.path.join(out_dir, "components_geometric.png"))
 
 
 
