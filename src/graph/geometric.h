@@ -22,6 +22,10 @@ public:
 
 private:
 
+    BondPairs addPairs(int begin, int end, std::vector<std::vector<float>> const& positions) const;
+
+    void concurrentRadiusRange(Graph& g, std::vector<std::vector<float>> const& positions) const;
+
     std::vector<float> generatePosition() const;
 
     unsigned int n, dimension;

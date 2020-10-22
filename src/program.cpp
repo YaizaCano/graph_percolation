@@ -40,13 +40,14 @@ int main(int argc, char* argv[]){
     if(outputPath[outputPath.size() - 1] != '/')outputPath += '/';
     RandGenerator::setSeed(seed);
     // radius definition
-    float radius = 0.95;
+
+    float radius = 0.2;
     std::list<GraphGenerator*> generators;
 
     // define generators
-    /*Grid grid2d(sqrt(n));
-    generators.push_back(&grid2d);*/
-    
+    //Grid grid2d(sqrt(n));
+    //generators.push_back(&grid2d);
+
     //TriangularGrid tgrid(sqrt(2*n));
     //generators.push_back(&tgrid);
 
