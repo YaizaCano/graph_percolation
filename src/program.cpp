@@ -48,14 +48,14 @@ int main(int argc, char* argv[]){
     //Grid grid2d(sqrt(n));
     //generators.push_back(&grid2d);
 
-    //TriangularGrid tgrid(sqrt(2*n));
-    //generators.push_back(&tgrid);
+    TriangularGrid tgrid(n);
+    generators.push_back(&tgrid);
 
-    while(radius < 1){
+    /*while(radius < 1){
         Geometric* generator = new Geometric(n, dim, radius);
         generators.push_back(generator);
         radius += 0.05;
-    }
+    }*/
 
     std::cout << "Intiailizing bond percolation" << std::endl;
     for(auto const& gen : generators){

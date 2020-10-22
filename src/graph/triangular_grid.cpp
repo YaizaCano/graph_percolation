@@ -14,7 +14,8 @@ Graph TriangularGrid::createGraph() const{
     g.reserve((n*(n-1)/2)+n);
 
     // add vertices
-    for(auto i = 0; i < (n * n)/2; ++i){
+    int numVertices = n*(n - 1)/2 + n;
+    for(auto i = 0; i < numVertices; ++i){
         g.addSite();
     }
 
@@ -28,7 +29,6 @@ Graph TriangularGrid::createGraph() const{
             if ( !(i == n-1) && !(j == n-i-1) ) g.addBond(pos, posdown);
         }
     }
-
 
     return g; // graella
 }
