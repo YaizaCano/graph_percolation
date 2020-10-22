@@ -41,7 +41,7 @@ int main(int argc, char* argv[]){
     RandGenerator::setSeed(seed);
     // radius definition
 
-    float radius = 0.2;
+    float radius = 0.05;
     std::list<GraphGenerator*> generators;
 
     // define generators

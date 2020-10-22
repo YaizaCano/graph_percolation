@@ -31,20 +31,13 @@ Graph Geometric::createGraph() const{
         g.addSite();
         positions[i] = generatePosition(); // position
     }
-    if(radius < -1){
-        KDTree tree(positions);
-        std::cout << "Tree built" << std::endl;
-        auto pairs = tree.radiusRangeSearch(radius);
-        std::cout << "Pairs: " << pairs.size() << std::endl;
+   
+    KDTree tree(positions);
+    std::cout << "Tree built" << std::endl;
+    auto pairs = tree.radiusRangeSearch(radius);
+    std::cout << "Pairs: " << pairs.size() << std::endl;
 
-        for(auto const& p : pairs)g.addBond(p.first, p.second);
-    }
-    else{
-        concurrentRadiusRange(g, positions);
-    }
-
-
-
+    for(auto const& p : pairs)g.addBond(p.first, p.second);
 
     return g; // graella
 }
@@ -65,7 +58,7 @@ BondPairs Geometric::addPairs(int begin, int end, std::vector<std::vector<float>
 
 
 void Geometric::concurrentRadiusRange(Graph& g, std::vector<std::vector<float>> const& positions) const{
-    unsigned int nThreads = 4;
+    unsigned int nThreads = 24;
 
     std::vector<std::future<BondPairs>> threads(nThreads);
     int stride = positions.size() / nThreads;
