@@ -20,7 +20,7 @@ def get_name(path):
 # define plot functions
 
 
-def plot_and_save(x, y, xLabel, yLabel, path, title, label, annotate=False):
+def plot_and_save(x, y, xLabel, yLabel, path, title, annotate=False):
     plt.title(title)
     plt.xticks(np.linspace(0, 1, 11))
     plt.xlabel(xLabel)
@@ -35,10 +35,10 @@ def plot_and_save(x, y, xLabel, yLabel, path, title, label, annotate=False):
         min_y = y[min_arg]
         min_x = x[min_arg]
         plt.annotate(" q = " + "(" + str(min_x) + ")", (min_x, min_y))
-    plt.plot(x, y, label=label)
+    plt.plot(x, y)
     print('Saving plot', path)
-    #plt.savefig(path)
-    #plt.clf()
+    plt.savefig(path)
+    plt.clf()
 
 
 def derivate(x, y):
@@ -73,11 +73,11 @@ def plot_experiment(file_path, out_dir, label=None):
     # plot components graph
     out_name = get_name(file_path)
     plot_and_save(q_values, components, 'q-prob', '#Components',
-                  os.path.join(out_dir, out_name) + "_components", out_name.split('_')[0] + " Components", label)
-    #plot_and_save(q_values, derivate(q_values, components), 'q-prob', 'Derivative',
-    #              os.path.join(out_dir, out_name) + "_derivative", out_name.split('_')[0] + " Derivative")
-    #plot_and_save(q_values, derivate(q_values, derivate(q_values, components)), 'q-prob', 'Second Derivative',
-    #              os.path.join(out_dir, out_name) + "_sderivative", out_name.split('_')[0] + " Second Derivative")
+                  os.path.join(out_dir, out_name) + "_components", out_name.split('_')[0] + " Components")
+    plot_and_save(q_values, derivate(q_values, components), 'q-prob', 'Derivative',
+                  os.path.join(out_dir, out_name) + "_derivative", out_name.split('_')[0] + " Derivative")
+    plot_and_save(q_values, derivate(q_values, derivate(q_values, components)), 'q-prob', 'Second Derivative',
+                  os.path.join(out_dir, out_name) + "_sderivative", out_name.split('_')[0] + " Second Derivative")
 
 
 def usage():
@@ -107,9 +107,7 @@ def main():
             vars = file_name.split('_')
             if vars[0] == GEOMETRIC_GRAPH:
                 plot_experiment(os.path.join(file_dir, file_name), out_dir, str(vars[1])[:4])
-        plt.legend(bbox_to_anchor=(1,1), loc="upper left")
-        plt.gcf().subplots_adjust(right=0.8)
-        plt.savefig(os.path.join(out_dir, "components_geometric.png"))
+
 
 
 

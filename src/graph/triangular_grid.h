@@ -3,15 +3,15 @@
 
 #include "graph_generator.h"
 
-class TriangularGrid :  public GraphGenerator{
+class TriangularGrid :  GraphGenerator{
 
     public:
 
         TriangularGrid(unsigned int num);
 
-        virtual Graph createGraph() const;
+        virtual TriangularGrid createGraph() const;
 
-        virtual std::string name() const;
+        virtual TriangularGrid std::string name() const;
 
     private:
 

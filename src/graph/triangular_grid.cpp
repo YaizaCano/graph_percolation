@@ -11,7 +11,7 @@ std::string TriangularGrid::name() const{
 
 Graph TriangularGrid::createGraph() const{
     Graph g;
-    g.reserve((n * n)/2);
+    g.reserve((n*(n-1)/2)+n);
 
     // add vertices
     for(auto i = 0; i < (n * n)/2; ++i){
@@ -25,7 +25,7 @@ Graph TriangularGrid::createGraph() const{
             auto posleft = pos - 1;
             auto posdown = pos + n;
             if (posleft != -1 ) g.addBond(posleft, pos);
-            if ( !(i == n-1) && !(j == n-i-1) ) g.addBond(pos, pos + n);
+            if ( !(i == n-1) && !(j == n-i-1) ) g.addBond(pos, posdown);
         }
     }
 
