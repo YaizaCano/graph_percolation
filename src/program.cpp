@@ -41,8 +41,8 @@ int main(int argc, char* argv[]){
     RandGenerator::setSeed(seed);
     // radius definition
 
-    /*float radius = 0.05;
-    std::list<GraphGenerator*> generators;*/
+    //float radius = 0.05;
+    std::list<GraphGenerator*> generators;
 
     // define generators
     //Grid grid2d(sqrt(n));
@@ -74,7 +74,7 @@ int main(int argc, char* argv[]){
 
             for(float i = 0; i <= 1.05; i += step){
                 std::cout << "Using q=" << i << std::endl;
-                auto g_p = Graph::applyBondPercolation(g, i);
+                auto g_p = Graph::applySitePercolation(g, i);
 
                 auto components = g_p.getTotalConnectedComponents();
                 auto diff = components - old_components;
