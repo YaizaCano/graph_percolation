@@ -14,27 +14,31 @@ A \mbox{\hyperlink{classKDTree}{K\+D\+Tree}} is a k-\/dimensional binary tree us
 \item 
 \mbox{\hyperlink{classKDTree_a64682be801a3697b9eca3bf7a80e5ef2}{K\+D\+Tree}} (std\+::vector$<$ Position\+Type $>$ const \&d)
 \begin{DoxyCompactList}\small\item\em Basic constructor of a K dimensional tree. \end{DoxyCompactList}\item 
-std\+::list$<$ std\+::pair$<$ Node\+Index, Node\+Index $>$ $>$ \mbox{\hyperlink{classKDTree_a938c445f75461d1b7fa505b29f8b8209}{radius\+Range\+Search}} (float radius) const
+Bond\+Pairs \mbox{\hyperlink{classKDTree_a0d4b150add76a1298a9a5fb926310ebc}{radius\+Range\+Search}} (float radius) const
 \begin{DoxyCompactList}\small\item\em Given a search radius it calculates all the pairs of points that are within that ditance. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classNode}{Node}} $>$ \mbox{\hyperlink{classKDTree_aa13d1e1e6c8e6abc99bf8efbba45b651}{build}} (std\+::vector$<$ Node\+Index $>$ const \&idx, Interval\+Values\+Type const \&maxes, Interval\+Values\+Type const \&mins)
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classNode}{Node}} $>$ \mbox{\hyperlink{classKDTree_af707535b63b04b9ffde9547c232bd59b}{build}} (std\+::list$<$ Node\+Index $>$ const \&idx, Interval\+Values\+Type const \&maxes, Interval\+Values\+Type const \&mins, int depth=0) const
 \begin{DoxyCompactList}\small\item\em Builds the entire \mbox{\hyperlink{classKDTree}{K\+D\+Tree}} recursively using a sliding-\/midpoint subdivision (Maneewongvatana, It\textquotesingle{}s okay to be skinny, if your friends are fat, 1999) \end{DoxyCompactList}\item 
-std\+::list$<$ Node\+Index $>$ \mbox{\hyperlink{classKDTree_a25e91bfaae99b48fbc0c800aad1bc010}{filter\+Lower}} (std\+::vector$<$ Node\+Index $>$ const \&indices, unsigned int dim, float split) const
+void \mbox{\hyperlink{classKDTree_ae111c894c0590e66eab2d6edee7d5e49}{traverse\+Check\+Rectangles}} (Bond\+Pairs \&connections, Node\+Ptr const \&left, \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} const \&leftR, Node\+Ptr const \&right, \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} const \&rightR, float radius, int \&thread\+Count) const
+\begin{DoxyCompactList}\small\item\em Traverse the tree by adding connected components and checking if subtree are in the same subspace base on their hyperrectangle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classKDTree_a641843b33c33bf708830675e38f49b6f}{traverse\+Simple}} (Bond\+Pairs \&connections, Node\+Ptr const \&left, Node\+Ptr const \&right) const
+\begin{DoxyCompactList}\small\item\em Traverse the tree by adding connected components it does not, need to check if the connected components are on the same space because they are already in the same hyperrectangle. \end{DoxyCompactList}\item 
+std\+::list$<$ Node\+Index $>$ \mbox{\hyperlink{classKDTree_a9117f99dd7f8e69f01647f55626d2e7c}{filter\+Lower}} (std\+::list$<$ Node\+Index $>$ const \&indices, unsigned int dim, float split) const
 \begin{DoxyCompactList}\small\item\em Filters all the indices, whose value is lower or equal than the split value. \end{DoxyCompactList}\item 
-std\+::list$<$ Node\+Index $>$ \mbox{\hyperlink{classKDTree_a3773fa963fc16a63cc1a52df416e3ccb}{filter\+Bigger}} (std\+::vector$<$ Node\+Index $>$ const \&indices, unsigned int dim, float split) const
+std\+::list$<$ Node\+Index $>$ \mbox{\hyperlink{classKDTree_a0a66df6a237ab7cd302a7ffefff87b96}{filter\+Bigger}} (std\+::list$<$ Node\+Index $>$ const \&indices, unsigned int dim, float split) const
 \begin{DoxyCompactList}\small\item\em Filters all the indices, whose value is bigger than the split value. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classKDTree_a01e3a0bda05a33a2175c5468ebe1e977}{find\+Min}} (std\+::vector$<$ Node\+Index $>$ const \&indices, unsigned int dim) const
+float \mbox{\hyperlink{classKDTree_a0bc3e4a656c2a74cf4356e27009f4d5c}{find\+Min}} (std\+::list$<$ Node\+Index $>$ const \&indices, unsigned int dim) const
 \begin{DoxyCompactList}\small\item\em Find the minimum value of the data based on the indices given. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classKDTree_a35778f8b8a0b448511e23625c9c43eed}{find\+Max}} (std\+::vector$<$ Node\+Index $>$ const \&indices, unsigned int dim) const
+float \mbox{\hyperlink{classKDTree_a40902bd4df22d30c1896d499935f9656}{find\+Max}} (std\+::list$<$ Node\+Index $>$ const \&indices, unsigned int dim) const
 \begin{DoxyCompactList}\small\item\em Find the maximum value of the data based on the indices given. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static unsigned int \mbox{\hyperlink{classKDTree_ab0452d9f94370aa313c8d0f82d97bf14}{argmax}} (Interval\+Values\+Type const \&a, Interval\+Values\+Type const \&b)
 \begin{DoxyCompactList}\small\item\em Finds the biggest value of a substraction of vectors and returns its argument. \end{DoxyCompactList}\item 
-static std\+::list$<$ Node\+Index $>$ \mbox{\hyperlink{classKDTree_a4a90d7fe9eefba276d127accd32b9abf}{arange}} (unsigned int size)
+static std\+::list$<$ Node\+Index $>$ \mbox{\hyperlink{classKDTree_ac4511341163ca86b06e66bdf566d36b9}{arange}} (unsigned int size)
 \begin{DoxyCompactList}\small\item\em Creates a list of numbers enumerated from 0 to n -\/ 1. \end{DoxyCompactList}\item 
 static std\+::vector$<$ float $>$ \mbox{\hyperlink{classKDTree_af08965fe00b500f043d789a46d937b0b}{maximum\+Values}} (std\+::vector$<$ Position\+Type $>$ const \&values)
 \begin{DoxyCompactList}\small\item\em For each dimension, it calculates its maximum. \end{DoxyCompactList}\item 
@@ -54,7 +58,13 @@ std\+::vector$<$ float $>$ \mbox{\hyperlink{classKDTree_a5b2ed96af29477a97cf47db
 \begin{DoxyCompactList}\small\item\em Contains the list of minimum values of data. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classKDTree_a8af312ca4ba41f54718f86566c737953}\label{classKDTree_a8af312ca4ba41f54718f86566c737953}} 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classNode}{Node}} $>$ \mbox{\hyperlink{classKDTree_a8af312ca4ba41f54718f86566c737953}{tree}}
-\begin{DoxyCompactList}\small\item\em Contains the tree data structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Contains the tree data structure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classKDTree_ad4a4fe07a6ad28e112740eda3bab8969}\label{classKDTree_ad4a4fe07a6ad28e112740eda3bab8969}} 
+std\+::mutex {\bfseries node\+List\+Mutex}
+\item 
+\mbox{\Hypertarget{classKDTree_a77946f86495e48aebc86b738a9a0b697}\label{classKDTree_a77946f86495e48aebc86b738a9a0b697}} 
+std\+::mutex {\bfseries thread\+Counter\+Mutex}
+\end{DoxyCompactItemize}
 \doxysubsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -85,11 +95,11 @@ Basic constructor of a K dimensional tree.
 ================================= \doxysubsection*{P\+U\+B\+L\+IC }
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classKDTree_a4a90d7fe9eefba276d127accd32b9abf}\label{classKDTree_a4a90d7fe9eefba276d127accd32b9abf}} 
+\mbox{\Hypertarget{classKDTree_ac4511341163ca86b06e66bdf566d36b9}\label{classKDTree_ac4511341163ca86b06e66bdf566d36b9}} 
 \index{KDTree@{KDTree}!arange@{arange}}
 \index{arange@{arange}!KDTree@{KDTree}}
 \doxysubsubsection{\texorpdfstring{arange()}{arange()}}
-{\footnotesize\ttfamily std\+::vector$<$ unsigned int $>$ K\+D\+Tree\+::arange (\begin{DoxyParamCaption}\item[{unsigned int}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::list$<$ Node\+Index $>$ K\+D\+Tree\+::arange (\begin{DoxyParamCaption}\item[{unsigned int}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
 
 
 
@@ -123,11 +133,11 @@ Finds the biggest value of a substraction of vectors and returns its argument.
 \begin{DoxyReturn}{Returns}
 the argument of the biggest substraction 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classKDTree_aa13d1e1e6c8e6abc99bf8efbba45b651}\label{classKDTree_aa13d1e1e6c8e6abc99bf8efbba45b651}} 
+\mbox{\Hypertarget{classKDTree_af707535b63b04b9ffde9547c232bd59b}\label{classKDTree_af707535b63b04b9ffde9547c232bd59b}} 
 \index{KDTree@{KDTree}!build@{build}}
 \index{build@{build}!KDTree@{KDTree}}
 \doxysubsubsection{\texorpdfstring{build()}{build()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classNode}{Node}} $>$ K\+D\+Tree\+::build (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Node\+Index $>$ const \&}]{idx,  }\item[{Interval\+Values\+Type const \&}]{maxes,  }\item[{Interval\+Values\+Type const \&}]{mins }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classNode}{Node}} $>$ K\+D\+Tree\+::build (\begin{DoxyParamCaption}\item[{std\+::list$<$ Node\+Index $>$ const \&}]{idx,  }\item[{Interval\+Values\+Type const \&}]{maxes,  }\item[{Interval\+Values\+Type const \&}]{mins,  }\item[{int}]{depth = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -142,11 +152,11 @@ Builds the entire \mbox{\hyperlink{classKDTree}{K\+D\+Tree}} recursively using a
 {\em mins} & contains the minimum values for the indices @retursn a node containing all the subtree\\
 \hline
 \end{DoxyParams}
-================================= \doxysubsection*{P\+R\+I\+V\+A\+TE }\mbox{\Hypertarget{classKDTree_a3773fa963fc16a63cc1a52df416e3ccb}\label{classKDTree_a3773fa963fc16a63cc1a52df416e3ccb}} 
+================================= \doxysubsection*{P\+R\+I\+V\+A\+TE }\mbox{\Hypertarget{classKDTree_a0a66df6a237ab7cd302a7ffefff87b96}\label{classKDTree_a0a66df6a237ab7cd302a7ffefff87b96}} 
 \index{KDTree@{KDTree}!filterBigger@{filterBigger}}
 \index{filterBigger@{filterBigger}!KDTree@{KDTree}}
 \doxysubsubsection{\texorpdfstring{filterBigger()}{filterBigger()}}
-{\footnotesize\ttfamily std\+::list$<$ Node\+Index $>$ K\+D\+Tree\+::filter\+Bigger (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Node\+Index $>$ const \&}]{indices,  }\item[{unsigned int}]{dim,  }\item[{float}]{split }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::list$<$ Node\+Index $>$ K\+D\+Tree\+::filter\+Bigger (\begin{DoxyParamCaption}\item[{std\+::list$<$ Node\+Index $>$ const \&}]{indices,  }\item[{unsigned int}]{dim,  }\item[{float}]{split }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -164,11 +174,11 @@ Filters all the indices, whose value is bigger than the split value.
 \begin{DoxyReturn}{Returns}
 returns a list of indices 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classKDTree_a25e91bfaae99b48fbc0c800aad1bc010}\label{classKDTree_a25e91bfaae99b48fbc0c800aad1bc010}} 
+\mbox{\Hypertarget{classKDTree_a9117f99dd7f8e69f01647f55626d2e7c}\label{classKDTree_a9117f99dd7f8e69f01647f55626d2e7c}} 
 \index{KDTree@{KDTree}!filterLower@{filterLower}}
 \index{filterLower@{filterLower}!KDTree@{KDTree}}
 \doxysubsubsection{\texorpdfstring{filterLower()}{filterLower()}}
-{\footnotesize\ttfamily std\+::list$<$ Node\+Index $>$ K\+D\+Tree\+::filter\+Lower (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Node\+Index $>$ const \&}]{indices,  }\item[{unsigned int}]{dim,  }\item[{float}]{split }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::list$<$ Node\+Index $>$ K\+D\+Tree\+::filter\+Lower (\begin{DoxyParamCaption}\item[{std\+::list$<$ Node\+Index $>$ const \&}]{indices,  }\item[{unsigned int}]{dim,  }\item[{float}]{split }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -186,11 +196,11 @@ Filters all the indices, whose value is lower or equal than the split value.
 \begin{DoxyReturn}{Returns}
 returns a list of indices 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classKDTree_a35778f8b8a0b448511e23625c9c43eed}\label{classKDTree_a35778f8b8a0b448511e23625c9c43eed}} 
+\mbox{\Hypertarget{classKDTree_a40902bd4df22d30c1896d499935f9656}\label{classKDTree_a40902bd4df22d30c1896d499935f9656}} 
 \index{KDTree@{KDTree}!findMax@{findMax}}
 \index{findMax@{findMax}!KDTree@{KDTree}}
 \doxysubsubsection{\texorpdfstring{findMax()}{findMax()}}
-{\footnotesize\ttfamily float K\+D\+Tree\+::find\+Max (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Node\+Index $>$ const \&}]{indices,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily float K\+D\+Tree\+::find\+Max (\begin{DoxyParamCaption}\item[{std\+::list$<$ Node\+Index $>$ const \&}]{indices,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -206,11 +216,11 @@ Find the maximum value of the data based on the indices given.
 \begin{DoxyReturn}{Returns}
 the maximum value 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classKDTree_a01e3a0bda05a33a2175c5468ebe1e977}\label{classKDTree_a01e3a0bda05a33a2175c5468ebe1e977}} 
+\mbox{\Hypertarget{classKDTree_a0bc3e4a656c2a74cf4356e27009f4d5c}\label{classKDTree_a0bc3e4a656c2a74cf4356e27009f4d5c}} 
 \index{KDTree@{KDTree}!findMin@{findMin}}
 \index{findMin@{findMin}!KDTree@{KDTree}}
 \doxysubsubsection{\texorpdfstring{findMin()}{findMin()}}
-{\footnotesize\ttfamily float K\+D\+Tree\+::find\+Min (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Node\+Index $>$ const \&}]{indices,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily float K\+D\+Tree\+::find\+Min (\begin{DoxyParamCaption}\item[{std\+::list$<$ Node\+Index $>$ const \&}]{indices,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -262,11 +272,11 @@ For each dimension, it calculates its minimum.
 \begin{DoxyReturn}{Returns}
 a vector of min values, one per dimension 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classKDTree_a938c445f75461d1b7fa505b29f8b8209}\label{classKDTree_a938c445f75461d1b7fa505b29f8b8209}} 
+\mbox{\Hypertarget{classKDTree_a0d4b150add76a1298a9a5fb926310ebc}\label{classKDTree_a0d4b150add76a1298a9a5fb926310ebc}} 
 \index{KDTree@{KDTree}!radiusRangeSearch@{radiusRangeSearch}}
 \index{radiusRangeSearch@{radiusRangeSearch}!KDTree@{KDTree}}
 \doxysubsubsection{\texorpdfstring{radiusRangeSearch()}{radiusRangeSearch()}}
-{\footnotesize\ttfamily std\+::list$<$ std\+::pair$<$ Node\+Index, Node\+Index $>$ $>$ K\+D\+Tree\+::radius\+Range\+Search (\begin{DoxyParamCaption}\item[{float}]{radius }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily Bond\+Pairs K\+D\+Tree\+::radius\+Range\+Search (\begin{DoxyParamCaption}\item[{float}]{radius }\end{DoxyParamCaption}) const}
 
 
 
@@ -282,9 +292,53 @@ Given a search radius it calculates all the pairs of points that are within that
 \begin{DoxyReturn}{Returns}
 a list of pairs of identifiers 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classKDTree_ae111c894c0590e66eab2d6edee7d5e49}\label{classKDTree_ae111c894c0590e66eab2d6edee7d5e49}} 
+\index{KDTree@{KDTree}!traverseCheckRectangles@{traverseCheckRectangles}}
+\index{traverseCheckRectangles@{traverseCheckRectangles}!KDTree@{KDTree}}
+\doxysubsubsection{\texorpdfstring{traverseCheckRectangles()}{traverseCheckRectangles()}}
+{\footnotesize\ttfamily void K\+D\+Tree\+::traverse\+Check\+Rectangles (\begin{DoxyParamCaption}\item[{Bond\+Pairs \&}]{connections,  }\item[{Node\+Ptr const \&}]{left,  }\item[{\mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} const \&}]{leftR,  }\item[{Node\+Ptr const \&}]{right,  }\item[{\mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} const \&}]{rightR,  }\item[{float}]{radius,  }\item[{int \&}]{thread\+Count }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Traverse the tree by adding connected components and checking if subtree are in the same subspace base on their hyperrectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connections} & set of pairs of bond between indices \\
+\hline
+{\em left} & is the left subtree \\
+\hline
+{\em leftR} & is the left hyperrectangle \\
+\hline
+{\em right} & is the right subtree \\
+\hline
+{\em rightR} & is the right hyperrectangle \\
+\hline
+{\em radius} & is the search area \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classKDTree_a641843b33c33bf708830675e38f49b6f}\label{classKDTree_a641843b33c33bf708830675e38f49b6f}} 
+\index{KDTree@{KDTree}!traverseSimple@{traverseSimple}}
+\index{traverseSimple@{traverseSimple}!KDTree@{KDTree}}
+\doxysubsubsection{\texorpdfstring{traverseSimple()}{traverseSimple()}}
+{\footnotesize\ttfamily void K\+D\+Tree\+::traverse\+Simple (\begin{DoxyParamCaption}\item[{Bond\+Pairs \&}]{connections,  }\item[{Node\+Ptr const \&}]{left,  }\item[{Node\+Ptr const \&}]{right }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Traverse the tree by adding connected components it does not, need to check if the connected components are on the same space because they are already in the same hyperrectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connections} & set of pairs of bond between indices \\
+\hline
+{\em left} & is the left subtree \\
+\hline
+{\em right} & is the right subtree \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-src/aux/kd\+\_\+tree.\+h\item 
-src/aux/kd\+\_\+tree.\+cpp\end{DoxyCompactItemize}
+src/tree/kd\+\_\+tree.\+h\item 
+src/tree/kd\+\_\+tree.\+cpp\end{DoxyCompactItemize}

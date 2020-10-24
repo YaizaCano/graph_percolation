@@ -7,7 +7,7 @@ A \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} is represented as the c
 
 
 
-{\ttfamily \#include $<$hyperrectancle.\+h$>$}
+{\ttfamily \#include $<$hyperrectangle.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -15,12 +15,25 @@ A \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} is represented as the c
 \mbox{\hyperlink{classHyperrectangle_a411537c0d611c7525a8c4b5de562cf70}{Hyperrectangle}} (Interval\+Values\+Type const \&maxs, Interval\+Values\+Type const \&mins)
 \begin{DoxyCompactList}\small\item\em Basic constructor of an hyperrectangle based on a list of intervals. \end{DoxyCompactList}\item 
 std\+::pair$<$ \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}}, \mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} $>$ \mbox{\hyperlink{classHyperrectangle_a407a9606a248a6df5240a7e8a8f29c19}{split}} (unsigned int axis, float split\+Value) const
-\begin{DoxyCompactList}\small\item\em A split of the hyperrectangle into two parts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A split of the hyperrectangle into two parts. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classHyperrectangle_a620d039aba2038c3a57ebfd2c5721fc9}{min\+Distance}} (\mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} const \&other) const
+\begin{DoxyCompactList}\small\item\em Calculates the minimum distance between two hyperrectangle. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classHyperrectangle_a0e3f47b6e9e60724b7c7a26fd767e237}{max\+Distance}} (\mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} const \&other) const
+\begin{DoxyCompactList}\small\item\em Calculates the maximum distance between two hyperrectangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static float \mbox{\hyperlink{classHyperrectangle_a14befaa5156c08a530fb877fb592f14d}{calculate\+Distance}} (Position\+Type const \&v1, Position\+Type const \&v2)
+static float \mbox{\hyperlink{classHyperrectangle_a5d8cd60f5f2f83183c8edc04b0f7a0b3}{calculate\+Distance}} (Interval\+Values\+Type const \&v1, Interval\+Values\+Type const \&v2)
 \begin{DoxyCompactList}\small\item\em Minkowski distance between two points where p=2 (Eucledian distance) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Interval\+Values\+Type \mbox{\hyperlink{classHyperrectangle_a43869b03e21f6e74d2297a21c174ab5d}{maximum}} (Interval\+Values\+Type const \&v1, Interval\+Values\+Type const \&v2)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum value per axis of both vectors. \end{DoxyCompactList}\item 
+static Interval\+Values\+Type \mbox{\hyperlink{classHyperrectangle_abbbe682c8ba5b2ea6ea82c4bb8afd9b0}{minimum}} (Interval\+Values\+Type const \&v1, Interval\+Values\+Type const \&v2)
+\begin{DoxyCompactList}\small\item\em Calculates the minimum value per axis of both vectors. \end{DoxyCompactList}\item 
+static Interval\+Values\+Type \mbox{\hyperlink{classHyperrectangle_a4b5c1e60fa51518d35ec3c1dcdaa7eb7}{substract}} (Interval\+Values\+Type const \&v1, Interval\+Values\+Type const \&v2)
+\begin{DoxyCompactList}\small\item\em Calculates the difference between two vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -56,11 +69,11 @@ Basic constructor of an hyperrectangle based on a list of intervals.
 ================================= \doxysubsection*{P\+U\+B\+L\+IC }
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classHyperrectangle_a14befaa5156c08a530fb877fb592f14d}\label{classHyperrectangle_a14befaa5156c08a530fb877fb592f14d}} 
+\mbox{\Hypertarget{classHyperrectangle_a5d8cd60f5f2f83183c8edc04b0f7a0b3}\label{classHyperrectangle_a5d8cd60f5f2f83183c8edc04b0f7a0b3}} 
 \index{Hyperrectangle@{Hyperrectangle}!calculateDistance@{calculateDistance}}
 \index{calculateDistance@{calculateDistance}!Hyperrectangle@{Hyperrectangle}}
 \doxysubsubsection{\texorpdfstring{calculateDistance()}{calculateDistance()}}
-{\footnotesize\ttfamily float Hyperrectangle\+::calculate\+Distance (\begin{DoxyParamCaption}\item[{Position\+Type const \&}]{v1,  }\item[{Position\+Type const \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily float Hyperrectangle\+::calculate\+Distance (\begin{DoxyParamCaption}\item[{Interval\+Values\+Type const \&}]{v1,  }\item[{Interval\+Values\+Type const \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -75,6 +88,82 @@ Minkowski distance between two points where p=2 (Eucledian distance)
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 the distance between both points 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHyperrectangle_a0e3f47b6e9e60724b7c7a26fd767e237}\label{classHyperrectangle_a0e3f47b6e9e60724b7c7a26fd767e237}} 
+\index{Hyperrectangle@{Hyperrectangle}!maxDistance@{maxDistance}}
+\index{maxDistance@{maxDistance}!Hyperrectangle@{Hyperrectangle}}
+\doxysubsubsection{\texorpdfstring{maxDistance()}{maxDistance()}}
+{\footnotesize\ttfamily float Hyperrectangle\+::max\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} const \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Calculates the maximum distance between two hyperrectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & is the rectangle to compare to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a floating point distance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHyperrectangle_a43869b03e21f6e74d2297a21c174ab5d}\label{classHyperrectangle_a43869b03e21f6e74d2297a21c174ab5d}} 
+\index{Hyperrectangle@{Hyperrectangle}!maximum@{maximum}}
+\index{maximum@{maximum}!Hyperrectangle@{Hyperrectangle}}
+\doxysubsubsection{\texorpdfstring{maximum()}{maximum()}}
+{\footnotesize\ttfamily Interval\+Values\+Type Hyperrectangle\+::maximum (\begin{DoxyParamCaption}\item[{Interval\+Values\+Type const \&}]{v1,  }\item[{Interval\+Values\+Type const \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Calculates the maximum value per axis of both vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & a vector in the space \\
+\hline
+{\em v2} & another vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a list of max values 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHyperrectangle_a620d039aba2038c3a57ebfd2c5721fc9}\label{classHyperrectangle_a620d039aba2038c3a57ebfd2c5721fc9}} 
+\index{Hyperrectangle@{Hyperrectangle}!minDistance@{minDistance}}
+\index{minDistance@{minDistance}!Hyperrectangle@{Hyperrectangle}}
+\doxysubsubsection{\texorpdfstring{minDistance()}{minDistance()}}
+{\footnotesize\ttfamily float Hyperrectangle\+::min\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHyperrectangle}{Hyperrectangle}} const \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Calculates the minimum distance between two hyperrectangle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & is the rectangle to compare to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a floating point distance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHyperrectangle_abbbe682c8ba5b2ea6ea82c4bb8afd9b0}\label{classHyperrectangle_abbbe682c8ba5b2ea6ea82c4bb8afd9b0}} 
+\index{Hyperrectangle@{Hyperrectangle}!minimum@{minimum}}
+\index{minimum@{minimum}!Hyperrectangle@{Hyperrectangle}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}}
+{\footnotesize\ttfamily Interval\+Values\+Type Hyperrectangle\+::minimum (\begin{DoxyParamCaption}\item[{Interval\+Values\+Type const \&}]{v1,  }\item[{Interval\+Values\+Type const \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Calculates the minimum value per axis of both vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & a vector in the space \\
+\hline
+{\em v2} & another vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a list of min values 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classHyperrectangle_a407a9606a248a6df5240a7e8a8f29c19}\label{classHyperrectangle_a407a9606a248a6df5240a7e8a8f29c19}} 
 \index{Hyperrectangle@{Hyperrectangle}!split@{split}}
@@ -96,9 +185,29 @@ A split of the hyperrectangle into two parts.
 \begin{DoxyReturn}{Returns}
 a pair of hyperrectangles, (lesser, greater) 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classHyperrectangle_a4b5c1e60fa51518d35ec3c1dcdaa7eb7}\label{classHyperrectangle_a4b5c1e60fa51518d35ec3c1dcdaa7eb7}} 
+\index{Hyperrectangle@{Hyperrectangle}!substract@{substract}}
+\index{substract@{substract}!Hyperrectangle@{Hyperrectangle}}
+\doxysubsubsection{\texorpdfstring{substract()}{substract()}}
+{\footnotesize\ttfamily Interval\+Values\+Type Hyperrectangle\+::substract (\begin{DoxyParamCaption}\item[{Interval\+Values\+Type const \&}]{v1,  }\item[{Interval\+Values\+Type const \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Calculates the difference between two vectors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & a vector in the space \\
+\hline
+{\em v2} & another vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-src/aux/hyperrectancle.\+h\item 
-src/aux/hyperrectangle.\+cpp\end{DoxyCompactItemize}
+src/tree/hyperrectangle.\+h\item 
+src/tree/hyperrectangle.\+cpp\end{DoxyCompactItemize}

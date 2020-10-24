@@ -61,29 +61,79 @@ $(function() {
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
+<a href="classNode-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Node Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Represents a node in a <a class="el" href="classKDTree.html" title="A KDTree is a k-dimensional binary tree used to represents points of multiple dimensions within the s...">KDTree</a>.  
- <a href="classNode.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="node_8h_source.html">node.h</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for Node:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="classNode.png" usemap="#Node_map" alt=""/>
-  <map id="Node_map" name="Node_map">
-<area href="classInnerNode.html" title="Represents an inner node in a KDTree, this node has reference to the left and right subtrees and cont..." alt="InnerNode" shape="rect" coords="0,56,71,80"/>
-<area href="classLeafNode.html" title="Represents a leaf in a KDTree, a leaf contains a list of positions of the k-dimensional data." alt="LeafNode" shape="rect" coords="81,56,152,80"/>
-  </map>
-</div></div>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents a node in a <a class="el" href="classKDTree.html" title="A KDTree is a k-dimensional binary tree used to represents points of multiple dimensions within the s...">KDTree</a>. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/aux/<a class="el" href="node_8h_source.html">node.h</a></li>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ad8630082ce6697875565f659e905c142"><td class="memItemLeft" align="right" valign="top"><a id="ad8630082ce6697875565f659e905c142"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (std::list&lt; NodeIndex &gt; const &amp;i)</td></tr>
+<tr class="separator:ad8630082ce6697875565f659e905c142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bedadbccd6e9ead3239de2925e8cd27"><td class="memItemLeft" align="right" valign="top"><a id="a5bedadbccd6e9ead3239de2925e8cd27"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (float split, unsigned int dim, NodePtr left, NodePtr right)</td></tr>
+<tr class="separator:a5bedadbccd6e9ead3239de2925e8cd27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4b9b61548e079fc4f10c49b419df630"><td class="memItemLeft" align="right" valign="top"><a id="ac4b9b61548e079fc4f10c49b419df630"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getDimension</b> () const</td></tr>
+<tr class="separator:ac4b9b61548e079fc4f10c49b419df630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4715ab6d113e31c214b159b30083c0d9"><td class="memItemLeft" align="right" valign="top"><a id="a4715ab6d113e31c214b159b30083c0d9"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>getSplitValue</b> () const</td></tr>
+<tr class="separator:a4715ab6d113e31c214b159b30083c0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a763cf30c486f69421dd53058c0d2b97e"><td class="memItemLeft" align="right" valign="top"><a id="a763cf30c486f69421dd53058c0d2b97e"></a>
+std::list&lt; NodeIndex &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getIndices</b> () const</td></tr>
+<tr class="separator:a763cf30c486f69421dd53058c0d2b97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c5b662d3bfbb856292a9aab878ed622"><td class="memItemLeft" align="right" valign="top"><a id="a0c5b662d3bfbb856292a9aab878ed622"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isLeaf</b> () const</td></tr>
+<tr class="separator:a0c5b662d3bfbb856292a9aab878ed622"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ffa087befe564d6f0be48cbef013d96"><td class="memItemLeft" align="right" valign="top"><a id="a0ffa087befe564d6f0be48cbef013d96"></a>
+NodePtr&#160;</td><td class="memItemRight" valign="bottom"><b>leftNode</b> () const</td></tr>
+<tr class="separator:a0ffa087befe564d6f0be48cbef013d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af175371e0f2d0c1c1ebc7fe9fad8024e"><td class="memItemLeft" align="right" valign="top"><a id="af175371e0f2d0c1c1ebc7fe9fad8024e"></a>
+NodePtr&#160;</td><td class="memItemRight" valign="bottom"><b>rightNode</b> () const</td></tr>
+<tr class="separator:af175371e0f2d0c1c1ebc7fe9fad8024e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70efea727bdf8a928e184c4d597324df"><td class="memItemLeft" align="right" valign="top"><a id="a70efea727bdf8a928e184c4d597324df"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="classNode.html">Node</a> const &amp;other) const</td></tr>
+<tr class="separator:a70efea727bdf8a928e184c4d597324df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:adb90577d9d796c4ccbccf41ce2efc6c9"><td class="memItemLeft" align="right" valign="top"><a id="adb90577d9d796c4ccbccf41ce2efc6c9"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr class="separator:adb90577d9d796c4ccbccf41ce2efc6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0ba25bdf95f25f6eaa2da91167d1b54"><td class="memItemLeft" align="right" valign="top"><a id="ae0ba25bdf95f25f6eaa2da91167d1b54"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>leaf</b></td></tr>
+<tr class="separator:ae0ba25bdf95f25f6eaa2da91167d1b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7abbb741901fa0e3182f9f68ef5b0dcc"><td class="memItemLeft" align="right" valign="top"><a id="a7abbb741901fa0e3182f9f68ef5b0dcc"></a>
+std::list&lt; NodeIndex &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>indices</b></td></tr>
+<tr class="separator:a7abbb741901fa0e3182f9f68ef5b0dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed33fe12350114aadf23b0a36dd3e7da"><td class="memItemLeft" align="right" valign="top"><a id="aed33fe12350114aadf23b0a36dd3e7da"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>dimension</b></td></tr>
+<tr class="separator:aed33fe12350114aadf23b0a36dd3e7da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8af7a03319d42c30010e196f024af18f"><td class="memItemLeft" align="right" valign="top"><a id="a8af7a03319d42c30010e196f024af18f"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>splitValue</b></td></tr>
+<tr class="separator:a8af7a03319d42c30010e196f024af18f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a549253d765a467b4a303b849868e56c9"><td class="memItemLeft" align="right" valign="top"><a id="a549253d765a467b4a303b849868e56c9"></a>
+NodePtr&#160;</td><td class="memItemRight" valign="bottom"><b>left</b></td></tr>
+<tr class="separator:a549253d765a467b4a303b849868e56c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3bff8826cc8ff078cba898e88e9711a"><td class="memItemLeft" align="right" valign="top"><a id="ae3bff8826cc8ff078cba898e88e9711a"></a>
+NodePtr&#160;</td><td class="memItemRight" valign="bottom"><b>right</b></td></tr>
+<tr class="separator:ae3bff8826cc8ff078cba898e88e9711a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a3b6b82a4a3aaa541eed016028b5d94dd"><td class="memItemLeft" align="right" valign="top"><a id="a3b6b82a4a3aaa541eed016028b5d94dd"></a>
+static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>idCounter</b> = 0</td></tr>
+<tr class="separator:a3b6b82a4a3aaa541eed016028b5d94dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/tree/<a class="el" href="node_8h_source.html">node.h</a></li>
+<li>src/tree/node.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

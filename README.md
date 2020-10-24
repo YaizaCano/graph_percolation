@@ -26,6 +26,7 @@ To execute it has to be run with the specified parameters in usage<br>
     seed: the random seed for the data generation
     dim: number of dimensions for geometric graphs
     stepSize: the step size of probability q
+    q: number of repetitions per graph
     outputDir: the directory where the experiment must be placed, the directory must exist
   ```
 

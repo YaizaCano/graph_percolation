@@ -1,25 +1,68 @@
 \hypertarget{classNode}{}\doxysection{Node Class Reference}
 \label{classNode}\index{Node@{Node}}
-
-
-Represents a node in a \mbox{\hyperlink{classKDTree}{K\+D\+Tree}}.  
-
-
-
-
-{\ttfamily \#include $<$node.\+h$>$}
-
-Inheritance diagram for Node\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{classNode}
-\end{center}
-\end{figure}
-
-
-\doxysubsection{Detailed Description}
-Represents a node in a \mbox{\hyperlink{classKDTree}{K\+D\+Tree}}. 
-
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-src/aux/node.\+h\end{DoxyCompactItemize}
+\mbox{\Hypertarget{classNode_ad8630082ce6697875565f659e905c142}\label{classNode_ad8630082ce6697875565f659e905c142}} 
+{\bfseries Node} (std\+::list$<$ Node\+Index $>$ const \&i)
+\item 
+\mbox{\Hypertarget{classNode_a5bedadbccd6e9ead3239de2925e8cd27}\label{classNode_a5bedadbccd6e9ead3239de2925e8cd27}} 
+{\bfseries Node} (float split, unsigned int dim, Node\+Ptr left, Node\+Ptr right)
+\item 
+\mbox{\Hypertarget{classNode_ac4b9b61548e079fc4f10c49b419df630}\label{classNode_ac4b9b61548e079fc4f10c49b419df630}} 
+unsigned int {\bfseries get\+Dimension} () const
+\item 
+\mbox{\Hypertarget{classNode_a4715ab6d113e31c214b159b30083c0d9}\label{classNode_a4715ab6d113e31c214b159b30083c0d9}} 
+float {\bfseries get\+Split\+Value} () const
+\item 
+\mbox{\Hypertarget{classNode_a763cf30c486f69421dd53058c0d2b97e}\label{classNode_a763cf30c486f69421dd53058c0d2b97e}} 
+std\+::list$<$ Node\+Index $>$ {\bfseries get\+Indices} () const
+\item 
+\mbox{\Hypertarget{classNode_a0c5b662d3bfbb856292a9aab878ed622}\label{classNode_a0c5b662d3bfbb856292a9aab878ed622}} 
+bool {\bfseries is\+Leaf} () const
+\item 
+\mbox{\Hypertarget{classNode_a0ffa087befe564d6f0be48cbef013d96}\label{classNode_a0ffa087befe564d6f0be48cbef013d96}} 
+Node\+Ptr {\bfseries left\+Node} () const
+\item 
+\mbox{\Hypertarget{classNode_af175371e0f2d0c1c1ebc7fe9fad8024e}\label{classNode_af175371e0f2d0c1c1ebc7fe9fad8024e}} 
+Node\+Ptr {\bfseries right\+Node} () const
+\item 
+\mbox{\Hypertarget{classNode_a70efea727bdf8a928e184c4d597324df}\label{classNode_a70efea727bdf8a928e184c4d597324df}} 
+bool {\bfseries operator==} (\mbox{\hyperlink{classNode}{Node}} const \&other) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNode_adb90577d9d796c4ccbccf41ce2efc6c9}\label{classNode_adb90577d9d796c4ccbccf41ce2efc6c9}} 
+unsigned int {\bfseries id}
+\item 
+\mbox{\Hypertarget{classNode_ae0ba25bdf95f25f6eaa2da91167d1b54}\label{classNode_ae0ba25bdf95f25f6eaa2da91167d1b54}} 
+bool {\bfseries leaf}
+\item 
+\mbox{\Hypertarget{classNode_a7abbb741901fa0e3182f9f68ef5b0dcc}\label{classNode_a7abbb741901fa0e3182f9f68ef5b0dcc}} 
+std\+::list$<$ Node\+Index $>$ {\bfseries indices}
+\item 
+\mbox{\Hypertarget{classNode_aed33fe12350114aadf23b0a36dd3e7da}\label{classNode_aed33fe12350114aadf23b0a36dd3e7da}} 
+unsigned int {\bfseries dimension}
+\item 
+\mbox{\Hypertarget{classNode_a8af7a03319d42c30010e196f024af18f}\label{classNode_a8af7a03319d42c30010e196f024af18f}} 
+float {\bfseries split\+Value}
+\item 
+\mbox{\Hypertarget{classNode_a549253d765a467b4a303b849868e56c9}\label{classNode_a549253d765a467b4a303b849868e56c9}} 
+Node\+Ptr {\bfseries left}
+\item 
+\mbox{\Hypertarget{classNode_ae3bff8826cc8ff078cba898e88e9711a}\label{classNode_ae3bff8826cc8ff078cba898e88e9711a}} 
+Node\+Ptr {\bfseries right}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classNode_a3b6b82a4a3aaa541eed016028b5d94dd}\label{classNode_a3b6b82a4a3aaa541eed016028b5d94dd}} 
+static unsigned int {\bfseries id\+Counter} = 0
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/tree/node.\+h\item 
+src/tree/node.\+cpp\end{DoxyCompactItemize}

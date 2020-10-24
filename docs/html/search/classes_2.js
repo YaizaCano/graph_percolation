@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hyperrectangle_58',['Hyperrectangle',['../classHyperrectangle.html',1,'']]]
+  ['hyperrectangle_64',['Hyperrectangle',['../classHyperrectangle.html',1,'']]]
 ];

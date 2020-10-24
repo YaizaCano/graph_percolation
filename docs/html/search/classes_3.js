@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['innernode_59',['InnerNode',['../classInnerNode.html',1,'']]]
+  ['kdtree_65',['KDTree',['../classKDTree.html',1,'']]]
 ];

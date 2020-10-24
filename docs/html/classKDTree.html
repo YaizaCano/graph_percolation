@@ -83,36 +83,42 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a64682be801a3697b9eca3bf7a80e5ef2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a64682be801a3697b9eca3bf7a80e5ef2">KDTree</a> (std::vector&lt; PositionType &gt; const &amp;d)</td></tr>
 <tr class="memdesc:a64682be801a3697b9eca3bf7a80e5ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor of a K dimensional tree.  <a href="classKDTree.html#a64682be801a3697b9eca3bf7a80e5ef2">More...</a><br /></td></tr>
 <tr class="separator:a64682be801a3697b9eca3bf7a80e5ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a938c445f75461d1b7fa505b29f8b8209"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::pair&lt; NodeIndex, NodeIndex &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a938c445f75461d1b7fa505b29f8b8209">radiusRangeSearch</a> (float radius) const</td></tr>
-<tr class="memdesc:a938c445f75461d1b7fa505b29f8b8209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a search radius it calculates all the pairs of points that are within that ditance.  <a href="classKDTree.html#a938c445f75461d1b7fa505b29f8b8209">More...</a><br /></td></tr>
-<tr class="separator:a938c445f75461d1b7fa505b29f8b8209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d4b150add76a1298a9a5fb926310ebc"><td class="memItemLeft" align="right" valign="top">BondPairs&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a0d4b150add76a1298a9a5fb926310ebc">radiusRangeSearch</a> (float radius) const</td></tr>
+<tr class="memdesc:a0d4b150add76a1298a9a5fb926310ebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a search radius it calculates all the pairs of points that are within that ditance.  <a href="classKDTree.html#a0d4b150add76a1298a9a5fb926310ebc">More...</a><br /></td></tr>
+<tr class="separator:a0d4b150add76a1298a9a5fb926310ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:aa13d1e1e6c8e6abc99bf8efbba45b651"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classNode.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#aa13d1e1e6c8e6abc99bf8efbba45b651">build</a> (std::vector&lt; NodeIndex &gt; const &amp;idx, IntervalValuesType const &amp;maxes, IntervalValuesType const &amp;mins)</td></tr>
-<tr class="memdesc:aa13d1e1e6c8e6abc99bf8efbba45b651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the entire <a class="el" href="classKDTree.html" title="A KDTree is a k-dimensional binary tree used to represents points of multiple dimensions within the s...">KDTree</a> recursively using a sliding-midpoint subdivision (Maneewongvatana, It's okay to be skinny, if your friends are fat, 1999)  <a href="classKDTree.html#aa13d1e1e6c8e6abc99bf8efbba45b651">More...</a><br /></td></tr>
-<tr class="separator:aa13d1e1e6c8e6abc99bf8efbba45b651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25e91bfaae99b48fbc0c800aad1bc010"><td class="memItemLeft" align="right" valign="top">std::list&lt; NodeIndex &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a25e91bfaae99b48fbc0c800aad1bc010">filterLower</a> (std::vector&lt; NodeIndex &gt; const &amp;indices, unsigned int dim, float split) const</td></tr>
-<tr class="memdesc:a25e91bfaae99b48fbc0c800aad1bc010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters all the indices, whose value is lower or equal than the split value.  <a href="classKDTree.html#a25e91bfaae99b48fbc0c800aad1bc010">More...</a><br /></td></tr>
-<tr class="separator:a25e91bfaae99b48fbc0c800aad1bc010"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3773fa963fc16a63cc1a52df416e3ccb"><td class="memItemLeft" align="right" valign="top">std::list&lt; NodeIndex &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a3773fa963fc16a63cc1a52df416e3ccb">filterBigger</a> (std::vector&lt; NodeIndex &gt; const &amp;indices, unsigned int dim, float split) const</td></tr>
-<tr class="memdesc:a3773fa963fc16a63cc1a52df416e3ccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters all the indices, whose value is bigger than the split value.  <a href="classKDTree.html#a3773fa963fc16a63cc1a52df416e3ccb">More...</a><br /></td></tr>
-<tr class="separator:a3773fa963fc16a63cc1a52df416e3ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01e3a0bda05a33a2175c5468ebe1e977"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a01e3a0bda05a33a2175c5468ebe1e977">findMin</a> (std::vector&lt; NodeIndex &gt; const &amp;indices, unsigned int dim) const</td></tr>
-<tr class="memdesc:a01e3a0bda05a33a2175c5468ebe1e977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the minimum value of the data based on the indices given.  <a href="classKDTree.html#a01e3a0bda05a33a2175c5468ebe1e977">More...</a><br /></td></tr>
-<tr class="separator:a01e3a0bda05a33a2175c5468ebe1e977"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35778f8b8a0b448511e23625c9c43eed"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a35778f8b8a0b448511e23625c9c43eed">findMax</a> (std::vector&lt; NodeIndex &gt; const &amp;indices, unsigned int dim) const</td></tr>
-<tr class="memdesc:a35778f8b8a0b448511e23625c9c43eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the maximum value of the data based on the indices given.  <a href="classKDTree.html#a35778f8b8a0b448511e23625c9c43eed">More...</a><br /></td></tr>
-<tr class="separator:a35778f8b8a0b448511e23625c9c43eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af707535b63b04b9ffde9547c232bd59b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classNode.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#af707535b63b04b9ffde9547c232bd59b">build</a> (std::list&lt; NodeIndex &gt; const &amp;idx, IntervalValuesType const &amp;maxes, IntervalValuesType const &amp;mins, int depth=0) const</td></tr>
+<tr class="memdesc:af707535b63b04b9ffde9547c232bd59b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the entire <a class="el" href="classKDTree.html" title="A KDTree is a k-dimensional binary tree used to represents points of multiple dimensions within the s...">KDTree</a> recursively using a sliding-midpoint subdivision (Maneewongvatana, It's okay to be skinny, if your friends are fat, 1999)  <a href="classKDTree.html#af707535b63b04b9ffde9547c232bd59b">More...</a><br /></td></tr>
+<tr class="separator:af707535b63b04b9ffde9547c232bd59b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae111c894c0590e66eab2d6edee7d5e49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#ae111c894c0590e66eab2d6edee7d5e49">traverseCheckRectangles</a> (BondPairs &amp;connections, NodePtr const &amp;left, <a class="el" href="classHyperrectangle.html">Hyperrectangle</a> const &amp;leftR, NodePtr const &amp;right, <a class="el" href="classHyperrectangle.html">Hyperrectangle</a> const &amp;rightR, float radius, int &amp;threadCount) const</td></tr>
+<tr class="memdesc:ae111c894c0590e66eab2d6edee7d5e49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse the tree by adding connected components and checking if subtree are in the same subspace base on their hyperrectangle.  <a href="classKDTree.html#ae111c894c0590e66eab2d6edee7d5e49">More...</a><br /></td></tr>
+<tr class="separator:ae111c894c0590e66eab2d6edee7d5e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a641843b33c33bf708830675e38f49b6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a641843b33c33bf708830675e38f49b6f">traverseSimple</a> (BondPairs &amp;connections, NodePtr const &amp;left, NodePtr const &amp;right) const</td></tr>
+<tr class="memdesc:a641843b33c33bf708830675e38f49b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse the tree by adding connected components it does not, need to check if the connected components are on the same space because they are already in the same hyperrectangle.  <a href="classKDTree.html#a641843b33c33bf708830675e38f49b6f">More...</a><br /></td></tr>
+<tr class="separator:a641843b33c33bf708830675e38f49b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9117f99dd7f8e69f01647f55626d2e7c"><td class="memItemLeft" align="right" valign="top">std::list&lt; NodeIndex &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a9117f99dd7f8e69f01647f55626d2e7c">filterLower</a> (std::list&lt; NodeIndex &gt; const &amp;indices, unsigned int dim, float split) const</td></tr>
+<tr class="memdesc:a9117f99dd7f8e69f01647f55626d2e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters all the indices, whose value is lower or equal than the split value.  <a href="classKDTree.html#a9117f99dd7f8e69f01647f55626d2e7c">More...</a><br /></td></tr>
+<tr class="separator:a9117f99dd7f8e69f01647f55626d2e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a66df6a237ab7cd302a7ffefff87b96"><td class="memItemLeft" align="right" valign="top">std::list&lt; NodeIndex &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a0a66df6a237ab7cd302a7ffefff87b96">filterBigger</a> (std::list&lt; NodeIndex &gt; const &amp;indices, unsigned int dim, float split) const</td></tr>
+<tr class="memdesc:a0a66df6a237ab7cd302a7ffefff87b96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters all the indices, whose value is bigger than the split value.  <a href="classKDTree.html#a0a66df6a237ab7cd302a7ffefff87b96">More...</a><br /></td></tr>
+<tr class="separator:a0a66df6a237ab7cd302a7ffefff87b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bc3e4a656c2a74cf4356e27009f4d5c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a0bc3e4a656c2a74cf4356e27009f4d5c">findMin</a> (std::list&lt; NodeIndex &gt; const &amp;indices, unsigned int dim) const</td></tr>
+<tr class="memdesc:a0bc3e4a656c2a74cf4356e27009f4d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the minimum value of the data based on the indices given.  <a href="classKDTree.html#a0bc3e4a656c2a74cf4356e27009f4d5c">More...</a><br /></td></tr>
+<tr class="separator:a0bc3e4a656c2a74cf4356e27009f4d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40902bd4df22d30c1896d499935f9656"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a40902bd4df22d30c1896d499935f9656">findMax</a> (std::list&lt; NodeIndex &gt; const &amp;indices, unsigned int dim) const</td></tr>
+<tr class="memdesc:a40902bd4df22d30c1896d499935f9656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the maximum value of the data based on the indices given.  <a href="classKDTree.html#a40902bd4df22d30c1896d499935f9656">More...</a><br /></td></tr>
+<tr class="separator:a40902bd4df22d30c1896d499935f9656"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
 <tr class="memitem:ab0452d9f94370aa313c8d0f82d97bf14"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#ab0452d9f94370aa313c8d0f82d97bf14">argmax</a> (IntervalValuesType const &amp;a, IntervalValuesType const &amp;b)</td></tr>
 <tr class="memdesc:ab0452d9f94370aa313c8d0f82d97bf14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the biggest value of a substraction of vectors and returns its argument.  <a href="classKDTree.html#ab0452d9f94370aa313c8d0f82d97bf14">More...</a><br /></td></tr>
 <tr class="separator:ab0452d9f94370aa313c8d0f82d97bf14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a90d7fe9eefba276d127accd32b9abf"><td class="memItemLeft" align="right" valign="top">static std::list&lt; NodeIndex &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a4a90d7fe9eefba276d127accd32b9abf">arange</a> (unsigned int size)</td></tr>
-<tr class="memdesc:a4a90d7fe9eefba276d127accd32b9abf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a list of numbers enumerated from 0 to n - 1.  <a href="classKDTree.html#a4a90d7fe9eefba276d127accd32b9abf">More...</a><br /></td></tr>
-<tr class="separator:a4a90d7fe9eefba276d127accd32b9abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4511341163ca86b06e66bdf566d36b9"><td class="memItemLeft" align="right" valign="top">static std::list&lt; NodeIndex &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#ac4511341163ca86b06e66bdf566d36b9">arange</a> (unsigned int size)</td></tr>
+<tr class="memdesc:ac4511341163ca86b06e66bdf566d36b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a list of numbers enumerated from 0 to n - 1.  <a href="classKDTree.html#ac4511341163ca86b06e66bdf566d36b9">More...</a><br /></td></tr>
+<tr class="separator:ac4511341163ca86b06e66bdf566d36b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af08965fe00b500f043d789a46d937b0b"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#af08965fe00b500f043d789a46d937b0b">maximumValues</a> (std::vector&lt; PositionType &gt; const &amp;values)</td></tr>
 <tr class="memdesc:af08965fe00b500f043d789a46d937b0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">For each dimension, it calculates its maximum.  <a href="classKDTree.html#af08965fe00b500f043d789a46d937b0b">More...</a><br /></td></tr>
 <tr class="separator:af08965fe00b500f043d789a46d937b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,6 +144,12 @@ std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a
 std::shared_ptr&lt; <a class="el" href="classNode.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDTree.html#a8af312ca4ba41f54718f86566c737953">tree</a></td></tr>
 <tr class="memdesc:a8af312ca4ba41f54718f86566c737953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the tree data structure. <br /></td></tr>
 <tr class="separator:a8af312ca4ba41f54718f86566c737953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4a4fe07a6ad28e112740eda3bab8969"><td class="memItemLeft" align="right" valign="top"><a id="ad4a4fe07a6ad28e112740eda3bab8969"></a>
+std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>nodeListMutex</b></td></tr>
+<tr class="separator:ad4a4fe07a6ad28e112740eda3bab8969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77946f86495e48aebc86b738a9a0b697"><td class="memItemLeft" align="right" valign="top"><a id="a77946f86495e48aebc86b738a9a0b697"></a>
+std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>threadCounterMutex</b></td></tr>
+<tr class="separator:a77946f86495e48aebc86b738a9a0b697"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -177,8 +189,8 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4a90d7fe9eefba276d127accd32b9abf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a90d7fe9eefba276d127accd32b9abf">&#9670;&nbsp;</a></span>arange()</h2>
+<a id="ac4511341163ca86b06e66bdf566d36b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4511341163ca86b06e66bdf566d36b9">&#9670;&nbsp;</a></span>arange()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,7 +199,7 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; unsigned int &gt; KDTree::arange </td>
+          <td class="memname">std::list&lt; NodeIndex &gt; KDTree::arange </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>size</em></td><td>)</td>
@@ -258,8 +270,8 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
-<a id="aa13d1e1e6c8e6abc99bf8efbba45b651"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa13d1e1e6c8e6abc99bf8efbba45b651">&#9670;&nbsp;</a></span>build()</h2>
+<a id="af707535b63b04b9ffde9547c232bd59b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af707535b63b04b9ffde9547c232bd59b">&#9670;&nbsp;</a></span>build()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -270,7 +282,7 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
         <tr>
           <td class="memname">std::shared_ptr&lt; <a class="el" href="classNode.html">Node</a> &gt; KDTree::build </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; NodeIndex &gt; const &amp;&#160;</td>
+          <td class="paramtype">std::list&lt; NodeIndex &gt; const &amp;&#160;</td>
           <td class="paramname"><em>idx</em>, </td>
         </tr>
         <tr>
@@ -283,12 +295,18 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">IntervalValuesType const &amp;&#160;</td>
-          <td class="paramname"><em>mins</em>&#160;</td>
+          <td class="paramname"><em>mins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>depth</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -311,8 +329,8 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
-<a id="a3773fa963fc16a63cc1a52df416e3ccb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3773fa963fc16a63cc1a52df416e3ccb">&#9670;&nbsp;</a></span>filterBigger()</h2>
+<a id="a0a66df6a237ab7cd302a7ffefff87b96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a66df6a237ab7cd302a7ffefff87b96">&#9670;&nbsp;</a></span>filterBigger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -323,7 +341,7 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
         <tr>
           <td class="memname">std::list&lt; NodeIndex &gt; KDTree::filterBigger </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; NodeIndex &gt; const &amp;&#160;</td>
+          <td class="paramtype">std::list&lt; NodeIndex &gt; const &amp;&#160;</td>
           <td class="paramname"><em>indices</em>, </td>
         </tr>
         <tr>
@@ -364,8 +382,8 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
-<a id="a25e91bfaae99b48fbc0c800aad1bc010"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25e91bfaae99b48fbc0c800aad1bc010">&#9670;&nbsp;</a></span>filterLower()</h2>
+<a id="a9117f99dd7f8e69f01647f55626d2e7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9117f99dd7f8e69f01647f55626d2e7c">&#9670;&nbsp;</a></span>filterLower()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -376,7 +394,7 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
         <tr>
           <td class="memname">std::list&lt; NodeIndex &gt; KDTree::filterLower </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; NodeIndex &gt; const &amp;&#160;</td>
+          <td class="paramtype">std::list&lt; NodeIndex &gt; const &amp;&#160;</td>
           <td class="paramname"><em>indices</em>, </td>
         </tr>
         <tr>
@@ -417,8 +435,8 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
-<a id="a35778f8b8a0b448511e23625c9c43eed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35778f8b8a0b448511e23625c9c43eed">&#9670;&nbsp;</a></span>findMax()</h2>
+<a id="a40902bd4df22d30c1896d499935f9656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40902bd4df22d30c1896d499935f9656">&#9670;&nbsp;</a></span>findMax()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -429,7 +447,7 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
         <tr>
           <td class="memname">float KDTree::findMax </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; NodeIndex &gt; const &amp;&#160;</td>
+          <td class="paramtype">std::list&lt; NodeIndex &gt; const &amp;&#160;</td>
           <td class="paramname"><em>indices</em>, </td>
         </tr>
         <tr>
@@ -463,8 +481,8 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
-<a id="a01e3a0bda05a33a2175c5468ebe1e977"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01e3a0bda05a33a2175c5468ebe1e977">&#9670;&nbsp;</a></span>findMin()</h2>
+<a id="a0bc3e4a656c2a74cf4356e27009f4d5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bc3e4a656c2a74cf4356e27009f4d5c">&#9670;&nbsp;</a></span>findMin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -475,7 +493,7 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
         <tr>
           <td class="memname">float KDTree::findMin </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; NodeIndex &gt; const &amp;&#160;</td>
+          <td class="paramtype">std::list&lt; NodeIndex &gt; const &amp;&#160;</td>
           <td class="paramname"><em>indices</em>, </td>
         </tr>
         <tr>
@@ -579,14 +597,14 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
-<a id="a938c445f75461d1b7fa505b29f8b8209"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a938c445f75461d1b7fa505b29f8b8209">&#9670;&nbsp;</a></span>radiusRangeSearch()</h2>
+<a id="a0d4b150add76a1298a9a5fb926310ebc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d4b150add76a1298a9a5fb926310ebc">&#9670;&nbsp;</a></span>radiusRangeSearch()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::list&lt; std::pair&lt; NodeIndex, NodeIndex &gt; &gt; KDTree::radiusRangeSearch </td>
+          <td class="memname">BondPairs KDTree::radiusRangeSearch </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>radius</em></td><td>)</td>
@@ -607,9 +625,140 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
+<a id="ae111c894c0590e66eab2d6edee7d5e49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae111c894c0590e66eab2d6edee7d5e49">&#9670;&nbsp;</a></span>traverseCheckRectangles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void KDTree::traverseCheckRectangles </td>
+          <td>(</td>
+          <td class="paramtype">BondPairs &amp;&#160;</td>
+          <td class="paramname"><em>connections</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NodePtr const &amp;&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classHyperrectangle.html">Hyperrectangle</a> const &amp;&#160;</td>
+          <td class="paramname"><em>leftR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NodePtr const &amp;&#160;</td>
+          <td class="paramname"><em>right</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classHyperrectangle.html">Hyperrectangle</a> const &amp;&#160;</td>
+          <td class="paramname"><em>rightR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radius</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>threadCount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Traverse the tree by adding connected components and checking if subtree are in the same subspace base on their hyperrectangle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connections</td><td>set of pairs of bond between indices </td></tr>
+    <tr><td class="paramname">left</td><td>is the left subtree </td></tr>
+    <tr><td class="paramname">leftR</td><td>is the left hyperrectangle </td></tr>
+    <tr><td class="paramname">right</td><td>is the right subtree </td></tr>
+    <tr><td class="paramname">rightR</td><td>is the right hyperrectangle </td></tr>
+    <tr><td class="paramname">radius</td><td>is the search area </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a641843b33c33bf708830675e38f49b6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a641843b33c33bf708830675e38f49b6f">&#9670;&nbsp;</a></span>traverseSimple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void KDTree::traverseSimple </td>
+          <td>(</td>
+          <td class="paramtype">BondPairs &amp;&#160;</td>
+          <td class="paramname"><em>connections</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NodePtr const &amp;&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NodePtr const &amp;&#160;</td>
+          <td class="paramname"><em>right</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Traverse the tree by adding connected components it does not, need to check if the connected components are on the same space because they are already in the same hyperrectangle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connections</td><td>set of pairs of bond between indices </td></tr>
+    <tr><td class="paramname">left</td><td>is the left subtree </td></tr>
+    <tr><td class="paramname">right</td><td>is the right subtree </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/aux/<a class="el" href="kd__tree_8h_source.html">kd_tree.h</a></li>
-<li>src/aux/kd_tree.cpp</li>
+<li>src/tree/<a class="el" href="kd__tree_8h_source.html">kd_tree.h</a></li>
+<li>src/tree/kd_tree.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -105,8 +105,7 @@ def main():
         # phase transition points
         for file_name in sorted(os.listdir(file_dir)):
             vars = file_name.split('_')
-            if vars[0] == GEOMETRIC_GRAPH:
-                plot_experiment(os.path.join(file_dir, file_name), out_dir, str(vars[1])[:4])
+            plot_experiment(os.path.join(file_dir, file_name), out_dir, str(vars[1])[:4])
 
 
 
